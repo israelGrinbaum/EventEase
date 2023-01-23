@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="eventsHall.master.cs" Inherits="eventsHall.eventsHall" %>
+
+<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head runat="server">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="mainCnt" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="footerCnt" runat="server">
+    </asp:ContentPlaceHolder>
+
+</body>
+</html>
