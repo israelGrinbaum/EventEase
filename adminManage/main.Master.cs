@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,11 @@ namespace eventsHall.adminManage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var usertmp= (User)Session["User"];
+            if(usertmp != null)
+            {
+                ltlName.Text = usertmp.Uname;
+            }
         }
     }
 }

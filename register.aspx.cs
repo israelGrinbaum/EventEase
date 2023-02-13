@@ -1,4 +1,5 @@
 ﻿using BLL;
+using eventsHall.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,58 +13,39 @@ namespace eventsHall
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack)
+            {
+                ltlNoEmailExist.Text = "";
+                ltlPassNoMatch.Text = "";
+                ltlSuccessReg.Text = "";
+            }
         }
 
-        protected void BtnReg_Click(object sender, EventArgs e)
+        protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (TxtName.Text=="")
+            if (BLL.User.isExist(txtEmail.Text))
             {
-                nameMsg.Text = "שדה זה הינו שדה חובה";
-                nameMsg.CssClass = "text-warning";
+                ltlNoEmailExist.Text = msg.getMsgById("302");
+                return;
             }
-            if (TxtEmail.Text=="")
+            if (txtPass.Text!=txtPass2.Text)
             {
-                emailMsg.Text = "שדה זה הינו שדה חובה";
-                emailMsg.CssClass = "text-warning";
+                ltlPassNoMatch.Text = msg.getMsgById("303");
+                return;
             }
-            if (TxtPhone.Text=="")
+            if (txtPass.Text.Length<5)
             {
-                phoneMsg.Text = "שדה זה הינו שדה חובה";
-                phoneMsg.CssClass = "text-warning";
+                ltlPassNoMatch.Text = msg.getMsgById("304");
+                return;
             }
-            if (TxtPass.Text=="")
-            {
-                passMsg.Text = "שדה זה הינו שדה חובה";
-                nameMsg.CssClass = "text-warning";
-            }
-            if (TxtPass2.Text=="")
-            {
-                pass2Msg.Text = "שדה זה הינו שדה חובה";
-                pass2Msg.CssClass = "text-warning";
-            }
-
-            if (TxtPass.Text != TxtPass2.Text)
-            {
-                passMsg.Text = "הסיסמאות צריכות להיות זהות";
-                passMsg.CssClass = "text-warning";
-            }
-            User tmp = new User()
-            {
-                Uname=TxtName.Text,
-                email=TxtEmail.Text,
-                phone=TxtPhone.Text,
-                pass=TxtPass.Text,
+            User userTmp = new User() {
+                Uname=txtUname.Text,
+                email=txtEmail.Text,
+                phone=txtPhone.Text,
+                pass=assets.ComputeSha256Hash(txtPass.Text),
             };
-            if (tmp.checkLogin())
-            {
-                Response.Redirect("login.aspx"); 
-            }
-            else
-            {
-                tmp.register();
-                Response.Write("register succefule");
-            }
+            userTmp.register();
+            ltlSuccessReg.Text= msg.getMsgById("305");
         }
     }
 }

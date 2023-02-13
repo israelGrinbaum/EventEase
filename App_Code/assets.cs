@@ -5,6 +5,23 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using NsExcel = Microsoft.Office.Interop.Excel;
+using BLL;
+using Newtonsoft.Json;
+using CsvHelper;
+using System.Globalization;
+using System.IO;
+using CsvHelper.TypeConversion;
+using System.Web.UI;
+using static System.Net.Mime.MediaTypeNames;
+using System.Collections;
+using System.Drawing;
+using System.Web.UI.WebControls;
+using Syncfusion.XlsIO;
+using System.Security.Principal;
+using System.Reflection;
+using eventsHall.App_Code;
+
 
 namespace eventsHall.App_Code
 {
@@ -83,6 +100,58 @@ namespace eventsHall.App_Code
                 }
                 return builder.ToString();
             }
+        }
+        public static void DisplayInExcel<T>(List<T> list)
+        {
+            var excelApp = new NsExcel.Application();
+            // Make the object visible.
+            excelApp.Visible = true;
+
+            // Create a new, empty workbook and add it to the collection returned
+            // by property Workbooks. The new workbook becomes the active workbook.
+            // Add has an optional parameter for specifying a particular template.
+            // Because no argument is sent in this example, Add creates a new workbook.
+            excelApp.Workbooks.Add();
+
+            // This example uses a single workSheet. The explicit type casting is
+            // removed in a later procedure.
+            NsExcel._Worksheet workSheet = (NsExcel.Worksheet)excelApp.ActiveSheet;
+            var col = 1;
+            foreach (var c in list[0].GetType().GetProperties())
+            {
+                workSheet.Cells[1, col] = c.Name;
+                col++;
+            }
+            var row = 2;
+
+            foreach (var acct in list)
+            {
+                col = 1;
+                foreach (var c in acct.GetType().GetProperties())
+                {
+                    workSheet.Cells[row, col] = c.GetValue(acct);
+                    col++;
+                }
+                //if (portionCategoryes.getCategoryById(acct.parentCatId) != null)
+                //{
+                //    workSheet.Cells[row, col] = portionCategoryes.getCategoryById(acct.parentCatId).catName;
+                //}
+
+                row++;
+                //workSheet.Cells[row, "A"] = acct.Cid;
+                //workSheet.Cells[row, "B"] = acct.catName;
+                //workSheet.Cells[row, "c"] = acct.parentCatId;
+            }
+            workSheet.Rows[1,1].Font.Bold = true; /*Rows[1].Font.Bold = true;*/
+            ////workSheet.Rows.Font.Background.Color = ExcelKnownColors.Sky_blue;
+            //workSheet.Rows.Font.Size = 14;
+            ////workSheet.Rows.HorizontalAlignment=ExcelHorizontalAlignment.RightMiddle;
+
+            workSheet.Columns.AutoFit();
+            ////workSheet.Columns[2].AutoFit();
+            ////workSheet.Columns[3].AutoFit();
+            ////workSheet.Columns[3].AutoFit();
+
         }
 
 
