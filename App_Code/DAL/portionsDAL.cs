@@ -25,12 +25,12 @@ namespace DAL
                 listPortions.Add(new portions()
                 {
                     Pid = (int)dt.Rows[i]["Pid"],
-                    Pname = "" + dt.Rows[i]["Pname"],
-                    Pdesc = ""+dt.Rows[i]["Pdesc"],
-                    price = (double)dt.Rows[i]["price"],
-                    picName = ""+dt.Rows[i]["picName"],
-                    portionCatId = "" + dt.Rows[i]["portionCatId"]
-                }) ;
+                    Pname = dt.Rows[i]["Pname"] + "",
+                    Pdesc = dt.Rows[i]["Pdesc"] + "",
+                    price = double.Parse(dt.Rows[i]["price"]+""),
+                    picName = dt.Rows[i]["picName"] + "",
+                    portionCatId = dt.Rows[i]["portionCatId"] + ""
+                });
             }
             return listPortions;
         }

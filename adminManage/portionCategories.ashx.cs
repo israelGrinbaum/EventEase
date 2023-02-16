@@ -31,9 +31,21 @@ namespace eventsHall.adminManage
         {
             string query = context.Request["sr"] + "";
             List<portionCategoryes> lstPC = portionCategoryes.getAllCategoryes(query);
-            DisplayInExcel<portionCategoryes>(lstPC);
-            //context.Response.ContentType = "application/msexcel";//application/msexcel
-            //context.Response.Write(DisplayInExcel(lstPC));
+            string excel = "<table>";
+            foreach(var PC in lstPC)
+            {
+                excel += "<tr>";
+                excel += "<td> "+ PC.Cid+"<td/>";
+                excel += "<td> "+ PC.catName+"<td/>";
+                excel += "<td> "+ PC.parentCatId+"<td/>";
+                excel += "<tr/>";
+            }
+            excel += "<table>";
+            //DisplayInExcel<portionCategoryes>(lstPC);
+
+            context.Response.ContentType = "application/msexcel";//application/msexcel
+            
+            context.Response.Write(excel);
         }
         public static void DisplayInExcel<T>(List<T> list)
         {

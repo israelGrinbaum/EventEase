@@ -142,7 +142,7 @@ namespace eventsHall.App_Code
                 //workSheet.Cells[row, "B"] = acct.catName;
                 //workSheet.Cells[row, "c"] = acct.parentCatId;
             }
-            workSheet.Rows[1,1].Font.Bold = true; /*Rows[1].Font.Bold = true;*/
+            //workSheet.Rows[1,1].Font.Bold = true; /*Rows[1].Font.Bold = true;*/
             ////workSheet.Rows.Font.Background.Color = ExcelKnownColors.Sky_blue;
             //workSheet.Rows.Font.Size = 14;
             ////workSheet.Rows.HorizontalAlignment=ExcelHorizontalAlignment.RightMiddle;
