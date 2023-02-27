@@ -55,5 +55,15 @@ namespace DAL
                 return false;
             }
         }
+        public static bool updatePass(string pass, string token)
+        {
+            string sql = $"update T_Users set pass='{pass}', resetToken='' where resetToken='{token}';";
+            dbContext db = new dbContext();
+            db.executeNonQuery(sql);
+            db.close();
+            return true;
+        }
+
+
     }
 }
