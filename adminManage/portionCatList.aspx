@@ -42,7 +42,7 @@
                                 <tr>
                                     <td><%# Eval("Cid") %></td>
                                     <td><%# Eval("catName") %></td>
-                                    <td><%# Eval("parentCatId") %></td>
+                                    <td><%# Eval("parentCatName") %></td>
                                     <td><a href="addUpdatePortionCat.aspx?Cid=<%# Eval("Cid") %>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     <td><a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdatePortionCat.aspx?Cid=<%# Eval("Cid") %>&op=del'"><i class="fa-solid fa-trash-alt"></i></a> </td>
                                 </tr>

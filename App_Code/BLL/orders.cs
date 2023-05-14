@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,5 +16,22 @@ namespace BLL
         public DateTime createDate { get; set; }
         public int Hid { get; set; }
         public string notes { get; set; }
+        public static List<orders> getAllOrders(string query)
+        {
+            return ordersDAL.getAllOrders(query);
+        }
+        public static orders getOrderById(int id)
+        {
+            return ordersDAL.getOrderById(id);
+        }
+        public void addUpdateOrder()
+        {
+            ordersDAL.addUpdateOrder(this);
+        }
+        public static void removeOrderById(int id)
+        {
+            ordersDAL.removeOrderById(id);
+        }
+
     }
 }

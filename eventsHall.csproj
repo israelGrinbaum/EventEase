@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -47,11 +46,32 @@
     <Reference Include="CsvHelper, Version=30.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.30.0.1\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.60.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.60.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.60.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.60.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Gmail.v1, Version=1.60.0.2958, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Gmail.v1.1.60.0.2958\lib\net45\Google.Apis.Gmail.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.60.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.0.0\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -61,31 +81,44 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Compression.Base, Version=20.4460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Compression.Base.20.4.0.49\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=20.4460.0.49, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Licensing.20.4.0.49\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Compression.Base, Version=20.4460.0.50, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.4.0.50\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.XlsIO.Base, Version=20.4460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.20.4.0.49\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=20.4460.0.50, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.4.0.50\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=20.4460.0.50, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.20.4.0.50\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.0\lib\netstandard2.0\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -103,13 +136,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="adminManage\addUpdateEventType.aspx" />
+    <Content Include="adminManage\addUpdateHall.aspx" />
+    <Content Include="adminManage\addUpdateOrder.aspx" />
     <Content Include="adminManage\addUpdatePortion.aspx" />
     <Content Include="adminManage\addUpdatePortionCat.aspx" />
+    <Content Include="adminManage\addUpdateUser.aspx" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap.css" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap.min.css" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap4.css" />
@@ -660,6 +692,7 @@
     <Content Include="adminManage\dist\js\pages\dashboard.js" />
     <Content Include="adminManage\dist\js\pages\dashboard2.js" />
     <Content Include="adminManage\dist\js\pages\dashboard3.js" />
+    <Content Include="adminManage\eventTypesList.aspx" />
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\css\all.css" />
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\css\all.min.css" />
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\css\brands.css" />
@@ -2714,8 +2747,10 @@
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\svgs\solid\yen-sign.svg" />
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\svgs\solid\yin-yang.svg" />
     <Content Include="adminManage\fontawesome\fontawesome-free-6.2.1-web\svgs\solid\z.svg" />
+    <Content Include="adminManage\hallsList.aspx" />
     <Content Include="adminManage\index.html" />
     <Content Include="adminManage\messages.aspx" />
+    <Content Include="adminManage\ordersList.aspx" />
     <Content Include="adminManage\pages\calendar.html" />
     <Content Include="adminManage\pages\charts\chartjs.html" />
     <Content Include="adminManage\pages\charts\flot.html" />
@@ -4311,13 +4346,27 @@
     <Content Include="adminManage\plugins\toastr\toastr.min.js" />
     <Content Include="adminManage\portionCatList.aspx" />
     <Content Include="adminManage\portionsList.aspx" />
+    <Content Include="adminManage\tests.html" />
+    <Content Include="adminManage\usersList.aspx" />
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
+    <Content Include="css\bootstrap-grid.rtl.css" />
+    <Content Include="css\bootstrap-grid.rtl.min.css" />
     <Content Include="css\bootstrap-reboot.css" />
     <Content Include="css\bootstrap-reboot.min.css" />
+    <Content Include="css\bootstrap-reboot.rtl.css" />
+    <Content Include="css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="css\bootstrap-utilities.css" />
+    <Content Include="css\bootstrap-utilities.min.css" />
+    <Content Include="css\bootstrap-utilities.rtl.css" />
+    <Content Include="css\bootstrap-utilities.rtl.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\bootstrap.rtl.css" />
+    <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="forgetPass.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
@@ -4325,6 +4374,8 @@
     <Content Include="js\jquery-3.6.0.min.js" />
     <Content Include="login.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="ResetPass.aspx" />
+    <Content Include="templates\forgotPassTemplate.aspx" />
     <Content Include="tinymce\js\tinymce\icons\default\icons.min.js" />
     <Content Include="tinymce\js\tinymce\langs\he_IL.js" />
     <Content Include="tinymce\js\tinymce\license.txt" />
@@ -4386,10 +4437,33 @@
     <Content Include="tinymce\js\tinymce\skins\ui\tinymce-5\skin.shadowdom.min.css" />
     <Content Include="tinymce\js\tinymce\themes\silver\theme.min.js" />
     <Content Include="tinymce\js\tinymce\tinymce.min.js" />
+    <Content Include="uploads\pics\portions\noPic.jpg" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminManage\addUpdateEventType.aspx.cs">
+      <DependentUpon>addUpdateEventType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\addUpdateEventType.aspx.designer.cs">
+      <DependentUpon>addUpdateEventType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\addUpdateHall.aspx.cs">
+      <DependentUpon>addUpdateHall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\addUpdateHall.aspx.designer.cs">
+      <DependentUpon>addUpdateHall.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\addUpdateOrder.aspx.cs">
+      <DependentUpon>addUpdateOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\addUpdateOrder.aspx.designer.cs">
+      <DependentUpon>addUpdateOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminManage\addUpdatePortion.aspx.cs">
       <DependentUpon>addUpdatePortion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4404,8 +4478,29 @@
     <Compile Include="adminManage\addUpdatePortionCat.aspx.designer.cs">
       <DependentUpon>addUpdatePortionCat.aspx</DependentUpon>
     </Compile>
+    <Compile Include="adminManage\addUpdateUser.aspx.cs">
+      <DependentUpon>addUpdateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\addUpdateUser.aspx.designer.cs">
+      <DependentUpon>addUpdateUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminManage\cities.ashx.cs">
       <DependentUpon>cities.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\eventTypesList.aspx.cs">
+      <DependentUpon>eventTypesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\eventTypesList.aspx.designer.cs">
+      <DependentUpon>eventTypesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\hallsList.aspx.cs">
+      <DependentUpon>hallsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\hallsList.aspx.designer.cs">
+      <DependentUpon>hallsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminManage\main.Master.cs">
       <DependentUpon>main.Master</DependentUpon>
@@ -4420,6 +4515,13 @@
     </Compile>
     <Compile Include="adminManage\messages.aspx.designer.cs">
       <DependentUpon>messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\ordersList.aspx.cs">
+      <DependentUpon>ordersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\ordersList.aspx.designer.cs">
+      <DependentUpon>ordersList.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminManage\portionCategories.ashx.cs">
       <DependentUpon>portionCategories.ashx</DependentUpon>
@@ -4438,8 +4540,16 @@
     <Compile Include="adminManage\portionsList.aspx.designer.cs">
       <DependentUpon>portionsList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="adminManage\usersList.aspx.cs">
+      <DependentUpon>usersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\usersList.aspx.designer.cs">
+      <DependentUpon>usersList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\assets.cs" />
     <Compile Include="App_Code\BLL\eventType.cs" />
+    <Compile Include="App_Code\BLL\fakeProd.cs" />
     <Compile Include="App_Code\BLL\halls.cs" />
     <Compile Include="App_Code\BLL\item.cs" />
     <Compile Include="App_Code\BLL\messages.cs" />
@@ -4451,9 +4561,12 @@
     <Compile Include="App_Code\BLL\portionCategoryes.cs" />
     <Compile Include="App_Code\BLL\portions.cs" />
     <Compile Include="App_Code\BLL\user.cs" />
+    <Compile Include="App_Code\DAL\eventTypeDAL.cs" />
+    <Compile Include="App_Code\DAL\hallDAL.cs" />
     <Compile Include="App_Code\DAL\itemDAL.cs" />
     <Compile Include="App_Code\DAL\msgDAL.cs" />
     <Compile Include="App_Code\DAL\orderDetailCategoryesDAL.cs" />
+    <Compile Include="App_Code\DAL\ordersDAL.cs" />
     <Compile Include="App_Code\DAL\portionCategoryesDAL.cs" />
     <Compile Include="App_Code\DAL\portionsDAL.cs" />
     <Compile Include="App_Code\DAL\userDAL.cs" />
@@ -4464,6 +4577,16 @@
     </Compile>
     <Compile Include="eventsHall.Master.designer.cs">
       <DependentUpon>eventsHall.Master</DependentUpon>
+    </Compile>
+    <Compile Include="forgetPass.aspx.cs">
+      <DependentUpon>forgetPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forgetPass.aspx.designer.cs">
+      <DependentUpon>forgetPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -4480,12 +4603,33 @@
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ResetPass.aspx.cs">
+      <DependentUpon>ResetPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPass.aspx.designer.cs">
+      <DependentUpon>ResetPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="templates\forgotPassTemplate.aspx.cs">
+      <DependentUpon>forgotPassTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="templates\forgotPassTemplate.aspx.designer.cs">
+      <DependentUpon>forgotPassTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -4615,6 +4759,16 @@
     <Content Include="adminManage\dist\js\adminlte.min.js.map" />
     <Content Include="adminManage\cities.ashx" />
     <Content Include="adminManage\portionCategories.ashx" />
+    <Content Include="css\bootstrap-grid.rtl.css.map" />
+    <Content Include="css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="css\bootstrap-utilities.css.map" />
+    <Content Include="css\bootstrap-utilities.min.css.map" />
+    <Content Include="css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="css\bootstrap.rtl.css.map" />
+    <Content Include="css\bootstrap.rtl.min.css.map" />
     <None Include="packages.config" />
     <Content Include="tinymce\CHANGELOG.md" />
     <Content Include="tinymce\js\tinymce\langs\README.md" />
@@ -4627,7 +4781,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="uploads\pics\portions\" />
+    <Folder Include="uploads\pics\halls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="tinymce\js\tinymce\tinymce.d.ts" />
@@ -4660,11 +4814,12 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

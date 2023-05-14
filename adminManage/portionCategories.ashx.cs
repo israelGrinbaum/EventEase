@@ -18,6 +18,7 @@ using NsExcel = Microsoft.Office.Interop.Excel;
 using System.Security.Principal;
 using System.Reflection;
 using eventsHall.App_Code;
+using System.Text;
 
 namespace eventsHall.adminManage
 {
@@ -31,21 +32,41 @@ namespace eventsHall.adminManage
         {
             string query = context.Request["sr"] + "";
             List<portionCategoryes> lstPC = portionCategoryes.getAllCategoryes(query);
-            string excel = "<table>";
+            StringBuilder sb = new StringBuilder();
+            string tableStyle = "border=\"1\" style=\"object-fit:contain;text-align:right;direction:rtl\"";
+            string trStyle = "style=\"object-fit:contain;direction:rtl\"";
+            string tdHeadStyle = "style=\"background-color:cornflowerblue;font:bold;font-size:20px\"";
+            string tdBodyStyle = "style=\"font-size:20px\"";
+            sb.AppendLine($"<table {tableStyle}>");
+            Boolean flag=true;
             foreach(var PC in lstPC)
             {
-                excel += "<tr>";
-                excel += "<td> "+ PC.Cid+"<td/>";
-                excel += "<td> "+ PC.catName+"<td/>";
-                excel += "<td> "+ PC.parentCatId+"<td/>";
-                excel += "<tr/>";
+                if (flag)
+                {
+                    sb.AppendLine($"<tr {trStyle}>");
+                    sb.AppendLine($"<td {tdHeadStyle}>{PC.Cid}</td>");
+                    sb.AppendLine($"<td {tdHeadStyle}>{PC.catName} </td>");
+                    sb.AppendLine($"<td {tdHeadStyle}>{PC.parentCatId}</td>");
+                    sb.AppendLine("</tr>");
+                    flag = false;
+                }
+                else
+                {
+                    sb.AppendLine($"<tr {trStyle}>");
+                    sb.AppendLine($"<td {tdBodyStyle}>{PC.Cid}</td>");
+                    sb.AppendLine($"<td {tdBodyStyle}>{PC.catName}</td>");
+                    sb.AppendLine($"<td {tdBodyStyle}>{PC.parentCatId}</td>");
+                    sb.AppendLine("</tr>");
+                }
             }
-            excel += "<table>";
+            sb.AppendLine("</table>");
             //DisplayInExcel<portionCategoryes>(lstPC);
 
-            context.Response.ContentType = "application/msexcel";//application/msexcel
-            
-            context.Response.Write(excel);
+            //context.Response.ContentType = "application/vnd.ms-excel";//application/msexcel application/vnd.ms-excel
+            //context.Response.AddHeader("Content-Disposition", "attachment; filename=excel.xls");
+            context.Response.ContentType = "application/msword";//application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            context.Response.AddHeader("Content-Disposition", "attachment; filename=word.doc");
+            context.Response.Write(sb);
         }
         public static void DisplayInExcel<T>(List<T> list)
         {

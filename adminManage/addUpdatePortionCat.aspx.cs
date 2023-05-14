@@ -38,7 +38,7 @@ namespace eventsHall.adminManage
             DDLparentCat.DataTextField = "catName";
             DDLparentCat.DataValueField = "Cid";
             DDLparentCat.DataBind();
-            DDLparentCat.Items.Insert(0, new ListItem("קטגוריה ראשית", "0"));
+            DDLparentCat.Items.FindByValue("2015").Selected=true;
             if(HiddenCid.Value != "-1")
             {
                 portionCategoryes portionCategoryes = new portionCategoryes()

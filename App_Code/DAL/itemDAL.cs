@@ -26,6 +26,15 @@ namespace DAL
             }
             return lstItem;
         }
+        public static string getAnyData(string tablaNmae, string select, string where, string whereValue)
+        {
+            string sql = $"select top 1 {select} from {tablaNmae} where {where}={whereValue};";
+            dbContext db = new dbContext();
+            string ret = (string)db.executeScalar(sql);
+            db.close();
+            return ret;
+
+        }
 
     }
 }

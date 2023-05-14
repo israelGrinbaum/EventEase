@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,7 +20,7 @@ namespace eventsHall.adminManage
             if (op == "del")
             {
                 portions.removeportionById(int.Parse(pid));
-                Response.Redirect("messages.aspx?Mid=301");
+                Response.Redirect("messages.aspx?Mid=1301");
             }
             if (pid == "")
             {
@@ -53,7 +54,15 @@ namespace eventsHall.adminManage
                 txtPdesc.Text = portion.Pdesc;
                 txtPrice.Text = portion.price+"";
                 pic.ImageUrl = "/uploads/pics/portions/" + portion.picName;
-                DDLCats.SelectedValue = portion.portionCatId + "";
+                string cats = portion.portionCatId.Replace("@@", "@");
+                string[] catsId = cats.Substring(1, cats.Length - 2).Split('@');
+                foreach(string catId in catsId)
+                {
+                    if(portionCategoryes.getCategoryById(int.Parse(catId)) != null)
+                    {
+                        DDLCats.Items.FindByValue(catId).Selected = true;
+                    }
+                }
             }
 
         }
@@ -62,19 +71,30 @@ namespace eventsHall.adminManage
         {
             string[] arr = pic.ImageUrl.Split('/');
             string NewFileName = arr[arr.Length-1];
+            if (NewFileName == "")
+            {
+                NewFileName = "noPic.jpg";
+            }
             if (picUpload.HasFile)
             {
                 NewFileName = assets.GetRandStr(10) + Path.GetExtension(picUpload.FileName);
                 picUpload.SaveAs(Server.MapPath("/uploads/pics/portions/") + NewFileName);
             }
+            StringBuilder sb = new StringBuilder();
+            int[] arrSelectedValues = DDLCats.GetSelectedIndices();
+            foreach (int i in arrSelectedValues)
+            {
+                sb.Append("@"+ DDLCats.Items[i].Value + "@");
+            }
+
             portions portion = new portions()
             {
-                Pid=int.Parse(HiddenPid.Value),
+                Pid = int.Parse(HiddenPid.Value),
                 Pname = txtPName.Text,
                 Pdesc = txtPdesc.Text,
                 price = double.Parse(txtPrice.Text),
                 picName = NewFileName,
-                portionCatId = DDLCats.SelectedValue
+                portionCatId = sb.ToString()
             };
             portion.addUpdateportion();
             if (portion.Pid != -1)
@@ -82,5 +102,6 @@ namespace eventsHall.adminManage
                 Response.Redirect("portionsList.aspx");
             }
         }
+
     }
 }

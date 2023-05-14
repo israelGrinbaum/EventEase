@@ -11,7 +11,7 @@ namespace DAL
     {
         public static List<portionCategoryes> getAllCategoryes(string query)
         {
-            string sql = "select * from T_PortionCategoryes";
+            string sql = "select * from portion_categories_perents";
             if (query != "")
             {
                 sql += $" where catName like '%{query}%'";
@@ -26,7 +26,8 @@ namespace DAL
                 {
                     Cid = (int)dt.Rows[i]["Cid"],
                     catName = "" + dt.Rows[i]["catName"],
-                    parentCatId = (int)dt.Rows[i]["parentCat"]
+                    parentCatId = (int)dt.Rows[i]["parentCat"],
+                    parentCatName=""+ dt.Rows[i]["parentName"]
                 });
             }
             return listPC;
@@ -77,6 +78,7 @@ namespace DAL
             string sql = $"delete from T_PortionCategoryes where Cid={id}";
             dbContext db=new dbContext();
             db.executeNonQuery(sql);
+            db.close();
         }
 
     }

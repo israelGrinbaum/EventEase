@@ -41,6 +41,9 @@
                       <label >שם מנה</label>
                       <asp:TextBox ID="txtPName" runat="server" class="form-control" placeholder="הכנס שם מנה"></asp:TextBox>
                   </div>
+<%--                    <table style="object-fit:contain;text-align:right;direction:rtl;border-color:grey;border:1px solid grey">
+                        <tr style="font:bold;font-size:14px"><td style="padding:10px 10px 10px 10px "></td> </tr>
+                    </table>--%>
                   <div class="form-group">
                       <label >תיאור מנה</label>
                       <asp:TextBox TextMode="MultiLine" Rows="5" Columns="40" ID="txtPdesc" runat="server" class="form-control" placeholder="הכנס תיאור מנה"></asp:TextBox>
@@ -51,7 +54,7 @@
                   </div>
                   <div class="form-group">
                       <label >תמונה</label>
-                      <asp:Image ID="pic" runat="server" />
+                      <asp:Image ID="pic" runat="server" Width="100%" AlternateText="לא ניתן להציג את התמונה" />
                   </div>
                   <div class="form-group">
                       <label >העלאת תמונה</label>
@@ -59,31 +62,23 @@
                   </div>
                   <div class="form-group">
                         <div class="form-group">
-                          <label>קטגורייה</label>
-                          <asp:DropDownList ID="DDLCats" runat="server" class="form-control select2bs4" style="width: 100%;"></asp:DropDownList>
-                          <!--<select class="form-control select2bs4" style="width: 100%;">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                          </select>-->
+                          <label>קטגוריות</label>
+                          <asp:ListBox SelectionMode="Multiple" ID="DDLCats" runat="server" class="form-control select2bs4" style="width: 100%;"></asp:ListBox>
+<%--                          <button type="button" class="btn btn-primary" onclick=""--%>
                         </div>
                   </div>
 
 
-                  <div class="form-group">
+<%--                  <div class="form-group">
                     <label >קטגוריית אב</label>
                     <asp:DropDownList ID="DDLparentCat" runat="server" class="form-control"></asp:DropDownList>
                   </div>
-                </div>
+                </div>--%>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                     <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click"/>
-                    <a href="portionCatList.aspx" class="btn btn-primary">לטבלת קטגוריות</a>
+                    <a href="portionsList.aspx" class="btn btn-primary">לטבלת מנות</a>
                 </div>
             </div>
         </div>

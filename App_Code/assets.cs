@@ -1,26 +1,10 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using NsExcel = Microsoft.Office.Interop.Excel;
-using BLL;
-using Newtonsoft.Json;
-using CsvHelper;
-using System.Globalization;
-using System.IO;
-using CsvHelper.TypeConversion;
-using System.Web.UI;
-using static System.Net.Mime.MediaTypeNames;
-using System.Collections;
-using System.Drawing;
-using System.Web.UI.WebControls;
-using Syncfusion.XlsIO;
-using System.Security.Principal;
-using System.Reflection;
-using eventsHall.App_Code;
 
 
 namespace eventsHall.App_Code
@@ -45,7 +29,7 @@ namespace eventsHall.App_Code
             return st;
 
         }
-        public static string SendEmail(string to,string subject,string body)
+        public static string SendEmail(string to, string subject, string body)
         {
             try
             {
@@ -62,14 +46,14 @@ namespace eventsHall.App_Code
                 newMail.Subject = subject; // נושא המייל
 
                 newMail.IsBodyHtml = true;// האם תוכן המייל הוא בשפת HTML
-                newMail.Body = "<h1> " +body+" </h1><style>body{font-size:40px;}<style><div ></div>";
+                newMail.Body = "<h1> " + body + " </h1><style>body{font-size:40px;}<style><div ></div>";
 
                 // enable SSL for encryption across channels
                 client.EnableSsl = true;
                 // Port 465 for SSL communication
                 client.Port = 587;
                 // Provide authentication information with Gmail SMTP server to authenticate your sender account
-                client.Credentials = new System.Net.NetworkCredential("ig0527156194@gmail.com", "קוד אבטחה מגימייל");
+                client.Credentials = new System.Net.NetworkCredential("ig0527156194@gmail.com", "vuwbftnjzayfkgyh");
 
                 client.Send(newMail); // שליחת המייל
                 return "ok";
@@ -79,8 +63,8 @@ namespace eventsHall.App_Code
                 return ex.StackTrace;
             }
         }
-        
-        // הפוקציה מקבלת מחרוזת ומחזירה טוקן ארוך של מחרוזת מוצפנת באופן אסימטרי
+
+        // הפונקציה מקבלת מחרוזת ומחזירה טוקן ארוך של מחרוזת מוצפנת באופן אסימטרי
         // משמשת אותנו בעיקר עבור הצפנת סיסמת המשתמש בבסיס הנתונים
         // כך שאם יפרצו לבסיס הנתונים, לא יוכלו לדעת מה הסיסמה
         public static string ComputeSha256Hash(string rawData)
@@ -154,7 +138,12 @@ namespace eventsHall.App_Code
 
         }
 
-
+        //public static string getHtmlFromUrl(string url)
+        //{
+        //    var client = new RestClient();
+        //    var res = client.Get(new RestRequest(url));
+        //    return res.Content;
+        //}
     }
 
 

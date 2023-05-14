@@ -11,6 +11,7 @@ namespace BLL
         public int Cid { get; set; }
         public string catName { get; set; }
         public int parentCatId { get; set; }
+        public string parentCatName { get; set; }
         public static List<portionCategoryes> getAllCategoryes(string query)
         {
             return portionCategoryesDAL.getAllCategoryes(query);

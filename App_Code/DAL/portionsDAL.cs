@@ -36,7 +36,27 @@ namespace DAL
         }
         public static portions getportionById(int id)
         {
-            return portionsDAL.getportionById(id);
+            string sql = $"select * from T_Portions where Pid={id}";
+            dbContext db = new dbContext();
+            DataTable dt = db.execute(sql);
+            db.close();
+            if (dt.Rows.Count > 0)
+            {
+                portions PC = new portions()
+                {
+                    Pid = (int)dt.Rows[0]["Pid"],
+                    Pname = dt.Rows[0]["Pname"] + "",
+                    Pdesc = dt.Rows[0]["Pdesc"] + "",
+                    price = double.Parse(dt.Rows[0]["price"] + ""),
+                    picName = dt.Rows[0]["picName"] + "",
+                    portionCatId = dt.Rows[0]["portionCatId"] + "",
+                };
+                return PC;
+            }
+            else
+            {
+                return null;
+            }
         }
         public static void addUpdateportion(portions portion)
         {
@@ -61,7 +81,10 @@ namespace DAL
         }
         public static void removeportionById(int id)
         {
-            portionsDAL.removeportionById(id);
+            string sql = $"delete from T_Portions where Pid={id}";
+            dbContext db = new dbContext();
+            db.executeNonQuery(sql);
+            db.close();
         }
 
     }
