@@ -85,7 +85,7 @@ namespace eventsHall.adminManage
                     Pics += "@" + NewFileName + "@";
                 }
             }
-            if (!picUpload.HasFile && HiddenPics.Value == "")
+            if (!picUpload.HasFile && HiddenPics.Value == "" || HiddenPics.Value =="noPic.jpg")
             {
                 Pics = "noPic.jpg";
             }

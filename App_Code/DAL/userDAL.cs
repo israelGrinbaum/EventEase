@@ -20,7 +20,14 @@ namespace DAL
             sql = $"select Uid from T_Users where email='{user.email}'";
             user.Uid = (int)db.executeScalar(sql);
             db.close();
-
+        }
+        public static void updateUser(User user)
+        {
+            string sql = $"update T_Users set Uname=N'{user.Uname}',email='{user.email}',phone='{user.phone}' where Uid={user.Uid};";
+            dbContext db = new dbContext();
+            DataTable dt = new DataTable();
+            db.executeNonQuery(sql);
+            db.close();
         }
         public static bool checkLogin(User user)
         {
@@ -117,6 +124,27 @@ namespace DAL
             db.close();
             return true;
         }
+        public static bool getUserById(User user)
+        {
+            string sql = $"select * from T_Users where Uid={user.Uid}";
+            dbContext db = new dbContext();
+            DataTable dt = db.execute(sql);
+            db.close();
+            if (dt.Rows.Count == 1)
+            {
+                user.Uid = (int)dt.Rows[0]["Uid"];
+                user.Uname = dt.Rows[0]["Uname"] + "";
+                user.email = dt.Rows[0]["email"] + "";
+                user.phone = dt.Rows[0]["phone"] + "";
+                user.permissions = dt.Rows[0]["permissions"] + "";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 
     }

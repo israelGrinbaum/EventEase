@@ -16,7 +16,7 @@ namespace eventsHall.adminManage
             string op = Request["op"] + "";
             if (op == "del")
             {
-
+                
             }
             if (Uid == "")
             {
@@ -35,16 +35,29 @@ namespace eventsHall.adminManage
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            BLL.User user =new User()
+            {
+                Uid=int.Parse(HiddenUid.Value),
+                Uname=txtName.Text,
+                email=txtemail.Text,
+                phone=txtphone.Text,
+            };
+            if (user.Uid == -1)
+            {
+                user.register();
+                if(user.Uid != -1)
+                {
+                    Response.Redirect("usersList.aspx");
+                }
+            }
+            else
+            {
+                user.updateUser();
+                Response.Redirect("usersList.aspx");
+            }
         }
         public void FillData()
         {
-
-            //DDLparentCat.DataSource = portionCategoryes.getAllCategoryes("");
-            //DDLparentCat.DataTextField = "catName";
-            //DDLparentCat.DataValueField = "Cid";
-            //DDLparentCat.DataBind();
-            //DDLparentCat.Items.Insert(0, new ListItem("קטגוריה ראשית", "0"));
             DDLpermmision.DataSource = item.getAll("T_Permmisions", "PerId", "Permmision");
             DDLpermmision.DataTextField = "value";
             DDLpermmision.DataValueField = "key";
@@ -56,8 +69,8 @@ namespace eventsHall.adminManage
                 {
                     Uid = int.Parse(HiddenUid.Value)
                 };
-                tmpUser.checkLogin();
-                if (tmpUser == null)
+                
+                if (!tmpUser.getUserById())
                 {
                     Response.Redirect("messages.aspx?Mid=300");
                 }

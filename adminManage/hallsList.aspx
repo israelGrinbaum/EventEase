@@ -57,6 +57,34 @@
         .show {
             display: contents;
         }
+
+        .col-md-6 {
+            padding-top: 7.5px;
+            padding-bottom: 7.5px;
+        }
+
+        .modal::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .modal {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .modal-backdrop {
+            --bs-backdrop-zindex: 1050;
+            --bs-backdrop-bg: #000;
+            --bs-backdrop-opacity: 0.3;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: var(--bs-backdrop-zindex);
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bs-backdrop-bg);
+        }
     </style>
 
 </asp:Content>
@@ -65,6 +93,36 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <!-- Button trigger modal -->
+                    <!--                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Launch demo modal
+                    </button>-->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="align-items: start; align-content: start;">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="pics">
+                                        <asp:Repeater ID="RPTpics" runat="server" OnItemDataBound="RPTpics_ItemDataBound">
+                                            <ItemTemplate>
+                                                <asp:Literal ID="ltlPics" runat="server">
+
+                                                </asp:Literal>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
+                                <!--<div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="card">
                         <div class="card-header primary col-md-6">
@@ -72,17 +130,6 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div id="pics" style="position: relative; width: 100%; background-color: aquamarine; height: auto; opacity: 1; ">
-                                
-                  <asp:Repeater ID="RPTpics" runat="server" OnItemDataBound="RPTpics_ItemDataBound">
-                      <ItemTemplate>
-                          <asp:Literal ID="ltlPics" runat="server">
-
-                          </asp:Literal>
-                      </ItemTemplate>
-                  </asp:Repeater>
-                            </div>
-                            <a href="#" class="btn btn-app" onclick="hiddpics()" style="display:none;"></a>
 
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -106,10 +153,10 @@
                                                 <td><%# Eval("containing") %></td>
                                                 <td>
                                                     <div class="my-container">
-                                                        <img src="/uploads/pics/halls/<%# Eval("pics").ToString().IndexOf('@')!=-1? Eval("pics").ToString().Substring(1,Eval("pics").ToString().IndexOf('@')):Eval("pics") %>" class="image" />
+                                                        <img src="/uploads/pics/halls/<%# Eval("pics").ToString().IndexOf('@')!=-1? Eval("pics").ToString().Substring(1).Substring(0,Eval("pics").ToString().IndexOf('@',1)-1):Eval("pics") %>" class="image" />
                                                         <div class="middle">
-                                                            <a href="#" class="text btn btn-info" onclick="showPics(<%# Eval("Hid") %>)">להצגת כל התמונות
-                                                            </a>
+                                                            <button type="button" class="text btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showPics(<%# Eval("Hid") %>)">להצגת כל התמונות</button>
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -157,14 +204,21 @@
         }); 
     </script>--%>
     <script>
+        let shownPics = 'none'
         function hiddpics() {
             document.getElementById("pics").style.display = "flex";
         }
         function showPics(Hid) {
+            if (shownPics != 'none') {
+                hiddPics(shownPics);
+                console.log("nfn")
+            }
             document.getElementById(Hid).style.display = "flex";
+            shownPics = Hid;
         }
         function hiddPics(Hid) {
             document.getElementById(Hid).style.display = "none";
+            console.log("hidd")
         }
     </script>
     <script>

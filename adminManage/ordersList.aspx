@@ -43,14 +43,22 @@
                                 <tbody>
                                     <asp:Repeater ID="RPTOrders" runat="server" OnItemDataBound="RPTOrders_ItemDataBound">
                                         <ItemTemplate>
+
                                             <tr>
-                                                <td><%# Eval("Oid") %></td>
-                                                <td><asp:Literal ID="Uid" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <a href="orderDetails.aspx?Oid= <%# Eval("Oid") %>">
+                                                        <%# Eval("Oid") %>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <asp:Literal ID="Uid" runat="server"></asp:Literal></td>
                                                 <td><%# Eval("eventDate") %></td>
                                                 <td><%# Eval("somePeople") %></td>
-                                                <td><asp:Literal ID="eventTypeId" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <asp:Literal ID="eventTypeId" runat="server"></asp:Literal></td>
                                                 <td><%# Eval("createDate") %></td>
-                                                <td><asp:Literal ID="Hid" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <asp:Literal ID="Hid" runat="server"></asp:Literal></td>
                                                 <td><%# Eval("notes") %></td>
                                                 <td>
                                                     <a href="addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>" class="btn btn-primary">

@@ -11,7 +11,7 @@ namespace BLL
         public int Cid { get; set; }
         public string catName { get; set; }
         public int parentCatId { get; set; }
-/*        public static List<orderDetailCategoryes> getAllCategoryes()
+        public static List<orderDetailCategoryes> getAllCategoryes()
         {
             return orderDetailCategoryesDAL.getAllCategoryes();
         }
@@ -21,12 +21,12 @@ namespace BLL
         }
         public void addUpdateCategory()
         {
-            orderDetailCategoryesDAL.addUpdateCategory();
+            orderDetailCategoryesDAL.addUpdateCategory(this);
         }
-        public static int removeCategoryById(int id)
+        public static void removeCategoryById(int id)
         {
-            return orderDetailCategoryesDAL.removeCategoryById(id);
+            orderDetailCategoryesDAL.removeCategoryById(id);
         }
-*/
+
     }
 }

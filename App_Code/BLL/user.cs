@@ -19,9 +19,17 @@ namespace BLL
         {
             UserDAL.register(this);
         }
+        public void updateUser()
+        {
+            UserDAL.updateUser(this);
+        }
         public bool checkLogin()
         {
             return UserDAL.checkLogin(this);
+        }
+        public bool getUserById()
+        {
+            return UserDAL.getUserById(this);
         }
         //הפונקציה מקבלת אימייל ומחזירה אמת במידה והוא קיים אחרת תחזיר שקר
         public static bool isExist(string email)

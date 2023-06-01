@@ -42,15 +42,14 @@ namespace eventsHall.adminManage
                     {
                         imgArr[0] = "noPic.jpg";
                     }
-                    ((Literal)e.Item.FindControl("ltlPics")).Text += $"<div id=\"{((hall)e.Item.DataItem).Hid}\" style=\"display:none;\">";
+                    ((Literal)e.Item.FindControl("ltlPics")).Text += $"<div id=\"{((hall)e.Item.DataItem).Hid}\" style=\"display:none;\"><div class=\"container\"><div class=\"row\">";
                     string str = ((Literal)e.Item.FindControl("ltlPics")).Text;
                     foreach (string img in imgArr)
                     {
-                        ((Literal)e.Item.FindControl("ltlPics")).Text += $"<img style=\"width: 200px;\" src=\"/uploads/pics/halls/{img}\"/>";
+                        ((Literal)e.Item.FindControl("ltlPics")).Text += $"<img class=\"col-md-6 ms-auto\" src=\"/uploads/pics/halls/{img}\"/>";
                         str = ((Literal)e.Item.FindControl("ltlPics")).Text;
                     }
-                    ((Literal)e.Item.FindControl("ltlPics")).Text += $"<a href=\"#\" class=\"text btn btn-info\" onclick=\"hiddPics({((hall)e.Item.DataItem).Hid})\"> להסתרה</a>";
-                    ((Literal)e.Item.FindControl("ltlPics")).Text += "</div>";
+                    ((Literal)e.Item.FindControl("ltlPics")).Text += "</div></div></div>";
                     str = ((Literal)e.Item.FindControl("ltlPics")).Text;
 
                 }
