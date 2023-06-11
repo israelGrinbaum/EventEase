@@ -36,5 +36,16 @@ namespace eventsHall.adminManage
             List<portionCategoryes> lstPC = portionCategoryes.getAllCategoryes("");
             assets.DisplayInExcel(lstPC);
         }
+
+        protected void RPTCats_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            {
+                int parentId = ((portionCategoryes)e.Item.DataItem).parentCatId;
+                string parentName = item.getAnyData("T_PortionCategoryes", "catName", "Cid", parentId + "");
+                ((Literal)e.Item.FindControl("ltlParentCatName")).Text += parentName;
+            }
+
+        }
     }
 }

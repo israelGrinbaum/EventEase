@@ -33,12 +33,38 @@ namespace eventsHall.adminManage
             if(order!=null)
             {
                 addOD.HRef = "addUpdateOrderDetail.aspx?Oid=" + Oid;
-                ltlUname.Text = item.getAnyData("T_Users", "Uname", "Uid", order.Uid + "");
-                ltlEventDate.Text = order.eventDate + "";
-                ltlSomePeople.Text = order.somepeople + "";
-                ltlEventType.Text = item.getAnyData("T_EventType", "ETname", "ETid", order.eventTypeId + "");
-                ltlHall.Text = item.getAnyData("T_Halls", "Hname", "Hid", order.Hid + "");
-                ltlNotes.Text = order.notes;
+                var uid = item.getAll("T_Users", "Uid", "Uname");
+                DDLUid.DataSource = uid;
+                DDLUid.DataTextField = "value";
+                DDLUid.DataValueField = "key";
+                DDLUid.DataBind();
+                var eventType = item.getAll("T_EventType", "ETid", "ETname");
+                DDLEventType.DataSource = eventType;
+                DDLEventType.DataTextField = "value";
+                DDLEventType.DataValueField = "key";
+                DDLEventType.DataBind();
+                var halls = item.getAll("T_Halls", "Hid", "Hname");
+                DDLHid.DataSource = halls;
+                DDLHid.DataTextField = "value";
+                DDLHid.DataValueField = "key";
+                DDLHid.DataBind();
+
+                if (DDLUid.Items.FindByValue(order.Uid + "") != null)
+                {
+                    DDLUid.Items.FindByValue(order.Uid + "").Selected = true;
+                }
+                txtEventDate.Text = order.eventDate + "";
+                txtSomePeople.Text = order.somepeople + "";
+                if (DDLHid.Items.FindByValue(order.Hid + "") != null)
+                {
+                    DDLHid.Items.FindByValue(order.Hid + "").Selected = true;
+                }
+                if (DDLEventType.Items.FindByValue(order.eventTypeId + "") != null)
+                {
+                    DDLEventType.Items.FindByValue(order.eventTypeId + "").Selected = true;
+                }
+
+                txtNotes.Text = order.notes;
                 RPTOrderDetails.DataSource = BLL.orderDetails.getOrderDetailsByOid(Oid);
                 RPTOrderDetails.DataBind();
             }

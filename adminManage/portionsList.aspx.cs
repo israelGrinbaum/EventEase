@@ -47,7 +47,7 @@ namespace eventsHall.adminManage
                         PC = list.Find(x => x.Cid == int.Parse(c));
 
                         //string catName = item.getAnyData("T_PortionCategoryes", "catName", "Cid",c+"");
-                        if (PC.Cid != null)
+                        if (PC!=null && PC.Cid != null)
                         {
                             ((Literal)e.Item.FindControl("ltlCat")).Text += $"<span class=\"fs-6 badge text-bg-secondary\"style=\"margin: 3px;\">{PC.catName}</span></br><div hidden=\"hidden\">{PC.catName}, </div>";
                         }

@@ -14,8 +14,13 @@ namespace eventsHall.adminManage
         {
             if (!IsPostBack)
             {
-                string mid = Request["Mid"] + "";
+                string mid = Request.Params["Mid"] + "";
+                string param = Request.Params["param"] + "";
                 string msgText=msg.getMsgById(mid);
+                if (param != "")
+                {
+                    msgText=msgText.Replace("###", param);
+                }
                 ltlMsgBody.Text = msgText;
             }
         }

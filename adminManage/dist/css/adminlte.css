@@ -26228,7 +26228,7 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   cursor: pointer;
-  direction: ltr;
+  direction: rtl;
   display: inline-block;
   line-height: .5rem;
   overflow: hidden;

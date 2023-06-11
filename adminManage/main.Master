@@ -244,6 +244,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="orderDetailsCatList.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>ניהול קטגוריות פריטי הזמנה</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="ordersList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול הזמנות</p>

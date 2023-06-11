@@ -41,6 +41,10 @@
                                 <label>שם סוג אירוע</label>
                                 <asp:TextBox ID="txtETname" runat="server" class="form-control" placeholder="הכנס שם סוג אירוע"></asp:TextBox>
                             </div>
+                            <div class="form-group">
+                                <label>פריטי הזמנה מאופשרים</label>
+                                <asp:ListBox SelectionMode="Multiple" ID="DDLOrderDetailsPermitted" runat="server" class="form-control select2bs4" placeholder="הכנס שם סוג אירוע"></asp:ListBox>
+                            </div>
 
                             <div class="card-footer">
                                 <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click" />

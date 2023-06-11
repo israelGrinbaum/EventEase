@@ -25,7 +25,8 @@ namespace DAL
                 listEventTypes.Add(new eventType()
                 {
                     ETid = (int)dt.Rows[i]["ETid"],
-                    ETname = dt.Rows[i]["ETname"]+""
+                    ETname = dt.Rows[i]["ETname"]+"",
+                    OrderDetailsPermitted= dt.Rows[i]["OrderDetailsPermitted"] + ""
                 });
             }
             return listEventTypes;
@@ -41,6 +42,7 @@ namespace DAL
                 eventType eventType = new eventType()
                 {
                     ETname = dt.Rows[0]["ETname"]+"",
+                    OrderDetailsPermitted = dt.Rows[0]["OrderDetailsPermitted"] + ""
                 };
                 return eventType;
             }
@@ -54,11 +56,11 @@ namespace DAL
             string sql = "";
             if (eventType.ETid == -1)
             {
-                sql = $"insert into T_EventType (ETname) values (N'{eventType.ETname}');";
+                sql = $"insert into T_EventType (ETname,OrderDetailsPermitted) values (N'{eventType.ETname}',N'{eventType.OrderDetailsPermitted}');";
             }
             else
             {
-                sql = $"update T_EventType set ETname=N'{eventType.ETname}' where ETid={eventType.ETid};" ;
+                sql = $"update T_EventType set ETname=N'{eventType.ETname}',OrderDetailsPermitted=N'{eventType.OrderDetailsPermitted}' where ETid={eventType.ETid};" ;
             }
             dbContext db = new dbContext();
             int ret = db.executeNonQuery(sql);

@@ -33,58 +33,58 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.HtmlControls.HtmlAnchor addOD;
 
         /// <summary>
-        /// ltlUname control.
+        /// DDLUid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUname;
+        protected global::System.Web.UI.WebControls.DropDownList DDLUid;
 
         /// <summary>
-        /// ltlEventDate control.
+        /// txtEventDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlEventDate;
+        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
 
         /// <summary>
-        /// ltlSomePeople control.
+        /// txtSomePeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlSomePeople;
+        protected global::System.Web.UI.WebControls.TextBox txtSomePeople;
 
         /// <summary>
-        /// ltlEventType control.
+        /// DDLEventType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlEventType;
+        protected global::System.Web.UI.WebControls.DropDownList DDLEventType;
 
         /// <summary>
-        /// ltlHall control.
+        /// DDLHid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlHall;
+        protected global::System.Web.UI.WebControls.DropDownList DDLHid;
 
         /// <summary>
-        /// ltlNotes control.
+        /// txtNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNotes;
+        protected global::System.Web.UI.WebControls.TextBox txtNotes;
 
         /// <summary>
         /// RPTOrderDetails control.

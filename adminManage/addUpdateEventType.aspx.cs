@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -35,9 +36,12 @@ namespace eventsHall.adminManage
         }
         public void fillData()
         {
+            DDLOrderDetailsPermitted.DataSource=orderDetailCategoryes.getAllCategoryes();
+            DDLOrderDetailsPermitted.DataTextField = "catName";
+            DDLOrderDetailsPermitted.DataValueField = "Cid";
+            DDLOrderDetailsPermitted.DataBind();
             if(HiddenETid.Value != "-1")
             {
-
                 var thisEventType = eventType.getEventTypeById(int.Parse(HiddenETid.Value));
                 txtETname.Text = thisEventType.ETname;
             }
@@ -45,10 +49,17 @@ namespace eventsHall.adminManage
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            eventType eventType=new eventType()
+            StringBuilder sb = new StringBuilder();
+            int[] arrSelectedValues = DDLOrderDetailsPermitted.GetSelectedIndices();
+            foreach (int i in arrSelectedValues)
+            {
+                sb.Append("@" + DDLOrderDetailsPermitted.Items[i].Value + "@");
+            }
+            eventType eventType =new eventType()
             {
                 ETid = int.Parse(HiddenETid.Value),
                 ETname=txtETname.Text,
+                OrderDetailsPermitted=sb.ToString(),
             };
             eventType.addUpdateEventType();
             if (eventType.ETid != -1)

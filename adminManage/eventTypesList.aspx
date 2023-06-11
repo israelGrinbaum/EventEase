@@ -29,16 +29,18 @@
                                     <tr>
                                         <th>קוד סוג אירוע</th>
                                         <th>שם סוג אירוע</th>
+                                        <th>פריטי הזמנה מאופשרים</th>
                                         <th>ערוך</th>
                                         <th>מחק</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <asp:Repeater ID="RPTEventType" runat="server">
+                                    <asp:Repeater ID="RPTEventType" runat="server" OnItemDataBound="RPTEventType_ItemDataBound">
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%# Eval("ETid") %></td>
                                                 <td><%# Eval("ETname") %></td>
+                                                <td><asp:Literal ID="ltlOrderDetailsPermitted" runat="server"></asp:Literal></td>
                                                 <td>
                                                     <a href="addUpdateEventType.aspx?ETid=<%# Eval("ETid") %>" class="btn btn-primary">
                                                         <i class="fa-solid fa-pen-to-square"></i>

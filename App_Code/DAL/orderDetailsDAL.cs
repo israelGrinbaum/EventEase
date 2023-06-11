@@ -77,6 +77,10 @@ namespace DAL
         }
         public static void removeOrderDetailById(int ODid)
         {
+            string sql = $"delete from T_OrderDetails where ODid={ODid}";
+            dbContext db = new dbContext();
+            db.executeNonQuery(sql);
+            db.close();
 
         }
 

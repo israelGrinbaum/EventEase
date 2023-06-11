@@ -140,6 +140,7 @@
     <Content Include="adminManage\addUpdateHall.aspx" />
     <Content Include="adminManage\addUpdateOrder.aspx" />
     <Content Include="adminManage\addUpdateOrderDetail.aspx" />
+    <Content Include="adminManage\addUpdateOrderDetailCat.aspx" />
     <Content Include="adminManage\addUpdatePortion.aspx" />
     <Content Include="adminManage\addUpdatePortionCat.aspx" />
     <Content Include="adminManage\addUpdateUser.aspx" />
@@ -2751,7 +2752,9 @@
     <Content Include="adminManage\hallsList.aspx" />
     <Content Include="adminManage\index.html" />
     <Content Include="adminManage\messages.aspx" />
+    <Content Include="adminManage\orderDerailsCatList.aspx" />
     <Content Include="adminManage\orderDetails.aspx" />
+    <Content Include="adminManage\orderDetailsCatList.aspx" />
     <Content Include="adminManage\ordersList.aspx" />
     <Content Include="adminManage\pages\calendar.html" />
     <Content Include="adminManage\pages\charts\chartjs.html" />
@@ -4473,6 +4476,13 @@
     <Compile Include="adminManage\addUpdateOrderDetail.aspx.designer.cs">
       <DependentUpon>addUpdateOrderDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="adminManage\addUpdateOrderDetailCat.aspx.cs">
+      <DependentUpon>addUpdateOrderDetailCat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\addUpdateOrderDetailCat.aspx.designer.cs">
+      <DependentUpon>addUpdateOrderDetailCat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminManage\addUpdatePortion.aspx.cs">
       <DependentUpon>addUpdatePortion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4525,12 +4535,26 @@
     <Compile Include="adminManage\messages.aspx.designer.cs">
       <DependentUpon>messages.aspx</DependentUpon>
     </Compile>
+    <Compile Include="adminManage\orderDerailsCatList.aspx.cs">
+      <DependentUpon>orderDerailsCatList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\orderDerailsCatList.aspx.designer.cs">
+      <DependentUpon>orderDerailsCatList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adminManage\orderDetails.aspx.cs">
       <DependentUpon>orderDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="adminManage\orderDetails.aspx.designer.cs">
       <DependentUpon>orderDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\orderDetailsCatList.aspx.cs">
+      <DependentUpon>orderDetailsCatList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\orderDetailsCatList.aspx.designer.cs">
+      <DependentUpon>orderDetailsCatList.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminManage\ordersList.aspx.cs">
       <DependentUpon>ordersList.aspx</DependentUpon>
