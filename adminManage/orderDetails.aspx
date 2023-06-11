@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/adminManage/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/adminManage/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -13,6 +17,20 @@
     <link rel="stylesheet" href="/adminManage/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminManage/dist/css/adminlte.min.css">
+    <style>
+        .list-group-item {
+            padding: 0.75rem 0.50rem 0.75rem 0.50rem;
+        }
+
+        .ms-2 {
+            width: 100%;
+            margin-left: 8px !important;
+        }
+
+        .select2-dropdown {
+            direction: rtl !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainCnt" runat="server">
     <section class="content">
@@ -29,51 +47,65 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
-                                    <ol class="list-group list-group-horizontal" style="margin-bottom:20px">
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="list-group list-group-horizontal" style="margin-bottom: 20px">
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">שם המזמין</div>
-                                                <asp:Literal ID="ltlUname" runat="server"></asp:Literal>
+                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
                                             </div>
 
-                                        </li>
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        </div>
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">תאריך אירוע</div>
-                                                <asp:Literal ID="ltlEventDate" runat="server"></asp:Literal>
+                                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                                    <asp:TextBox ID="txtEventDate" runat="server" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker1" placeholder="הכנס תאריך אירוע"></asp:TextBox>
+                                                    <%--                                                    <input type="text" class="form-control datetimepicker-input"  />--%>
+                                                    <%--                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>--%>
+                                                </div>
+
                                             </div>
 
-                                        </li>
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        </div>
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">כמות משתתפים</div>
-                                                <asp:Literal ID="ltlSomePeople" runat="server"></asp:Literal>
+                                                <asp:TextBox ID="txtSomePeople" runat="server" class="form-control" placeholder="הכנס כמות אנשים"></asp:TextBox>
                                             </div>
 
-                                        </li>
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        </div>
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">סוג אירוע</div>
-                                                <asp:Literal ID="ltlEventType" runat="server"></asp:Literal>
+                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
                                             </div>
 
-                                        </li>
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        </div>
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">אולם</div>
-                                                <asp:Literal ID="ltlHall" runat="server"></asp:Literal>
+                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
                                             </div>
 
-                                        </li>
-                                        <li class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        </div>
+                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">הערות</div>
-                                                <asp:Literal ID="ltlNotes" runat="server"></asp:Literal>
+                                                <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" class="form-control" placeholder="הכנס הערות"></asp:TextBox>
                                             </div>
 
-                                        </li>
-                                    </ol>
-
+                                        </div>
+                                    </div>
+                                    <%--                                    <div class="form-group">
+                                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+                                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>--%>
                                 </div>
                             </div>
                             <table id="example1" class="table table-bordered table-striped">
@@ -93,17 +125,19 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%# Eval("ODid") %></td>
-                                                <td><asp:Literal ID="ltlPid" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <asp:Literal ID="ltlPid" runat="server"></asp:Literal></td>
                                                 <td><%# Eval("amount") %></td>
                                                 <td><%# Eval("price") %></td>
-                                                <td><asp:Literal ID="ltlPortionCatId" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <asp:Literal ID="ltlPortionCatId" runat="server"></asp:Literal></td>
                                                 <td>
                                                     <a href="addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&Oid=<%# Eval("Oid") %>" class="btn btn-primary">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&op=del'">
+                                                    <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&op=del&Oid=<%# Eval("Oid") %>'">
                                                         <i class="fa-solid fa-trash-alt"></i>
                                                     </a>
                                                 </td>
@@ -147,6 +181,28 @@
             $('#example1').DataTable();
         }); 
     </script>--%>
+    <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
+    <script src="plugins/moment/moment-with-locales.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+            $('.select2-selection').addClass('form-control')
+            $('.select2-selection').removeClass('select2-selection select2-selection--single')
+            $('.paginate_button current').addClass('btn btn primery')
+
+        })
+    </script>
+
     <script>
         $(function () {
             $("#example1").DataTable({

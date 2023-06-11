@@ -38,7 +38,8 @@ namespace eventsHall.adminManage
             DDLparentCat.DataTextField = "catName";
             DDLparentCat.DataValueField = "Cid";
             DDLparentCat.DataBind();
-            DDLparentCat.Items.FindByValue("2015").Selected=true;
+            DDLparentCat.Items.Insert(0, new ListItem() { Text = "ללא", Value = "0",Selected=true });
+            //DDLparentCat.Items.FindByValue("2015").Selected=true;
             if(HiddenCid.Value != "-1")
             {
                 portionCategoryes portionCategoryes = new portionCategoryes()
@@ -57,11 +58,21 @@ namespace eventsHall.adminManage
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            int parentCatId;
+            if (DDLparentCat.SelectedValue!=null && DDLparentCat.SelectedValue !="")
+            {
+                parentCatId = int.Parse(DDLparentCat.SelectedValue + "");
+            }
+            else
+            {
+                parentCatId = 0;
+            }
+
             portionCategoryes portionCategoryes = new portionCategoryes()
             {
                 Cid = int.Parse(HiddenCid.Value),
                 catName = txtCatName.Text,
-                parentCatId = int.Parse(DDLparentCat.SelectedValue)
+                parentCatId = parentCatId
             };
             portionCategoryes.addUpdateCategory();
             if (portionCategoryes.Cid != - 1)

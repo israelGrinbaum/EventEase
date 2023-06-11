@@ -11,7 +11,7 @@ namespace DAL
     {
         public static List<portionCategoryes> getAllCategoryes(string query)
         {
-            string sql = "select * from portion_categories_perents";
+            string sql = "select * from T_PortionCategoryes";
             if (query != "")
             {
                 sql += $" where catName like '%{query}%'";
@@ -27,7 +27,6 @@ namespace DAL
                     Cid = (int)dt.Rows[i]["Cid"],
                     catName = "" + dt.Rows[i]["catName"],
                     parentCatId = (int)dt.Rows[i]["parentCat"],
-                    parentCatName=""+ dt.Rows[i]["parentName"]
                 });
             }
             return listPC;

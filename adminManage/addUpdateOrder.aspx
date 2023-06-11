@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="/adminManage/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="/adminManage/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <style>
+
+        .select2-container--open + .select2-container--open {
+            left: auto;
+            right: 0;
+            width: 100%;
+            text-align: right;
+            direction: rtl;
+            position: relative;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainCnt" runat="server">
     <asp:HiddenField ID="HiddenOid" runat="server" />
@@ -40,11 +51,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>קוד לקוח</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label>תאריך אירוע</label>
-                                <asp:TextBox ID="txtEventDate" runat="server" class="form-control" placeholder="הכנס תאריך אירוע"></asp:TextBox>
+                                <asp:TextBox TextMode="Date" ID="txtEventDate" runat="server" class="form-control" placeholder="הכנס תאריך אירוע"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label>כמות אנשים</label>
@@ -52,12 +63,12 @@
                             </div>
                             <div class="form-group">
                                 <label>סוג אירוע</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
                             </div>
 
                             <div class="form-group">
                                 <label>קוד אולם</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label>הערות</label>
@@ -81,7 +92,8 @@
 
     <script>
         $(function () {
-            $('.select2').select2()
+            $.fn.select2.defaults.set('amdLanguageBase', 'select2/i18n/he');
+            $('.select2').select2({ dir: 'rtl' })
 
             //Initialize Select2 Elements
             $('.select2bs4').select2({

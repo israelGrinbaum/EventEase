@@ -86,12 +86,11 @@
                             </div>
                             <div class="form-group">
                                 <label>מחיר</label>
-                                <asp:TextBox ID="txtPrice" runat="server" class="form-control" placeholder="אוטומטי בבחירת מנה" disabled="true"></asp:TextBox>
+                                <input ID="inputPrice" runat="server" class="form-control" readonly />
                             </div>
                             <div class="form-group">
                                 <label>קטגוריית פריט הזמנה</label>
-                                <asp:ListBox ID="DDLODCatId" runat="server" class="form-control select2bs4" Style="width: 100%;"></asp:ListBox>
-
+                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" style="width: 100%;" ID="DDLODCatId" runat="server"></asp:DropDownList>
                             </div>
 
                             <div class="card-footer">
@@ -112,7 +111,7 @@
         function selectProd(Pid, Pname, price) {
             document.getElementById("mainCnt_btnProd").innerText = "נבחר: " + Pname;
             document.getElementById("mainCnt_inputPid").value = Pid;
-            document.getElementById("mainCnt_txtPrice").value = price;
+            document.getElementById("mainCnt_inputPrice").value = price;
         }
     </script>
     <script>

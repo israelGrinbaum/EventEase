@@ -78,13 +78,13 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.TextBox txtAmount;
 
         /// <summary>
-        /// txtPrice control.
+        /// inputPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrice;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputPrice;
 
         /// <summary>
         /// DDLODCatId control.
@@ -93,7 +93,7 @@ namespace eventsHall.adminManage
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DDLODCatId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLODCatId;
 
         /// <summary>
         /// btnSave control.

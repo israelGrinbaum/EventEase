@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/eventsHall.csproj
+/App_Data/eventsHall.mdf
+/App_Data/eventsHall_log.ldf

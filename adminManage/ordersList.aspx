@@ -46,7 +46,7 @@
 
                                             <tr>
                                                 <td>
-                                                    <a href="orderDetails.aspx?Oid= <%# Eval("Oid") %>">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>">
                                                         <%# Eval("Oid") %>
                                                     </a>
                                                 </td>

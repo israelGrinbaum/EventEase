@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace eventsHall.adminManage
 {
@@ -55,12 +56,15 @@ namespace eventsHall.adminManage
                 txtPrice.Text = portion.price+"";
                 pic.ImageUrl = "/uploads/pics/portions/" + portion.picName;
                 string cats = portion.portionCatId.Replace("@@", "@");
-                string[] catsId = cats.Substring(1, cats.Length - 2).Split('@');
-                foreach(string catId in catsId)
+                if (cats.Length > 3)
                 {
-                    if(portionCategoryes.getCategoryById(int.Parse(catId)) != null)
+                    string[] catsId = cats.Substring(1, cats.Length - 2).Split('@');
+                    foreach (string catId in catsId)
                     {
-                        DDLCats.Items.FindByValue(catId).Selected = true;
+                        if (portionCategoryes.getCategoryById(int.Parse(catId)) != null)
+                        {
+                            DDLCats.Items.FindByValue(catId).Selected = true;
+                        }
                     }
                 }
             }
@@ -86,13 +90,13 @@ namespace eventsHall.adminManage
             {
                 sb.Append("@"+ DDLCats.Items[i].Value + "@");
             }
-
+            string price = txtPrice.Text!=""? txtPrice.Text:"0";
             portions portion = new portions()
             {
                 Pid = int.Parse(HiddenPid.Value),
                 Pname = txtPName.Text,
                 Pdesc = txtPdesc.Text,
-                price = double.Parse(txtPrice.Text),
+                price = double.Parse(price),
                 picName = NewFileName,
                 portionCatId = sb.ToString()
             };
