@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminManage/main.Master" AutoEventWireup="true" CodeBehind="addUpdateEventType.aspx.cs" Inherits="eventsHall.adminManage.addUpdateEventType" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminManage/plugins/select2/css/select2.min.css">
@@ -8,14 +9,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainCnt" runat="server">
     <asp:HiddenField ID="HiddenETid" runat="server" />
+    <asp:HiddenField ID="HiddenODPs" runat="server" />
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>הוסף - ערוך סוג אירוע</h1>
                 </div>
-                <div class="col-sm-6" style="direction:rtl;">
-                    <ol class="breadcrumb slider-rtl float-sm-right" style="direction:rtl;">
+                <div class="col-sm-6" style="direction: rtl;">
+                    <ol class="breadcrumb slider-rtl float-sm-right" style="direction: rtl;">
                         <li class="breadcrumb-item"><a href="#">בית</a></li>
                         <li class="breadcrumb-item active"><a href="#" class="disabled">הוסף - ערוך סוג אירוע</a></li>
                     </ol>
@@ -41,13 +43,39 @@
                                 <label>שם סוג אירוע</label>
                                 <asp:TextBox ID="txtETname" runat="server" class="form-control" placeholder="הכנס שם סוג אירוע"></asp:TextBox>
                             </div>
-                            <div class="form-group">
+                            <%--                            <div class="form-group">
                                 <label>פריטי הזמנה מאופשרים</label>
                                 <asp:ListBox SelectionMode="Multiple" ID="DDLOrderDetailsPermitted" runat="server" class="form-control select2bs4" placeholder="הכנס שם סוג אירוע"></asp:ListBox>
+                            </div>--%>
+
+                            <div id="ODPInputs" class="form-group">
+                                <label style="margin-bottom: 15px;">פריטי הזמנה מאופשרים</label>
+                                <input hidden="hidden" id="hiddenNumOfODP" value="1" runat="server" />
+                                <button type="button" class="btn btn-primary" text="הוסף פריט" id="btnAddODP" onclick="addODPInput()">הוסף</button>
+                                <div id="inputTemp">
+                                    <div id="ODPInput1" class="form-group" style="border: 1px solid; border-color: #a9a9a985; border-radius: 8px; padding: 15px;">
+                                        <input hidden="hidden" id="ODPid1" value="-1" />
+                                        <div class="input-group">
+                                            <asp:DropDownList ID="ODPListBox1" runat="server" class="form-control select2-blue" placeholder="הכנס שם סוג אירוע"></asp:DropDownList>
+                                            <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) deleteODP(document.getElementById('ODPid1').value,ODPInput1)">
+                                                <i class="fa-solid fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-text" style="padding-left: 27px;">
+                                                <input id="inputODPcb1" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                            </div>
+                                            <span class="input-group-text" style="border-left: solid">אופציונאלי</span>
+                                            <input type="number" class="form-control" placeholder="כמות לבחירה" id="inputODPn1" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
+
+
                             <div class="card-footer">
-                                <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClientClick="btnSave()" />
                                 <a href="eventTypesList.aspx" class="btn btn-primary">לטבלת סוגי אירוע</a>
                             </div>
                         </div>
@@ -60,20 +88,106 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        function addODPInput() {
+            let numOfInputs = Number(document.getElementById("mainCnt_hiddenNumOfODP").value) + 1;
+            let id = "inputODP" + numOfInputs;
+            var input = document.createElement('div');
+            let st = document.getElementById("inputTemp").innerHTML;
+            st = st.replace("ODPInput1", "ODPInput" + numOfInputs);
+            st = st.replace("ODPInput1", "ODPInput" + numOfInputs);
+            st = st.replace("mainCnt_ODPListBox1", "mainCnt_ODPListBox" + numOfInputs);
+            st = st.replace("inputODPcb1", "inputODPcb" + numOfInputs);
+            st = st.replace("inputODPn1", "inputODPn" + numOfInputs);
+            st = st.replace("ODPid1", "ODPid" + numOfInputs);
+            st = st.replace("ODPid1", "ODPid" + numOfInputs);
+            input.innerHTML = st;
+            document.getElementById("ODPInputs").appendChild(input);
+            document.getElementById("mainCnt_hiddenNumOfODP").value = numOfInputs;
+        }
+        function sendToSave(eventType) {
+            jQuery.ajax({
+                url: 'http://localhost:46327/adminManage/addUpdateEventType.aspx/saveEventType',
+                type: "POST",
+                data: "{'eventType' : " + eventType + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    res = JSON.parse(data.d);
+                    console.log(res);
+                },
+            });
+        };
+        function btnSave() {
+            console.log(document.getElementById("mainCnt_hiddenNumOfODP").value);
+            let numOfODP = document.getElementById("mainCnt_hiddenNumOfODP").value;
+            let eventType = { ETid: document.getElementById("mainCnt_HiddenETid").value, ETname: document.getElementById("mainCnt_txtETname").value, orderDetailPermitteds: [] };
+            for (let i = 0; i < numOfODP; i++) {
+                console.log(i);
+                let odp = { ODPid: -1, eventTypeId: -1, orderDetailId: "", optional: 0, choiceQuantity: "" };
+                let id = "ODPid" + (i + 1);
+                odp.ODPid = document.getElementById(id).value
+                id = "mainCnt_ODPListBox" + (i + 1);
+                odp.orderDetailId = document.getElementById(id).value;
+                id = "inputODPn" + (i + 1);
+                odp.choiceQuantity = document.getElementById(id).value;
+                id = "inputODPcb" + (i + 1);
+                odp.optional = document.getElementById(id).checked;
+                eventType.orderDetailPermitteds.push(odp);
+            }
+            sendToSave(JSON.stringify(eventType));
+            console.log(eventType);
+        }
+        function deleteODP(ODPid, ODPInputN) {
+            //let a = document.getElementById(ODPInputN + "");
+            ODPInputN.remove();
+            jQuery.ajax({
+                url: 'http://localhost:46327/adminManage/addUpdateEventType.aspx/deleteODP',
+                type: "POST",
+                data: "{'ODPid' : " + ODPid + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    res = JSON.parse(data.d);
+                    console.log(res);
+                },
+            });
 
+        }
+    </script>
+    <script>
+        $(function () {
+            let orderDetailsPermitted = JSON.parse(document.getElementById("mainCnt_HiddenODPs").value);
+            for (let i = 0; i < orderDetailsPermitted.length; i++) {
+                let numOfInputs = Number(document.getElementById("mainCnt_hiddenNumOfODP").value);
+                document.getElementById("mainCnt_ODPListBox" + numOfInputs).value = orderDetailsPermitted[i].orderDetailId;
+                document.getElementById("inputODPcb" + numOfInputs).checked = orderDetailsPermitted[i].optional;
+                document.getElementById("inputODPn" + numOfInputs).value = orderDetailsPermitted[i].choiceQuantity;
+                document.getElementById("ODPid" + numOfInputs).value = orderDetailsPermitted[i].ODPid;
+                //document.getElementById("deleteODP" + numOfInputs).innerHTML = document.getElementById("deleteODP" + numOfInputs).innerHTML.replace("'ODPidToDelete" + numOfInputs+"'", orderDetailsPermitted[i].ODPid)
+                if (i < orderDetailsPermitted.length - 1) {
+                    addODPInput();
+                }
+            }
+            console.log(orderDetailsPermitted);
+        });
+    </script>
     <script>
         $(function () {
             $('.select2').select2()
 
             //Initialize Select2 Elements
             $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
+                theme: 'classic',
+                //    innerHeight: 'resolve',
+                //    class: 'form-control',
+                //    ClipboardItem:
+            });
             $('.select2-selection').addClass('form-control')
-            $('.select2-selection').removeClass('select2-selection select2-selection--single')
-            $('.paginate_button current').addClass('btn btn primery')
+            //$('.select2-selection').removeClass('select2-selection select2-selection--single')
+            //$('.paginate_button current').addClass('btn btn primery')
 
-        })
+        });
     </script>
     <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
     <script>

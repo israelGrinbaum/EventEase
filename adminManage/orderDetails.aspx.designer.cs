@@ -87,12 +87,12 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.TextBox txtNotes;
 
         /// <summary>
-        /// RPTOrderDetails control.
+        /// RPTPortionCatID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RPTOrderDetails;
+        protected global::System.Web.UI.WebControls.Repeater RPTPortionCatID;
     }
 }

@@ -16,7 +16,7 @@ namespace eventsHall.adminManage
             string op = Request["op"] + "";
             if (op == "del")
             {
-                orderDetailCategoryes.removeCategoryById(int.Parse(cid));
+                portionCategoryes.removeCategoryById(int.Parse(cid));
                 Response.Redirect("messages.aspx?Mid=301");
             }
             if (cid == "")

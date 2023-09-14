@@ -291,7 +291,7 @@
         <div class="content-wrapper">
 
             <!-- Main content -->
-            <section class="content">
+            <section class="content" style="padding-top: 23px;">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">

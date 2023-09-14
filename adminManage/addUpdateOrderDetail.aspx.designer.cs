@@ -42,6 +42,15 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.TextBox txtOid;
 
         /// <summary>
+        /// DDLODCatId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDLODCatId;
+
+        /// <summary>
         /// btnProd control.
         /// </summary>
         /// <remarks>
@@ -49,15 +58,6 @@ namespace eventsHall.adminManage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnProd;
-
-        /// <summary>
-        /// RPTproducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RPTproducts;
 
         /// <summary>
         /// inputPid control.
@@ -85,15 +85,6 @@ namespace eventsHall.adminManage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputPrice;
-
-        /// <summary>
-        /// DDLODCatId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLODCatId;
 
         /// <summary>
         /// btnSave control.

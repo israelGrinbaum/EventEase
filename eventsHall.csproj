@@ -4595,6 +4595,7 @@
     <Compile Include="App_Code\BLL\messages.cs" />
     <Compile Include="App_Code\BLL\msg.cs" />
     <Compile Include="App_Code\BLL\orderDetailCategoryes.cs" />
+    <Compile Include="App_Code\BLL\orderDetailPermitted.cs" />
     <Compile Include="App_Code\BLL\orderDetails.cs" />
     <Compile Include="App_Code\BLL\orders.cs" />
     <Compile Include="App_Code\BLL\payments.cs" />
@@ -4606,6 +4607,7 @@
     <Compile Include="App_Code\DAL\itemDAL.cs" />
     <Compile Include="App_Code\DAL\msgDAL.cs" />
     <Compile Include="App_Code\DAL\orderDetailCategoryesDAL.cs" />
+    <Compile Include="App_Code\DAL\orderDetailPermittedDAL.cs" />
     <Compile Include="App_Code\DAL\orderDetailsDAL.cs" />
     <Compile Include="App_Code\DAL\ordersDAL.cs" />
     <Compile Include="App_Code\DAL\portionCategoryesDAL.cs" />
