@@ -73,17 +73,17 @@ namespace eventsHall.adminManage
 
                 List<portionCategoryes> PClist = portionCategoryes.getAllCategoryes("");
                 PClist = PClist.Where(x => (ODPlst.Find(y => y.orderDetailId == x.Cid))!=null).ToList<portionCategoryes>();
-                if (et.OrderDetailsPermitted.Length >= 1 && et.OrderDetailsPermitted != null)
-                {
-                    et.OrderDetailsPermitted=et.OrderDetailsPermitted.Replace("@@", "@");
-                    string[] PCatPermitted = et.OrderDetailsPermitted.Substring(1, et.OrderDetailsPermitted.Length - 2).Split('@');
-                    foreach(var PCP in PCatPermitted)
-                    {
-                        PCP.Replace("@", "");
-                        portionCategoryes PC = portionCategoryes.getCategoryById(int.Parse(PCP));
-                        PClist.Add(PC);
-                    }
-                }
+                //if (et.OrderDetailsPermitted.Length >= 1 && et.OrderDetailsPermitted != null)
+                //{
+                //    et.OrderDetailsPermitted=et.OrderDetailsPermitted.Replace("@@", "@");
+                //    string[] PCatPermitted = et.OrderDetailsPermitted.Substring(1, et.OrderDetailsPermitted.Length - 2).Split('@');
+                //    foreach(var PCP in PCatPermitted)
+                //    {
+                //        PCP.Replace("@", "");
+                //        portionCategoryes PC = portionCategoryes.getCategoryById(int.Parse(PCP));
+                //        PClist.Add(PC);
+                //    }
+                //}
                 RPTPortionCatID.DataSource = PClist; 
                 RPTPortionCatID.DataBind();
             }
