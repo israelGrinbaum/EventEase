@@ -105,6 +105,19 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <asp:Literal ID="ltlODPermitted" runat="server"></asp:Literal>
+    <script>
+        console.log(ODpermitted.length);
+        for (let i = 0; i < ODpermitted.length; i++) {
+            for (let j = 0; j < mainCnt_DDLODCatId.options.length; j++) {
+                if (mainCnt_DDLODCatId.options[j].value == ODpermitted[i].orderDetailId &&
+                    ODpermitted[i].choiceQuantity==0) {
+                        mainCnt_DDLODCatId.options[j].disabled = "disabled";
+                        mainCnt_DDLODCatId.options[j].innerText += " -נבחר";
+                }
+            }
+        }
+    </script>
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
     <script>
@@ -116,7 +129,11 @@
     </script>
     <script>
         $(function () {
+            var DDLODCatId = document.getElementById('mainCnt_DDLODCatId');
+            var DDLODCatIdText = DDLODCatId.options[DDLODCatId.options.selectedIndex].text = DDLODCatId.options[DDLODCatId.options.selectedIndex].text.replace(" -נבחר", "");
             $('.select2').select2();
+                getPortionByCid(DDLODCatId.options[DDLODCatId.options.selectedIndex].value,
+                    DDLODCatId.options[DDLODCatId.options.selectedIndex].text);
             $('.select2').on('select2:select', function (e) {
                 getPortionByCid(e.params.data.id, e.params.data.text);
             });

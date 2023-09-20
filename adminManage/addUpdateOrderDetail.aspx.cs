@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Syncfusion.CompoundFile.XlsIO.Native;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,18 @@ namespace eventsHall.adminManage
                 listODP.Add(ODC);
             }
 
+            List<BLL.orderDetails> OrderDetails = BLL.orderDetails.getOrderDetailsByOid(int.Parse(HiddenOid.Value));
+            List<object> ODPdata = new List<object>();
+            foreach (var ODP in orderDetailPermitteds)
+            {
+                int cnt=OrderDetails.Count(x=>x.ODCatId == ODP.orderDetailId);
+                ODPdata.Add(Tuple.Create(ODP.orderDetailId,ODP.choiceQuantity-cnt));
+            }
+            ltlODPermitted.Text = "<script>var ODpermitted = ";
+            ltlODPermitted.Text += JsonConvert.SerializeObject(ODPdata);
+            ltlODPermitted.Text += "</script>";
+            ltlODPermitted.Text = ltlODPermitted.Text.Replace("Item1", "orderDetailId");
+            ltlODPermitted.Text = ltlODPermitted.Text.Replace("Item2", "choiceQuantity");
             //string OrederDetailPermittedId = item.getAnyData("T_EventType", "OrderDetailsPermitted", "ETid", ETid).Replace("@@", "@");
             //if (OrederDetailPermittedId.Length >= 1 && OrederDetailPermittedId != null)
             //{
