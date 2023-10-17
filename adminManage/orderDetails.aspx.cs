@@ -35,6 +35,7 @@ namespace eventsHall.adminManage
             if(order!=null)
             {
                 addOD.HRef = "addUpdateOrderDetail.aspx?Oid=" + Oid;
+                printOrder.HRef= "../templates/printOrderTemplet.aspx?Oid=" + Oid;
                 var uid = item.getAll("T_Users", "Uid", "Uname");
                 DDLUid.DataSource = uid;
                 DDLUid.DataTextField = "value";
@@ -73,6 +74,7 @@ namespace eventsHall.adminManage
 
                 List<portionCategoryes> PClist = portionCategoryes.getAllCategoryes("");
                 PClist = PClist.Where(x => (ODPlst.Find(y => y.orderDetailId == x.Cid))!=null).ToList<portionCategoryes>();
+                PClist = PClist.OrderBy(x=> ODPlst.FindIndex(o=>o.orderDetailId==x.Cid)).ToList<portionCategoryes>();
                 //if (et.OrderDetailsPermitted.Length >= 1 && et.OrderDetailsPermitted != null)
                 //{
                 //    et.OrderDetailsPermitted=et.OrderDetailsPermitted.Replace("@@", "@");

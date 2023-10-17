@@ -33,6 +33,15 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.HtmlControls.HtmlAnchor addOD;
 
         /// <summary>
+        /// printOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor printOrder;
+
+        /// <summary>
         /// DDLUid control.
         /// </summary>
         /// <remarks>

@@ -41,7 +41,11 @@
                         <div class="card-header primary col-md-6">
                             <h3 class="card-title">הזמנה
                                 <asp:Literal ID="ltlOid" runat="server"></asp:Literal>
-                                <a id="addOD" runat="server" href="#" class="btn btn-primary">הוסף פריט להזמנה</a></h3>
+                                <a id="addOD" runat="server" href="#" class="btn btn-primary">הוסף פריט להזמנה</a>
+                            </h3>
+                            <a style="margin-right:4px" id="printOrder" runat="server"  target="_blank" href="#" class="btn btn-primary">
+                                <i class="fa-solid fa-print"></i>
+                            </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -187,7 +191,7 @@
     <script src="/adminManage/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/adminManage/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script type="text/javascript" src="/adminManage/DataTables/datatables.min.js"></script>
-    
+
 
     <!-- AdminLTE App -->
     <script src="/adminManage/dist/js/adminlte.min.js"></script>
@@ -257,6 +261,6 @@
                 "responsive": true,
             });
         });
-</script>
+    </script>
 
 </asp:Content>
