@@ -24,6 +24,15 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.HiddenField HiddenETid;
 
         /// <summary>
+        /// HiddenODPs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenODPs;
+
+        /// <summary>
         /// txtETname control.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,22 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.TextBox txtETname;
 
         /// <summary>
-        /// DDLOrderDetailsPermitted control.
+        /// hiddenNumOfODP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DDLOrderDetailsPermitted;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hiddenNumOfODP;
+
+        /// <summary>
+        /// ODPListBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ODPListBox1;
 
         /// <summary>
         /// btnSave control.

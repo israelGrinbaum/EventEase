@@ -64,6 +64,29 @@ namespace DAL
                 return null;
             }
         }
+        public static List<orders> getOrdersByUserId(int userId)
+        {
+            string sql = $"select * from T_Orders where Uid={userId}";
+            dbContext db = new dbContext();
+            List<orders> listOrders = new List<orders>();
+            DataTable dt = db.execute(sql);
+            db.close();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                listOrders.Add(new orders()
+                {
+                    Oid = (int)dt.Rows[i]["Oid"],
+                    Uid = (int)dt.Rows[i]["Uid"],
+                    eventDate = (DateTime)dt.Rows[i]["eventDate"],
+                    somepeople = (int)dt.Rows[i]["somePeople"],
+                    eventTypeId = (int)dt.Rows[i]["eventTypeId"],
+                    createDate = (DateTime)dt.Rows[i]["createDate"],
+                    Hid = (int)dt.Rows[i]["Hid"],
+                    notes = dt.Rows[i]["notes"] + "",
+                });
+            }
+            return listOrders;
+        }
         public static void addUpdateOrder(orders order)
         {
             string sql = "";

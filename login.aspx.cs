@@ -30,7 +30,7 @@ namespace eventsHall
             {
                 ltlIsNotExist.Text = msg.getMsgById("307");
                 Session["User"]=userTmp;
-                Response.Redirect("adminManage/portionCatList.aspx");
+                Response.Redirect("userWebsite/home.aspx");
             }
             else
             {

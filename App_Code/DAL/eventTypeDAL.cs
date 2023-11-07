@@ -26,7 +26,8 @@ namespace DAL
                 {
                     ETid = (int)dt.Rows[i]["ETid"],
                     ETname = dt.Rows[i]["ETname"]+"",
-                    OrderDetailsPermitted= dt.Rows[i]["OrderDetailsPermitted"] + ""
+                    OrderDetailsPermitted= dt.Rows[i]["OrderDetailsPermitted"] + "",
+                    orderDetailPermitteds=orderDetailPermittedDAL.GetOrderDetailPermittedsByEventTypeId((int)dt.Rows[i]["ETid"])
                 });
             }
             return listEventTypes;
@@ -42,7 +43,8 @@ namespace DAL
                 eventType eventType = new eventType()
                 {
                     ETname = dt.Rows[0]["ETname"]+"",
-                    OrderDetailsPermitted = dt.Rows[0]["OrderDetailsPermitted"] + ""
+                    OrderDetailsPermitted = dt.Rows[0]["OrderDetailsPermitted"] + "",
+                    orderDetailPermitteds = orderDetailPermittedDAL.GetOrderDetailPermittedsByEventTypeId((int)dt.Rows[0]["ETid"])
                 };
                 return eventType;
             }
@@ -70,7 +72,6 @@ namespace DAL
                 eventType.ETid = (int)db.executeScalar(sql);
             }
             db.close();
-
         }
         public static void removeEventTypeById(int id)
         {

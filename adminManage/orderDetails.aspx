@@ -41,7 +41,11 @@
                         <div class="card-header primary col-md-6">
                             <h3 class="card-title">הזמנה
                                 <asp:Literal ID="ltlOid" runat="server"></asp:Literal>
-                                <a id="addOD" runat="server" href="#" class="btn btn-primary">הוסף פריט להזמנה</a></h3>
+                                <a id="addOD" runat="server" href="#" class="btn btn-primary">הוסף פריט להזמנה</a>
+                            </h3>
+                            <a style="margin-right:4px" id="printOrder" runat="server"  target="_blank" href="#" class="btn btn-primary">
+                                <i class="fa-solid fa-print"></i>
+                            </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -108,7 +112,7 @@
                                     </div>--%>
                                 </div>
                             </div>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered hover">
                                 <thead>
                                     <tr>
                                         <th>קוד פרטי הזמנה</th>
@@ -121,29 +125,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <asp:Repeater ID="RPTOrderDetails" runat="server" OnItemDataBound="RPTOrderDetails_ItemDataBound">
+                                    <asp:Repeater ID="RPTPortionCatID" runat="server" OnItemDataBound="RPTPortionCatID_ItemDataBound">
                                         <ItemTemplate>
-                                            <tr>
-                                                <td><%# Eval("ODid") %></td>
-                                                <td>
-                                                    <asp:Literal ID="ltlPid" runat="server"></asp:Literal></td>
-                                                <td><%# Eval("amount") %></td>
-                                                <td><%# Eval("price") %></td>
-                                                <td>
-                                                    <asp:Literal ID="ltlPortionCatId" runat="server"></asp:Literal></td>
-                                                <td>
-                                                    <a href="addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&Oid=<%# Eval("Oid") %>" class="btn btn-primary">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&op=del&Oid=<%# Eval("Oid") %>'">
-                                                        <i class="fa-solid fa-trash-alt"></i>
-                                                    </a>
-                                                </td>
+                                            <tr class="bg-body-secondary text-bold">
+                                                <td id="CatTd" runat="server" colspan="7"><%# Eval("catName") %>:</td>
+                                                <td hidden="hidden"></td>
+                                                <td hidden="hidden"></td>
+                                                <td hidden="hidden"></td>
+                                                <td hidden="hidden"></td>
+                                                <td hidden="hidden"></td>
+                                                <td hidden="hidden"></td>
                                             </tr>
-                                        </ItemTemplate>
+                                            <asp:Repeater ID="RPTOrderDetails" runat="server" OnItemDataBound="RPTOrderDetails_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <tr>
+                                                        <td><%# Eval("ODid") %></td>
+                                                        <td>
+                                                            <asp:Literal ID="ltlPid" runat="server"></asp:Literal>
+                                                        </td>
+                                                        <td><%# Eval("amount") %></td>
+                                                        <td><%# Eval("price") %></td>
+                                                        <td>
+                                                            <asp:Literal ID="ltlPortionCatId" runat="server"></asp:Literal>
+                                                        </td>
+                                                        <td>
+                                                            <a href="addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&Oid=<%# Eval("Oid") %>" class="btn btn-primary">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrderDetail.aspx?ODid=<%# Eval("ODid") %>&op=del&Oid=<%# Eval("Oid") %>'">
+                                                                <i class="fa-solid fa-trash-alt"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ItemTemplate>
 
+                                            </asp:Repeater>
+
+                                        </ItemTemplate>
                                     </asp:Repeater>
                                 </tbody>
                             </table>
@@ -171,6 +191,8 @@
     <script src="/adminManage/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/adminManage/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script type="text/javascript" src="/adminManage/DataTables/datatables.min.js"></script>
+
+
     <!-- AdminLTE App -->
     <script src="/adminManage/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -202,6 +224,23 @@
 
         })
     </script>
+    <script>
+        $(function () {
+            console.log("abc");
+            var table = document.getElementById("example1");
+            for (var i = 0; i < table.rows.length; i++) {
+                if (table.rows[i].cells[4] !== table.rows[i + 1].cells[4]) {
+                    //    var row = table.insertRow(i + 1);
+                    //    var cell = row.insertCell(0);
+                    //    cell.innerhtml = "123" + i;
+                }
+                console.log(table.rows[i].cells[4]);
+                for (var j = 0, col; col = table.rows[i].cells[j]; j++) {
+
+                }
+            }
+        });
+    </script>
 
     <script>
         $(function () {
@@ -210,6 +249,7 @@
                 //"dom": 'Pfrtip',
                 "responsive": true,
                 "autoWidth": false,
+                "ordering": false,
             });
             $('#example2').DataTable({
                 "paging": true,
@@ -221,6 +261,6 @@
                 "responsive": true,
             });
         });
-</script>
+    </script>
 
 </asp:Content>

@@ -92,7 +92,7 @@
 
     <script>
         $(function () {
-            $.fn.select2.defaults.set('amdLanguageBase', 'select2/i18n/he');
+            //$.fn.select2.defaults.set('amdLanguageBase', 'select2/i18n/he');
             $('.select2').select2({ dir: 'rtl' })
 
             //Initialize Select2 Elements

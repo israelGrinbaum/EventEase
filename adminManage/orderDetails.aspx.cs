@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace eventsHall.adminManage
@@ -33,6 +35,7 @@ namespace eventsHall.adminManage
             if(order!=null)
             {
                 addOD.HRef = "addUpdateOrderDetail.aspx?Oid=" + Oid;
+                printOrder.HRef= "../templates/printOrderTemplet.aspx?Oid=" + Oid;
                 var uid = item.getAll("T_Users", "Uid", "Uname");
                 DDLUid.DataSource = uid;
                 DDLUid.DataTextField = "value";
@@ -65,8 +68,26 @@ namespace eventsHall.adminManage
                 }
 
                 txtNotes.Text = order.notes;
-                RPTOrderDetails.DataSource = BLL.orderDetails.getOrderDetailsByOid(Oid);
-                RPTOrderDetails.DataBind();
+                eventType et = BLL.eventType.getEventTypeById(order.eventTypeId);
+                List<orderDetailPermitted> ODPlst = new List<orderDetailPermitted>();
+                ODPlst = orderDetailPermitted.GetOrderDetailPermittedsByEventTypeId(order.eventTypeId);
+
+                List<portionCategoryes> PClist = portionCategoryes.getAllCategoryes("");
+                PClist = PClist.Where(x => (ODPlst.Find(y => y.orderDetailId == x.Cid))!=null).ToList<portionCategoryes>();
+                PClist = PClist.OrderBy(x=> ODPlst.FindIndex(o=>o.orderDetailId==x.Cid)).ToList<portionCategoryes>();
+                //if (et.OrderDetailsPermitted.Length >= 1 && et.OrderDetailsPermitted != null)
+                //{
+                //    et.OrderDetailsPermitted=et.OrderDetailsPermitted.Replace("@@", "@");
+                //    string[] PCatPermitted = et.OrderDetailsPermitted.Substring(1, et.OrderDetailsPermitted.Length - 2).Split('@');
+                //    foreach(var PCP in PCatPermitted)
+                //    {
+                //        PCP.Replace("@", "");
+                //        portionCategoryes PC = portionCategoryes.getCategoryById(int.Parse(PCP));
+                //        PClist.Add(PC);
+                //    }
+                //}
+                RPTPortionCatID.DataSource = PClist; 
+                RPTPortionCatID.DataBind();
             }
             else
             {
@@ -81,9 +102,31 @@ namespace eventsHall.adminManage
                 int Pid = ((BLL.orderDetails)e.Item.DataItem).Pid;
                 ((Literal)e.Item.FindControl("ltlPid")).Text = item.getAnyData("T_Portions", "Pname", "Pid", "" + Pid);
                 int ODCatId = ((BLL.orderDetails)e.Item.DataItem).ODCatId;
-                ((Literal)e.Item.FindControl("ltlPortionCatId")).Text = item.getAnyData("T_OrderDetailCategoryes", "catName", "Cid", "" + ODCatId);
+                ((Literal)e.Item.FindControl("ltlPortionCatId")).Text = item.getAnyData("T_PortionCategoryes", "catName", "Cid", "" + ODCatId);
             }
 
+        }
+
+        protected void RPTPortionCatID_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Repeater RPTOrderDetails = (Repeater)e.Item.FindControl("RPTOrderDetails");
+            portionCategoryes PC = (portionCategoryes)e.Item.DataItem;
+            List<BLL.orderDetails> OrderDetails = BLL.orderDetails.getOrderDetailsByOid(int.Parse(ltlOid.Text));
+            List<BLL.orderDetails> OrderDetailsToRPT = new List<BLL.orderDetails>();
+            foreach(var OD in OrderDetails)
+            {
+                if (OD.ODCatId == PC.Cid)
+                {
+                    OrderDetailsToRPT.Add(OD);
+                }
+            }
+            RPTOrderDetails.DataSource = OrderDetailsToRPT;
+            if(OrderDetailsToRPT.Count == 0)
+            {
+                var catTd=(HtmlTableCell)e.Item.FindControl("CatTd");
+                catTd.InnerHtml += $"<div style=\"font-weight:normal;\">לא נמצאו פריטים מתאימים, אנא הוסף <div style=\"font-weight:bold;display:inline-block;\">{PC.catName}</div> להזמנה</div>";
+            }
+            RPTOrderDetails.DataBind();
         }
     }
 }

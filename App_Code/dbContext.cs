@@ -35,7 +35,8 @@ namespace DAL
         public object executeScalar(string sql)
         {
             cmd = new SqlCommand(sql, conn);
-            return cmd.ExecuteScalar();
+            var ret= cmd.ExecuteScalar();
+            return ret;
         }
         public void close()
         {

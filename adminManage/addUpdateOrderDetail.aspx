@@ -44,6 +44,10 @@
                                 <asp:TextBox ID="txtOid" runat="server" class="form-control" placeholder="הכנס קוד הזמנה" disabled="true"></asp:TextBox>
                             </div>
                             <div class="form-group">
+                                <label>קטגוריית פריט הזמנה</label>
+                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLODCatId" runat="server"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
                                 <label>מנה</label>
                                 <button id="btnProd" runat="server" style="text-align: right; color: #6c757d" type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#exampleModal">לבחירת מנה</button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" dir="rtl">
@@ -54,8 +58,9 @@
                                             </div>
                                             <div class="modal-body" style="width: 100%;">
                                                 <div class="container">
-                                                    <div class="row">
-                                                        <asp:Repeater ID="RPTproducts" runat="server">
+                                                    <div id="portions" class="row">
+                                                        <h3>בחר קטגוריה</h3>
+<%--                                                        <asp:Repeater ID="RPTproducts" runat="server">
                                                             <ItemTemplate>
                                                                 <div class="col-md-4">
                                                                     <div class="card" style="padding: 7.5px 7.5px 7.5px 7.5px">
@@ -70,8 +75,7 @@
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
-                                                        </asp:Repeater>
-
+                                                        </asp:Repeater>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,17 +90,13 @@
                             </div>
                             <div class="form-group">
                                 <label>מחיר</label>
-                                <input ID="inputPrice" runat="server" class="form-control" readonly />
+                                <input id="inputPrice" runat="server" class="form-control" readonly />
                             </div>
-                            <div class="form-group">
-                                <label>קטגוריית פריט הזמנה</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" style="width: 100%;" ID="DDLODCatId" runat="server"></asp:DropDownList>
-                            </div>
-
                             <div class="card-footer">
                                 <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click" />
-                                <a id="orderLink" runat="server" href="#" class="btn btn-primary">חזרה להזמנה</a>
+                                <a id="orderLink" runat="server" href="#" onclick="window.location='orderDetails.aspx?Oid='+document.getElementById('mainCnt_txtOid').value" class="btn btn-primary">חזרה להזמנה</a>
                             </div>
+                            <div onclick="selectProd(@#Pid#@,'@#Pname#@','@#price#@')"></div>
                         </div>
                     </div>
                 </div>
@@ -105,6 +105,19 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <asp:Literal ID="ltlODPermitted" runat="server"></asp:Literal>
+    <script>
+        console.log(ODpermitted.length);
+        for (let i = 0; i < ODpermitted.length; i++) {
+            for (let j = 0; j < mainCnt_DDLODCatId.options.length; j++) {
+                if (mainCnt_DDLODCatId.options[j].value == ODpermitted[i].orderDetailId &&
+                    ODpermitted[i].choiceQuantity==0) {
+                        mainCnt_DDLODCatId.options[j].disabled = "disabled";
+                        mainCnt_DDLODCatId.options[j].innerText += " -נבחר";
+                }
+            }
+        }
+    </script>
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
     <script>
@@ -116,8 +129,65 @@
     </script>
     <script>
         $(function () {
-            $('.select2').select2()
+            var DDLODCatId = document.getElementById('mainCnt_DDLODCatId');
+            var DDLODCatIdText = DDLODCatId.options[DDLODCatId.options.selectedIndex].text = DDLODCatId.options[DDLODCatId.options.selectedIndex].text.replace(" -נבחר", "");
+            $('.select2').select2();
+                getPortionByCid(DDLODCatId.options[DDLODCatId.options.selectedIndex].value,
+                    DDLODCatId.options[DDLODCatId.options.selectedIndex].text);
+            $('.select2').on('select2:select', function (e) {
+                getPortionByCid(e.params.data.id, e.params.data.text);
+            });
+            
+            //getPortion().then(fillPortions());
+            let res;
+            function getPortionByCid(id,name) {
+                jQuery.ajax({
+                    url: 'http://localhost:46327/adminManage/addUpdateOrderDetail.aspx/selectCatChange',
+                    type: "POST",
+                    data: "{'Cid' : " + id + "}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        res = JSON.parse(data.d);
+                        console.log(res);
+                        fillPortions(name);
+                    },
+                });
+            }
+            function fillPortions(name) {
+                let templet =
+                    '<div class="col-md-4">' +
+                    '    <div class="card" style = "padding: 7.5px 7.5px 7.5px 7.5px">' +
+                    '       <img src="/uploads/pics/portions/@#picName#@" class="card-img-top" alt="...">' +
+                    '        <div class="card-body">' +
+                    '            <h4 class="card-title">@#Pname#@ </h4>' +
+                    '            <p class="card-text text-">@#price#@ ₪</p>' +
+                    '            <p class="card-text">@#Pdesc#@</p>' +
+                    `            <a href="#" class="btn btn-info" onclick="selectProd(@#Pid#@,'@#Pname#@','@#price#@')" data-bs-dismiss="modal" aria-label="Close">בחר</a>` +
+                    '        </div>' +
+                    '    </div>' +
+                    '</div >';
+                let finalTemp=""
+                if (name !== "") {
+                    finalTemp = "<h3>" + name + "</h3>";
+                } else {
+                    finalTemp = "<h3>אנא בחר קטגוריה</h3>";
+                }
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res[i]);
+                    let temp = templet;
+                    temp = temp.replace("@#picName#@", res[i].picName);
+                    temp = temp.replace("@#Pname#@", res[i].Pname.replace('"','&quot;'));
+                    temp = temp.replace("@#price#@", res[i].price);
+                    temp = temp.replace("@#Pname#@", res[i].Pname.replace('"', '&quot;'));
+                    temp = temp.replace("@#price#@", res[i].price);
+                    temp = temp.replace("@#Pdesc#@", res[i].Pdesc.replace('"', '&quot;'));
+                    temp = temp.replace("@#Pid#@", res[i].Pid);
+                    finalTemp += temp
+                }
+                document.getElementById("portions").innerHTML = finalTemp;
 
+            }
             //Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
@@ -125,7 +195,6 @@
             $('.select2-selection').addClass('form-control')
             $('.select2-selection').removeClass('select2-selection select2-selection--single')
             $('.paginate_button current').addClass('btn btn primery')
-
         })
     </script>
     <script src="../tinymce/js/tinymce/tinymce.min.js"></script>

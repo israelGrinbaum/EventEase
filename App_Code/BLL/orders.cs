@@ -24,6 +24,10 @@ namespace BLL
         {
             return ordersDAL.getOrderById(id);
         }
+        public static List<orders> getOrdersByUserId(int userId)
+        {
+            return ordersDAL.getOrdersByUserId(userId);
+        }
         public void addUpdateOrder()
         {
             ordersDAL.addUpdateOrder(this);

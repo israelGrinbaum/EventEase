@@ -13,6 +13,54 @@
     <link rel="stylesheet" href="/adminManage/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminManage/dist/css/adminlte.min.css">
+    <style>
+/*        HTML CSSResult Skip Results Iframe
+        EDIT ON
+        body {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            color: #37559d;
+        }
+
+        a {
+            color: #5165ff;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 2px solid #ccd2ff;
+            position: relative;
+        }
+
+        tr:hover,
+        tr:focus-within {
+            background: #f2f3ff;
+            outline: none;
+        }
+
+        td > a:first-child {
+            display: flex;
+            padding: 18px;
+            text-decoration: none;
+            color: inherit;
+            z-index: 0;
+        }
+
+        td > a:first-child:focus {
+            outline: 0;
+        }
+*/
+        td{
+            width:fit-content;
+            height:fit-content;
+            padding:0;
+
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainCnt" runat="server">
     <section class="content">
@@ -20,7 +68,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header primary col-md-6">
+                        <div class="card-header primary col-md-12">
                             <h3 class="card-title">הזמנות <a href="addUpdateOrder.aspx" class="btn btn-primary">הוסף הזמנה</a></h3>
                         </div>
                         <!-- /.card-header -->
@@ -28,6 +76,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>הדפס</th>
                                         <th>קוד הזמנה</th>
                                         <th>קוד לקוח</th>
                                         <th>תאריך אירוע</th>
@@ -45,28 +94,59 @@
                                         <ItemTemplate>
 
                                             <tr>
-                                                <td>
-                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>">
+                                                <td style="position:relative;">
+                                                    <a target="_blank" href="../templates/printOrderTemplet.aspx?Oid=<%# Eval("Oid") %>" class="btn btn-primary stretched-link">
+                                                        <i class="fa-solid fa-print"></i>
+                                                    </a>
+                                                </td>
+
+                                                <td style="position:relative;">
+                                                    <a tabindex="-1" href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
                                                         <%# Eval("Oid") %>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <asp:Literal ID="Uid" runat="server"></asp:Literal></td>
-                                                <td><%# Eval("eventDate") %></td>
-                                                <td><%# Eval("somePeople") %></td>
-                                                <td>
-                                                    <asp:Literal ID="eventTypeId" runat="server"></asp:Literal></td>
-                                                <td><%# Eval("createDate") %></td>
-                                                <td>
-                                                    <asp:Literal ID="Hid" runat="server"></asp:Literal></td>
-                                                <td><%# Eval("notes") %></td>
-                                                <td>
-                                                    <a href="addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>" class="btn btn-primary">
+                                                <td style="position:relative;">
+                                                    <a tabindex="-1" href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <asp:Literal ID="Uid" runat="server"></asp:Literal>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("eventDate") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("somePeople") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <asp:Literal ID="eventTypeId" runat="server"></asp:Literal>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("createDate") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <asp:Literal ID="Hid" runat="server"></asp:Literal>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("notes") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>" class="btn btn-primary stretched-link">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>&op=del'">
+                                                <td style="position:relative;">
+                                                    <a href="#" class="btn btn-danger stretched-link" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>&op=del'">
                                                         <i class="fa-solid fa-trash-alt"></i>
                                                     </a>
                                                 </td>
