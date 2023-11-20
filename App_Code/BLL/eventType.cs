@@ -10,6 +10,7 @@ namespace BLL
     {
         public int ETid { get; set; }
         public string ETname { get; set; }
+        public float PricePerPortion { get; set; }
         public string OrderDetailsPermitted { get; set; }
         public List<orderDetailPermitted> orderDetailPermitteds { get; set; }
         public static List<eventType> getAllEventTypes(string query)

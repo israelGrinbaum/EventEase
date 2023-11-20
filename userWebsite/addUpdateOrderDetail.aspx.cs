@@ -80,20 +80,30 @@ namespace eventsHall.userWebsite
             {
                 return "{\"not objects send\":\"\"}";
             }
+            int Oid = int.Parse(HttpUtility.ParseQueryString(HttpContext.Current.Request.UrlReferrer.Query)["Oid"]);
             string ret = "{\"statuses\":[";
-            for(int i = 0; i < OrderDetails.Length; i++)
+            List<int> catsRemoved= new List<int>();
+            for (int i = 0; i < OrderDetails.Length; i++)
             {
-                int ODid = -1;
-                int Oid = int.Parse(HttpUtility.ParseQueryString(HttpContext.Current.Request.UrlReferrer.Query)["Oid"]);
-                int Pid = OrderDetails[i].Pid;
-                int amount = int.Parse("0");
-                double price = double.Parse("0");
-                int ODCatId = OrderDetails[i].ODCatId;
-
+                if (!catsRemoved.Contains(OrderDetails[i].ODCatId))
+                {
+                    List<orderDetails> ODsameCats = (List<orderDetails>)HttpContext.Current.Session["OrderDateils"];
+                    ODsameCats = ODsameCats.Where(x => x.ODCatId == OrderDetails[i].ODCatId).ToList();
+                    foreach (orderDetails ODSameCat in ODsameCats)
+                    {
+                        orderDetails.removeOrderDetailById(ODSameCat.ODid);
+                    }
+                    catsRemoved.Add(OrderDetails[i].ODCatId);
+                }
+            }
+            List<orderDetails> sessionOrderDetails = orderDetails.getOrderDetailsByOid(Oid);
+            HttpContext.Current.Session["OrderDateils"] = sessionOrderDetails;
+            for (int i = 0; i < OrderDetails.Length; i++)
+            {
                 orderDetails OD = new orderDetails()
                 {
                     ODid = -1,
-                    Oid = int.Parse(HttpUtility.ParseQueryString(HttpContext.Current.Request.UrlReferrer.Query)["Oid"]),
+                    Oid = Oid,
                     Pid = OrderDetails[i].Pid,
                     amount = int.Parse("0"),
                     price = double.Parse("0"),
@@ -142,20 +152,20 @@ namespace eventsHall.userWebsite
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
+                portions portion = (portions)e.Item.DataItem;
+                string isPidExist = "";
+                string CBName = portion.portionCatId;
+                string CBValue = portion.Pid + "";
                 List<orderDetails> OrderDetails = (List<orderDetails>)Session["OrderDateils"];
                 if(OrderDetails != null)
                 {
-                    portions portion = (portions)e.Item.DataItem;
                     orderDetails OrderDetail = OrderDetails.Find(x=>x.Pid == portion.Pid);
                     if(OrderDetail != null)
                     {
-                        string checkBoxId = "btn-check-outlined-" + OrderDetail.Pid;
-                        HtmlInputCheckBox htmlInputCheckBox = (HtmlInputCheckBox)e.Item.FindControl("SelectPortionCB");
-                        htmlInputCheckBox.Name = portion.portionCatId;
-                        htmlInputCheckBox.Value = portion.Pid+"";
-                        htmlInputCheckBox.Checked = true;
+                        isPidExist = "checked=\"checked\"";
                     }
                 }
+                ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text = $"<input name=\"{CBName}\" value=\"{CBValue}\" type=\"checkbox\" class=\"btn-check\" id=\"btn-check-outlined-{portion.Pid}\" autocomplete=\"off\" {isPidExist}>";
             }
 
         }

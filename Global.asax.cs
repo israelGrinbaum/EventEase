@@ -17,6 +17,8 @@ namespace eventsHall
             Application["lstPC"] = lstPC;
             List<orderDetailCategoryes> lstODC = orderDetailCategoryes.getAllCategoryes();
             Application["lstODC"] = lstODC;
+            List<portions> lstPortions = portions.getAllportions("");
+            Application["lstPortions"] = lstPortions;
 
         }
 

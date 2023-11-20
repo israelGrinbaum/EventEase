@@ -30,6 +30,7 @@
                                         <th>קוד סוג אירוע</th>
                                         <th>שם סוג אירוע</th>
                                         <th>פריטי הזמנה מאופשרים</th>
+                                        <th>מחיר למנה</th>
                                         <th>ערוך</th>
                                         <th>מחק</th>
                                     </tr>
@@ -40,7 +41,11 @@
                                             <tr>
                                                 <td><%# Eval("ETid") %></td>
                                                 <td><%# Eval("ETname") %></td>
-                                                <td><asp:Literal ID="ltlOrderDetailsPermitted" runat="server"></asp:Literal></td>
+                                                <td>
+                                                    <asp:Literal ID="ltlOrderDetailsPermitted" runat="server">
+                                                    </asp:Literal>
+                                                </td>
+                                                <td><%# Eval("PricePerPortion") %></td>
                                                 <td>
                                                     <a href="addUpdateEventType.aspx?ETid=<%# Eval("ETid") %>" class="btn btn-primary">
                                                         <i class="fa-solid fa-pen-to-square"></i>

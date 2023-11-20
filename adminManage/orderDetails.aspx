@@ -144,7 +144,9 @@
                                                             <asp:Literal ID="ltlPid" runat="server"></asp:Literal>
                                                         </td>
                                                         <td><%# Eval("amount") %></td>
-                                                        <td><%# Eval("price") %></td>
+                                                        <td>
+                                                            <asp:Literal ID="ltlPrice" runat="server"></asp:Literal>
+                                                        </td>
                                                         <td>
                                                             <asp:Literal ID="ltlPortionCatId" runat="server"></asp:Literal>
                                                         </td>

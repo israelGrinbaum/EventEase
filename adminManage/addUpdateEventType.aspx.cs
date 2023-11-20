@@ -51,6 +51,7 @@ namespace eventsHall.adminManage
             {
                 var thisEventType = eventType.getEventTypeById(int.Parse(HiddenETid.Value));
                 txtETname.Text = thisEventType.ETname;
+                txtPricePerPortion.Text = thisEventType.PricePerPortion+"";
                 HiddenODPs.Value = Newtonsoft.Json.JsonConvert.SerializeObject(thisEventType.orderDetailPermitteds);
                 //string stODCPermitted = thisEventType.OrderDetailsPermitted.Replace("@@", "@");
                 //string[] ODCPermitted = stODCPermitted.Substring(1, stODCPermitted.Length - 2).Split('@');
@@ -69,10 +70,11 @@ namespace eventsHall.adminManage
             //{
             //    sb.Append("@" + DDLOrderDetailsPermitted.Items[i].Value + "@");
             //}
-            eventType eventType =new eventType()
+            eventType eventType = new eventType()
             {
                 ETid = int.Parse(HiddenETid.Value),
-                ETname=txtETname.Text,
+                ETname = txtETname.Text,
+                PricePerPortion = float.Parse(txtPricePerPortion.Text),
                 //OrderDetailsPermitted=sb.ToString(),
             };
             eventType.addUpdateEventType();

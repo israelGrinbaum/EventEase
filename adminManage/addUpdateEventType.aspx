@@ -43,6 +43,10 @@
                                 <label>שם סוג אירוע</label>
                                 <asp:TextBox ID="txtETname" runat="server" class="form-control" placeholder="הכנס שם סוג אירוע"></asp:TextBox>
                             </div>
+                            <div class="form-group">
+                                <label>מחיר למנה</label>
+                                <asp:TextBox ID="txtPricePerPortion" runat="server" class="form-control" placeholder="הכנס מחיר אירוע"></asp:TextBox>
+                            </div>
                             <%--                            <div class="form-group">
                                 <label>פריטי הזמנה מאופשרים</label>
                                 <asp:ListBox SelectionMode="Multiple" ID="DDLOrderDetailsPermitted" runat="server" class="form-control select2bs4" placeholder="הכנס שם סוג אירוע"></asp:ListBox>
@@ -121,7 +125,7 @@
         function btnSave() {
             console.log(document.getElementById("mainCnt_hiddenNumOfODP").value);
             let numOfODP = document.getElementById("mainCnt_hiddenNumOfODP").value;
-            let eventType = { ETid: document.getElementById("mainCnt_HiddenETid").value, ETname: document.getElementById("mainCnt_txtETname").value, orderDetailPermitteds: [] };
+            let eventType = { ETid: document.getElementById("mainCnt_HiddenETid").value, ETname: document.getElementById("mainCnt_txtETname").value, PricePerPortion: document.getElementById("mainCnt_txtPricePerPortion").value, orderDetailPermitteds: [] };
             for (let i = 0; i < numOfODP; i++) {
                 console.log(i);
                 let odp = { ODPid: -1, eventTypeId: -1, orderDetailId: "", optional: 0, choiceQuantity: "" };

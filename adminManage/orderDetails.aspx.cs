@@ -101,6 +101,7 @@ namespace eventsHall.adminManage
             {
                 int Pid = ((BLL.orderDetails)e.Item.DataItem).Pid;
                 ((Literal)e.Item.FindControl("ltlPid")).Text = item.getAnyData("T_Portions", "Pname", "Pid", "" + Pid);
+                ((Literal)e.Item.FindControl("ltlPrice")).Text = item.getAnyData("T_Portions", "price", "Pid", "" + Pid);
                 int ODCatId = ((BLL.orderDetails)e.Item.DataItem).ODCatId;
                 ((Literal)e.Item.FindControl("ltlPortionCatId")).Text = item.getAnyData("T_PortionCategoryes", "catName", "Cid", "" + ODCatId);
             }

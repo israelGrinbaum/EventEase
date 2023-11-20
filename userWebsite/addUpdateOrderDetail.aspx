@@ -71,7 +71,8 @@
                                                                 <h4 class="card-title"><%# Eval("Pname") %> </h4>
                                                                 <p class="card-text text-"><%# Eval("price") %> ₪</p>
                                                                 <p class="card-text"><%# Eval("Pdesc") %></p>
-                                                                <input type="checkbox" class="btn-check" id="SelectPortionCB" runat="server" autocomplete="off">
+                                                                <asp:Literal ID="ltlSelectPortionCB" runat="server"></asp:Literal>
+                                                                <%--                                                                <input type="checkbox" class="btn-check" autocomplete="off"\>--%>
                                                                 <label name="SelectButton" class="btn btn-outline-primary Select-Button" for="btn-check-outlined-<%# Eval("Pid") %>">בחר</label><br>
                                                             </div>
                                                         </div>
@@ -87,8 +88,22 @@
 
                                     <div class="card-footer">
                                         <%--                                        <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click" />--%>
-                                        <button type="button" class="btn btn-primary" onclick="SavePortions('<%# Eval("Cid") %>')">שמור</button>
-                                        <a id="orderLink" runat="server" href="#" onclick="window.location='orderDetails.aspx?Oid='+document.getElementById('mainCnt_txtOid').value" class="btn btn-primary">חזרה להזמנה</a>
+                                        <a id="prevBtn" href="#" onclick="nextPrev(-1)" class="btn btn-primary">הקודם</a>
+                                        <a style="opacity:0;pointer-events:none" class="btn">1</a>
+                                        <%--                                        <a id="orderLink" runat="server" href="#" onclick="window.location='orderDetails.aspx?Oid='+document.getElementById('mainCnt_txtOid').value" class="btn btn-primary">חזרה להזמנה</a>--%>
+                                        <span id="btnNext&save">
+
+                                        </span>
+                                        <div style="position:absolute;left:6%;" class="btn-group">
+                                            <button id="btnSave" type="button" class="btn btn-primary" onclick="SavePortions('<%# Eval("Cid") %>')">שמור והבא</button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="visually-hidden">Toggle Dropstart</span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end primary">
+                                                <a href="#" onclick="nextPrev(1)" class="dropdown-item btn-primary primary">הבא</a>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                     <div onclick="selectProd(@#Pid#@,'@#Pname#@','@#price#@')"></div>
                                 </div>
@@ -126,12 +141,15 @@
                 document.getElementById("prevBtn").style.display = "inline";
             }
             if (n == (x.length - 1)) {
-                document.getElementById("nextBtn").innerHTML = "Submit";
-            } else {
-                document.getElementById("nextBtn").innerHTML = "Next";
+                var btnSave = document.getElementById("btnSave");
+                document.getElementById("btnNext&save").innerHTML = btnSave;
+                document.getElementById("btnSave").innerHTML = "שמור";
             }
+            //} else {
+            //    document.getElementById("btnNext&save").innerHTML = "שמור והבא";
+            //}
             // ... and run a function that displays the correct step indicator:
-            fixStepIndicator(n)
+        //    fixStepIndicator(n)
         }
 
         function nextPrev(n) {
@@ -148,7 +166,11 @@
             // if you have reached the end of the form... :
             if (currentTab >= x.length) {
                 //...the form gets submitted:
-                document.getElementById("regForm").submit();
+                //document.getElementById("regForm").submit();
+                var url = window.location;
+                let params = new URLSearchParams(url.search);
+                let oid = params.get('Oid');
+                location.assign("http://localhost:46327/userWebsite/orderDetail.aspx?Oid=" + oid);
                 return false;
             }
             // Otherwise, display the correct tab:
@@ -177,23 +199,24 @@
             return valid; // return the valid status
         }
 
-        function fixStepIndicator(n) {
-            // This function removes the "active" class of all steps...
-            var i, x = document.getElementsByClassName("step");
-            for (i = 0; i < x.length; i++) {
-                x[i].className = x[i].className.replace(" active", "");
-            }
-            //... and adds the "active" class to the current step:
-            x[n].className += " active";
-        }
+        //function fixStepIndicator(n) {
+        //    // This function removes the "active" class of all steps...
+        //    var i, x = document.getElementsByClassName("step");
+        //    for (i = 0; i < x.length; i++) {
+        //        x[i].className = x[i].className.replace(" active", "");
+        //    }
+        //    //... and adds the "active" class to the current step:
+        //    x[n].className += "active";
+        //}
 
     </script>
     <asp:Literal ID="ltlODPermitted" runat="server"></asp:Literal>
     <script>
         $('.Select-Button').on('click', function (e) {
-            console.log(e.target.parentElement.children[3].name);
             var portionsSameCat = $("input[name*='" + e.target.parentElement.children[3].name + "']");
-            console.log(portionsSameCat);
+            disableSelctedCat(portionsSameCat, currentTab);
+        });
+        function disableSelctedCat(portionsSameCat, catIndex) {
             var cnt = 0;
             setTimeout(() => {
                 for (let i = 0; i < portionsSameCat.length; i++) {
@@ -201,24 +224,25 @@
                         cnt++;
                     }
                 }
-                if (cnt >= ODpermitted[currentTab].choiceQuantity) {
+                if (cnt >= ODpermitted[catIndex].choiceQuantity) {
                     for (let i = 0; i < portionsSameCat.length; i++) {
                         if (!portionsSameCat[i].checked) {
                             portionsSameCat[i].parentElement.children[4].classList.add("disabled");
                         }
                     }
-                    let id = "orderDetailId" + ODpermitted[currentTab].orderDetailId;
+                    let id = "orderDetailId" + ODpermitted[catIndex].orderDetailId;
                     document.getElementById(id).innerHTML += "<span class=\"badge bg-primary\">נבחר</span>";
-                } else if (cnt < ODpermitted[currentTab].choiceQuantity) {
+                } else if (cnt < ODpermitted[catIndex].choiceQuantity) {
                     for (let i = 0; i < portionsSameCat.length; i++) {
                         portionsSameCat[i].parentElement.children[4].classList.remove("disabled");
                     }
-                    let id = "orderDetailId" + ODpermitted[currentTab].orderDetailId;
+                    let id = "orderDetailId" + ODpermitted[catIndex].orderDetailId;
                     document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace("<span class=\"badge bg-primary\">נבחר</span>", "");
                 }
                 console.log(cnt);
             },);
-        });
+
+        }
     </script>
     <script>
         $(
@@ -274,14 +298,28 @@
 
     </script>
     <script>
-        $('.Select-Button').on('click', function (e) {
-            if (e.target.parentElement.parentElement.style.borderColor == "rgba(0, 0, 0, 0.13)" ||
-                e.target.parentElement.parentElement.style.borderColor == "") {
-                e.target.parentElement.parentElement.style.borderColor = "orange";
-            }
-            else if (e.target.parentElement.parentElement.style.borderColor == "orange") {
-                e.target.parentElement.parentElement.style.borderColor = "rgb(0 0 0 / 13%)";
+        $(() => {
+            for (let i = 0; i < ODpermitted.length; i++) {
+                var portionsSameCat = $("input[name*='" + ODpermitted[i].orderDetailId + "']");
+                disableSelctedCat(portionsSameCat, i);
+                for (let j = 0; j < portionsSameCat.length; j++) {
+                    if (portionsSameCat[j].checked == true) {
+                        paintBorderOnCheck(portionsSameCat[j]);
+                    }
+                }
             }
         });
+        $('.Select-Button').on('click', function (e) {
+            paintBorderOnCheck(e.target);
+        });
+        function paintBorderOnCheck(e) {
+            if (e.parentElement.parentElement.style.borderColor == "rgba(0, 0, 0, 0.13)" ||
+                e.parentElement.parentElement.style.borderColor == "") {
+                e.parentElement.parentElement.style.borderColor = "orange";
+            }
+            else if (e.parentElement.parentElement.style.borderColor == "orange") {
+                e.parentElement.parentElement.style.borderColor = "rgb(0 0 0 / 13%)";
+            }
+        }
     </script>
 </asp:Content>
