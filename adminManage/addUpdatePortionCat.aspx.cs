@@ -38,7 +38,7 @@ namespace eventsHall.adminManage
             DDLparentCat.DataTextField = "catName";
             DDLparentCat.DataValueField = "Cid";
             DDLparentCat.DataBind();
-            DDLparentCat.Items.Insert(0, new ListItem() { Text = "ללא", Value = "0",Selected=true });
+            DDLparentCat.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0",Selected=true });
             //DDLparentCat.Items.FindByValue("2015").Selected=true;
             if(HiddenCid.Value != "-1")
             {

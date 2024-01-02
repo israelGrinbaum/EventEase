@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Newtonsoft.Json;
 using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
@@ -40,16 +41,21 @@ namespace eventsHall.adminManage
             DDLUid.DataTextField = "value";
             DDLUid.DataValueField = "key";
             DDLUid.DataBind();
+            DDLUid.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
             var eventType = item.getAll("T_EventType", "ETid", "ETname");
             DDLEventType.DataSource = eventType;
             DDLEventType.DataTextField = "value";
             DDLEventType.DataValueField= "key";
             DDLEventType.DataBind();
+            DDLEventType.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
             var halls = item.getAll("T_Halls", "Hid", "Hname");
             DDLHid.DataSource = halls;
             DDLHid.DataTextField = "value";
             DDLHid.DataValueField = "key";
             DDLHid.DataBind();
+            DDLHid.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
+            var eventTypePrice = item.getAll("T_EventType", "ETid", "pricePerPortion");
+            ltlEventTypePrice.Text = "<script> var eventTypePrice=" + JsonConvert.SerializeObject(eventTypePrice) + "</script>";
             if (HiddenOid.Value != "-1")
             {
                 var order= orders.getOrderById(int.Parse(HiddenOid.Value));

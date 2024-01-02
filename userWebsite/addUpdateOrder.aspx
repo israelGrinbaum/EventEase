@@ -54,24 +54,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label>תאריך אירוע</label>
-                                    <asp:TextBox ID="txtEventDate" runat="server" class="form-control calendar-time" placeholder="הכנס תאריך אירוע"></asp:TextBox>
+                                    <asp:TextBox TextMode="DateTimeLocal" ID="txtEventDate" runat="server" class="form-control Required verification-date" placeholder="הכנס תאריך אירוע"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <label>כמות אנשים</label>
-                                    <asp:TextBox ID="txtSomePeople" runat="server" class="form-control" placeholder="הכנס כמות אנשים"></asp:TextBox>
+                                    <asp:TextBox ID="txtSomePeople" runat="server" class="form-control verification-number Required" placeholder="הכנס כמות אנשים"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
                                     <label>סוג אירוע</label>
-                                    <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%; background-color: #fffffc;" ID="DDLEventType" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList class="select2 form-control Required" data-placeholder="Select a State" Style="width: 100%; background-color: #fffffc;" ID="DDLEventType" runat="server"></asp:DropDownList>
                                 </div>
-
+                                <div class="form-group">
+                                    <label>מחיר למנה (אוטומטי בבחירת סוג אירוע)</label>
+                                    <input disabled="disabled" class="form-control disabled" Style="width: 100%; background-color: #e9ecef;" ID="PricePerPortion" placeholder="אוטומטי בבחירת סוג אירוע" />
+                                </div>
                                 <div class="form-group">
                                     <label>קוד אולם</label>
-                                    <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%; background-color: #fffffc;" ID="DDLHid" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList class="select2 form-control Required" data-placeholder="Select a State" Style="width: 100%; background-color: #fffffc;" ID="DDLHid" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="form-group">
                                     <label>הערות</label>
-                                    <asp:TextBox ID="txtNotes" runat="server" class="form-control" placeholder="הכנס הערות"></asp:TextBox>
+                                    <asp:TextBox ID="txtNotes" runat="server" class="form-control verification-number" placeholder="הכנס הערות"></asp:TextBox>
                                 </div>
 
                                 <div class="card-footer">
@@ -82,7 +85,6 @@
                     </div>
                 </div>
         </section>
-
     </div>
 
 </asp:Content>
@@ -90,7 +92,19 @@
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
     <script src="https://dtpicker.jewishluach.com/Scripts/jewishluach.js"></script>
-    
+    <script>
+        //$('#maincnt_btnSave').click(function () {
+        //    var EventDate = $('#maincnt_txtEventDate')[0].value;
+        //    if (new Date() < new Date(EventDate)) {
+        //        console.log(false);
+        //        return false;
+        //    }
+
+
+        //    return true;
+        //});
+
+    </script>
     <script>
         $(function () {
             //$.fn.select2.defaults.set('amdLanguageBase', 'select2/i18n/he');
@@ -105,6 +119,26 @@
             $('.paginate_button current').addClass('btn btn primery')
 
         })
+    </script>
+    <asp:Literal ID="ltlEventTypePrice" runat="server"></asp:Literal>
+    <script>
+        $(function () {
+            pricePlanting($('#maincnt_DDLEventType')[0]);
+        });
+        $('#maincnt_DDLEventType').on('change', (e) => {
+            pricePlanting(e.target);
+        });
+        function pricePlanting(DDLEventType) {
+            var eventTypeId = DDLEventType.selectedOptions[0].value;
+            for (let i = 0; i < eventTypePrice.length; i++) {
+                if (eventTypePrice[i].key == eventTypeId) {
+                    document.getElementById('PricePerPortion').value = eventTypePrice[i].value;
+                    return;
+                }
+            }
+            document.getElementById('PricePerPortion').value = "לא נבחר סוג אירוע";
+
+        }
     </script>
     <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
     <script>

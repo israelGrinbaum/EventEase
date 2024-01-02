@@ -27,6 +27,7 @@
                                         <th>תאריך אירוע</th>
                                         <th>כמות אנשים</th>
                                         <th>סוג אירוע</th>
+                                        <th>מחיר אירוע</th>
                                         <th>תאריך יצירת הזמנה</th>
                                         <th>קוד אולם</th>
                                         <th>הערות</th>
@@ -62,6 +63,11 @@
                                                 <td style="position: relative;">
                                                     <a href="orderDetail.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
                                                         <asp:Literal ID="eventTypeId" runat="server"></asp:Literal>
+                                                    </a>
+                                                </td>
+                                                <td style="position: relative;">
+                                                    <a href="orderDetail.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <asp:Literal ID="ltlCalculatedPrice" runat="server"></asp:Literal>
                                                     </a>
                                                 </td>
                                                 <td style="position: relative;">

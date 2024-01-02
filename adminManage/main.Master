@@ -62,12 +62,34 @@
             height: 100vh;
             background-color: var(--bs-backdrop-bg);
         }
+        label{
+            font-weight:normal!important;
+        }
+        .warning-massege{
+            padding-right:12px;
+            font-size:15px;
+            color:#dc3545;
+            margin-bottom:0px;
+        }
+        .Required{
 
+        }
+        .verification-date{
+
+        }
+        .verification-number{
+
+        }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body id="body" class="hold-transition sidebar-mini layout-fixed">
+    <div hidden="hidden">
+        <p class="warning-massege warningMassegeNumber">יש להזין ערך מספרי</p>
+        <p class="warning-massege warningMassegeRequired">שדה חובה, יש להזין ערך</p>
+        <p class="warning-massege warningMassegeDate">יש להזין תאריך עתידי</p>
+    </div>
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -86,7 +108,7 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
+            <!--<form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
@@ -95,10 +117,10 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form>-->
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav mr-auto">
+<%--            <ul class="navbar-nav mr-auto">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -193,7 +215,7 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
-            </ul>
+            </ul>--%>
         </nav>
         <!-- /.navbar -->
 
@@ -368,6 +390,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/adminManage/dist/js/demo.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/dataVerification.js"></script>
     <script>
         function click() {
             document.getElementsByClassName("paginate_button").innertext = "jnsvo";

@@ -93,6 +93,10 @@ namespace eventsHall.adminManage
                 ODP.eventTypeId=EventType.ETid;
                 ODP.addUpsateOrderDetailPermitteds();
             }
+            if(EventType.ETid != -1)
+            {
+                return "success";
+            }
             return null;
         }
         [WebMethod]

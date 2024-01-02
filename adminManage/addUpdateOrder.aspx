@@ -7,7 +7,6 @@
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="/adminManage/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <style>
-
         .select2-container--open + .select2-container--open {
             left: auto;
             right: 0;
@@ -51,24 +50,27 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>קוד לקוח</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control Required" data-placeholder="Select a State" Style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label>תאריך אירוע</label>
-                                <asp:TextBox TextMode="Date" ID="txtEventDate" runat="server" class="form-control" placeholder="הכנס תאריך אירוע"></asp:TextBox>
+                                <asp:TextBox TextMode="DateTimeLocal" ID="txtEventDate" runat="server" class="form-control Required verification-date" placeholder="הכנס תאריך אירוע"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label>כמות אנשים</label>
-                                <asp:TextBox ID="txtSomePeople" runat="server" class="form-control" placeholder="הכנס כמות אנשים"></asp:TextBox>
+                                <asp:TextBox ID="txtSomePeople" runat="server" class="form-control Required verification-number" placeholder="הכנס כמות אנשים"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label>סוג אירוע</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control Required" data-placeholder="Select a State" Style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
                             </div>
-
+                            <div class="form-group">
+                                <label>מחיר למנה (אוטומטי בבחירת סוג אירוע)</label>
+                                <input disabled="disabled" class="form-control disabled" style="width: 100%; background-color: #e9ecef;" id="PricePerPortion" placeholder="אוטומטי בבחירת סוג אירוע" />
+                            </div>
                             <div class="form-group">
                                 <label>קוד אולם</label>
-                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
+                                <asp:DropDownList class="select2 form-control Required" data-placeholder="Select a State" Style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label>הערות</label>
@@ -76,7 +78,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClick="btnSave_Click"  />
                                 <a href="OrdersList.aspx" class="btn btn-primary">לטבלת הזמנות</a>
                             </div>
                         </div>
@@ -89,7 +91,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
-
     <script>
         $(function () {
             //$.fn.select2.defaults.set('amdLanguageBase', 'select2/i18n/he');
@@ -105,6 +106,27 @@
 
         })
     </script>
+        <asp:Literal ID="ltlEventTypePrice" runat="server"></asp:Literal>
+    <script>
+        $(function () {
+            pricePlanting($('#mainCnt_DDLEventType')[0]);
+        });
+        $('#mainCnt_DDLEventType').on('change', (e) => {
+            pricePlanting(e.target);
+        });
+        function pricePlanting(DDLEventType) {
+            var eventTypeId = DDLEventType.selectedOptions[0].value;
+            for (let i = 0; i < eventTypePrice.length; i++) {
+                if (eventTypePrice[i].key == eventTypeId) {
+                    document.getElementById('PricePerPortion').value = eventTypePrice[i].value;
+                    return;
+                }
+            }
+            document.getElementById('PricePerPortion').value = "לא נבחר סוג אירוע";
+
+        }
+    </script>
+
     <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
     <script>
 

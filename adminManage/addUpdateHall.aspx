@@ -78,17 +78,16 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>שם אולם</label>
-                                <asp:TextBox ID="txtName" runat="server" class="form-control" placeholder="הכנס שם אולם"></asp:TextBox>
+                        <div class="card-body ">
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtName" runat="server" class="form-control Required" placeholder="הכנס שם אולם"></asp:TextBox>
+                                <label for="mainCnt_txtName">שם אולם</label>
                             </div>
-                            <div class="form-group">
-                                <label>תכולה</label>
-                                <asp:TextBox ID="txtContaining" runat="server" class="form-control" placeholder="הכנס תכולה"></asp:TextBox>
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtContaining" runat="server" class="form-control Required verification-number" placeholder="הכנס תכולה"></asp:TextBox>
+                                <label for="mainCnt_txtContaining">תכולה</label>
                             </div>
-                            <div class="form-group">
-                                <label>תמונות</label>
+                            <div class="form-group form-floating">
                                 <br />
                                 <asp:Repeater ID="RPTimg" runat="server">
                                     <ItemTemplate>
@@ -103,14 +102,15 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <asp:FileUpload AllowMultiple="true" ID="picUpload" runat="server" class="form-control" />
+                                <label for="mainCnt_picUpload">תמונות</label>
                             </div>
-                            <div class="form-group">
-                                <label>מיקום</label>
-                                <asp:TextBox ID="txtLocation" runat="server" class="form-control" placeholder="הכנס מיקום"></asp:TextBox>
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtLocation" runat="server" class="form-control Required" placeholder="הכנס מיקום"></asp:TextBox>
+                                <label for="mainCnt_txtLocation">מיקום</label>
                             </div>
-                            <div class="form-group">
-                                <label>מחיר</label>
-                                <asp:TextBox ID="txtPrice" runat="server" class="form-control" placeholder="הכנס מחיר"></asp:TextBox>
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtPrice" runat="server" class="form-control Required verification-number" placeholder="הכנס מחיר"></asp:TextBox>
+                                <label for="mainCnt_txtPrice">מחיר</label>
                             </div>
 
                             <div class="card-footer">

@@ -39,13 +39,13 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
-                            <div class="form-group">
-                                <label>שם סוג אירוע</label>
-                                <asp:TextBox ID="txtETname" runat="server" class="form-control" placeholder="הכנס שם סוג אירוע"></asp:TextBox>
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtETname" runat="server" class="form-control Required" placeholder="הכנס שם סוג אירוע"></asp:TextBox>
+                                <label for="mainCnt_txtETname">שם סוג אירוע</label>
                             </div>
-                            <div class="form-group">
-                                <label>מחיר למנה</label>
-                                <asp:TextBox ID="txtPricePerPortion" runat="server" class="form-control" placeholder="הכנס מחיר אירוע"></asp:TextBox>
+                            <div class="form-group form-floating">
+                                <asp:TextBox ID="txtPricePerPortion" runat="server" class="form-control Required verification-number" placeholder="הכנס מחיר אירוע"></asp:TextBox>
+                                <label for="mainCnt_txtPricePerPortion">מחיר למנה</label>
                             </div>
                             <%--                            <div class="form-group">
                                 <label>פריטי הזמנה מאופשרים</label>
@@ -53,7 +53,7 @@
                             </div>--%>
 
                             <div id="ODPInputs" class="form-group">
-                                <label style="margin-bottom: 15px;">פריטי הזמנה מאופשרים</label>
+                                <label style="margin-bottom: 15px;font-weight:bold;">פריטי הזמנה מאופשרים</label>
                                 <input hidden="hidden" id="hiddenNumOfODP" value="1" runat="server" />
                                 <button type="button" class="btn btn-primary" text="הוסף פריט" id="btnAddODP" onclick="addODPInput()">הוסף</button>
                                 <div id="inputTemp">
@@ -70,7 +70,7 @@
                                                 <input id="inputODPcb1" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
                                             </div>
                                             <span class="input-group-text" style="border-left: solid">אופציונאלי</span>
-                                            <input type="number" class="form-control" placeholder="כמות לבחירה" id="inputODPn1" />
+                                            <input class="form-control Required verification-number" placeholder="כמות לבחירה" id="inputODPn1" />
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
 
 
                             <div class="card-footer">
-                                <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="שמור" OnClientClick="btnSave()" />
+                                <button id="maincnt_btnSave" type="button" class="btn btn-primary" text="שמור">שמור</button>
                                 <a href="eventTypesList.aspx" class="btn btn-primary">לטבלת סוגי אירוע</a>
                             </div>
                         </div>
@@ -93,6 +93,10 @@
     <!-- Select2 -->
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
     <script>
+        var isTheInformationCorrect = false;
+        $('#maincnt_btnSave').click(function () {
+            btnSave();
+        });
         function addODPInput() {
             let numOfInputs = Number(document.getElementById("mainCnt_hiddenNumOfODP").value) + 1;
             let id = "inputODP" + numOfInputs;
@@ -105,6 +109,7 @@
             st = st.replace("inputODPn1", "inputODPn" + numOfInputs);
             st = st.replace("ODPid1", "ODPid" + numOfInputs);
             st = st.replace("ODPid1", "ODPid" + numOfInputs);
+            st = st.replace("is-invalid", "");
             input.innerHTML = st;
             document.getElementById("ODPInputs").appendChild(input);
             document.getElementById("mainCnt_hiddenNumOfODP").value = numOfInputs;
@@ -117,12 +122,18 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    res = JSON.parse(data.d);
-                    console.log(res);
+                    //res = JSON.parse(data.d);
+                    if (data.d == 'success') {
+                        window.location = 'http://localhost:46327/adminManage/eventTypesList.aspx';
+                    }
+                    console.log(data.d);
                 },
             });
         };
         function btnSave() {
+            if (!isTheInformationCorrect) {
+                return;
+            }
             console.log(document.getElementById("mainCnt_hiddenNumOfODP").value);
             let numOfODP = document.getElementById("mainCnt_hiddenNumOfODP").value;
             let eventType = { ETid: document.getElementById("mainCnt_HiddenETid").value, ETname: document.getElementById("mainCnt_txtETname").value, PricePerPortion: document.getElementById("mainCnt_txtPricePerPortion").value, orderDetailPermitteds: [] };

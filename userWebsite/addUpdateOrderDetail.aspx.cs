@@ -38,7 +38,15 @@ namespace eventsHall.userWebsite
         public void fillData()
         {
             string ETid = item.getAnyData("T_Orders", "eventTypeId", "Oid", HiddenOid.Value + "");
-            List<orderDetailPermitted> orderDetailPermitteds = orderDetailPermitted.GetOrderDetailPermittedsByEventTypeId(int.Parse(ETid));
+            List<orderDetailPermitted> orderDetailPermitteds = null;
+            try
+            {
+                orderDetailPermitteds = orderDetailPermitted.GetOrderDetailPermittedsByEventTypeId(int.Parse(ETid));
+            }
+            catch(Exception ex)
+            {
+                
+            }
             List<portionCategoryes> listODP = new List<portionCategoryes>();
             List<portionCategoryes> listODC = ((List<portionCategoryes>)Application["lstPC"]);
             foreach (var ODP in orderDetailPermitteds)

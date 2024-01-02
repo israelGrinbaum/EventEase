@@ -1,8 +1,10 @@
 ﻿using BLL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -49,11 +51,15 @@ namespace eventsHall.userWebsite
             DDLEventType.DataTextField = "value";
             DDLEventType.DataValueField = "key";
             DDLEventType.DataBind();
+            DDLEventType.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
             var halls = item.getAll("T_Halls", "Hid", "Hname");
             DDLHid.DataSource = halls;
             DDLHid.DataTextField = "value";
             DDLHid.DataValueField = "key";
             DDLHid.DataBind();
+            DDLHid.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
+            var eventTypePrice = item.getAll("T_EventType", "ETid", "pricePerPortion");
+            ltlEventTypePrice.Text = "<script> var eventTypePrice=" + JsonConvert.SerializeObject(eventTypePrice)+ "</script>";
             if (HiddenOid.Value != "-1")
             {
                 var order = orders.getOrderById(int.Parse(HiddenOid.Value));
@@ -87,13 +93,13 @@ namespace eventsHall.userWebsite
             {
                 Response.Redirect("../login.aspx");
             }
-            int Oid = int.Parse(HiddenOid.Value);
-            int Uid = user.Uid;
-            DateTime eventDate = DateTime.Parse(txtEventDate.Text);
-            int somepeople = int.Parse(txtSomePeople.Text);
-            int eventTypeId = int.Parse(DDLEventType.SelectedItem.Value);
-            int Hid = int.Parse(DDLHid.SelectedItem.Value);
-            string notes = txtNotes.Text;
+            //int Oid = int.Parse(HiddenOid.Value);
+            //int Uid = user.Uid;
+            //DateTime eventDate = DateTime.Parse(txtEventDate.Text);
+            //int somepeople = int.Parse(txtSomePeople.Text);
+            //int eventTypeId = int.Parse(DDLEventType.SelectedItem.Value);
+            //int Hid = int.Parse(DDLHid.SelectedItem.Value);
+            //string notes = txtNotes.Text;
 
             orders order = new orders()
             {
@@ -108,7 +114,7 @@ namespace eventsHall.userWebsite
             order.addUpdateOrder();
             if (order.Oid != -1)
             {
-                Response.Redirect("addUpdateOrderDetail.aspx");
+                Response.Redirect("addUpdateOrderDetail.aspx?Oid="+order.Oid);
             }
 
         }
