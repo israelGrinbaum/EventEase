@@ -30,6 +30,9 @@
         .select2-dropdown {
             direction: rtl !important;
         }
+        .list-group-horizontal .list-group-item:last-child{
+            border-top-right-radius:0;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainCnt" runat="server">
@@ -52,18 +55,18 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="list-group list-group-horizontal" style="margin-bottom: 20px">
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">שם המזמין</div>
-                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLUid" runat="server"></asp:DropDownList>
+                                                <asp:TextBox class="form-control disabled" disabled="true" data-placeholder="Select a State" Style="width: 100%;" ID="txtUid" runat="server"></asp:TextBox>
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">תאריך אירוע</div>
                                                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                                    <asp:TextBox ID="txtEventDate" runat="server" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker1" placeholder="הכנס תאריך אירוע"></asp:TextBox>
+                                                    <asp:TextBox ID="txtEventDate" runat="server" disabled="true" class="form-control datetimepicker-input disabled" data-toggle="datetimepicker" data-target="#datetimepicker1" placeholder="הכנס תאריך אירוע"></asp:TextBox>
                                                     <%--                                                    <input type="text" class="form-control datetimepicker-input"  />--%>
                                                     <%--                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -73,31 +76,31 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">כמות משתתפים</div>
-                                                <asp:TextBox ID="txtSomePeople" runat="server" class="form-control" placeholder="הכנס כמות אנשים"></asp:TextBox>
+                                                <asp:TextBox ID="txtSomePeople" runat="server" disabled="true" class="form-control disabled" placeholder="הכנס כמות אנשים"></asp:TextBox>
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">סוג אירוע</div>
-                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLEventType" runat="server"></asp:DropDownList>
+                                                <asp:TextBox class="form-control" disabled="true" data-placeholder="Select a State" Style="width: 100%;" ID="txtEventType" runat="server"></asp:TextBox>
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">אולם</div>
-                                                <asp:DropDownList class="select2 form-control" data-placeholder="Select a State" Style="width: 100%;" ID="DDLHid" runat="server"></asp:DropDownList>
+                                                <asp:TextBox class="form-control" disabled="true" data-placeholder="Select a State" Style="width: 100%;" ID="txtHid" runat="server"></asp:TextBox>
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="border col-md-2 list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">הערות</div>
-                                                <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" class="form-control" placeholder="הכנס הערות"></asp:TextBox>
+                                                <asp:TextBox TextMode="MultiLine" ID="txtNotes" runat="server" disabled="true" class="form-control disabled" placeholder="הכנס הערות"></asp:TextBox>
                                             </div>
 
                                         </div>

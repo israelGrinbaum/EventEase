@@ -102,7 +102,7 @@ namespace eventsHall.adminManage
                 BLL.orderDetails OD=BLL.orderDetails.getOrderDetailsByODid(int.Parse(HiddenODid.Value));
                 btnProd.InnerText = item.getAnyData("T_Portions", "Pname", "Pid", OD.Pid + "");
                 inputPid.Value = OD.Pid + "";
-                txtAmount.Text = OD.amount + "";
+                //txtAmount.Text = OD.amount + "";
                 inputPrice.Value = OD.price + "";
                 DDLODCatId.SelectedValue = OD.ODCatId + "";
                 orderLink.HRef= "orderDetails.aspx?Oid=" + OD.Oid;
@@ -116,7 +116,7 @@ namespace eventsHall.adminManage
                 ODid=int.Parse(HiddenODid.Value),
                 Oid=int.Parse(HiddenOid.Value),
                 Pid = int.Parse(inputPid.Value),
-                amount =int.Parse("0" + txtAmount.Text),
+                //amount =int.Parse("0" + txtAmount.Text),
                 price = double.Parse("0" + inputPrice.Value),
                 ODCatId =int.Parse(DDLODCatId.SelectedItem.Value),
             };

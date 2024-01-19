@@ -36,36 +36,41 @@ namespace eventsHall.adminManage
             {
                 addOD.HRef = "addUpdateOrderDetail.aspx?Oid=" + Oid;
                 printOrder.HRef= "../templates/printOrderTemplet.aspx?Oid=" + Oid;
-                var uid = item.getAll("T_Users", "Uid", "Uname");
-                DDLUid.DataSource = uid;
-                DDLUid.DataTextField = "value";
-                DDLUid.DataValueField = "key";
-                DDLUid.DataBind();
-                var eventType = item.getAll("T_EventType", "ETid", "ETname");
-                DDLEventType.DataSource = eventType;
-                DDLEventType.DataTextField = "value";
-                DDLEventType.DataValueField = "key";
-                DDLEventType.DataBind();
-                var halls = item.getAll("T_Halls", "Hid", "Hname");
-                DDLHid.DataSource = halls;
-                DDLHid.DataTextField = "value";
-                DDLHid.DataValueField = "key";
-                DDLHid.DataBind();
-
-                if (DDLUid.Items.FindByValue(order.Uid + "") != null)
-                {
-                    DDLUid.Items.FindByValue(order.Uid + "").Selected = true;
-                }
+                //var uid = item.getAll("T_Users", "Uid", "Uname");
+                //DDLUid.DataSource = uid;
+                //DDLUid.DataTextField = "value";
+                //DDLUid.DataValueField = "key";
+                //DDLUid.DataBind();
+                //var eventType = item.getAll("T_EventType", "ETid", "ETname");
+                //DDLEventType.DataSource = eventType;
+                //DDLEventType.DataTextField = "value";
+                //DDLEventType.DataValueField = "key";
+                //DDLEventType.DataBind();
+                //var halls = item.getAll("T_Halls", "Hid", "Hname");
+                //DDLHid.DataSource = halls;
+                //DDLHid.DataTextField = "value";
+                //DDLHid.DataValueField = "key";
+                //DDLHid.DataBind();
+                var Uname = item.getAnyData("T_Users", "Uname", "Uid", order.Uid + "");
+                txtUid.Text = Uname + "";
+                var ETname = item.getAnyData("T_EventType", "ETname", "ETid",order.eventTypeId+"");
+                txtEventType.Text = ETname + "";
+                var hallName = item.getAnyData("T_Halls", "Hname", "Hid",order.Hid+"");
+                txtHid.Text = hallName + "";
                 txtEventDate.Text = order.eventDate + "";
                 txtSomePeople.Text = order.somepeople + "";
-                if (DDLHid.Items.FindByValue(order.Hid + "") != null)
-                {
-                    DDLHid.Items.FindByValue(order.Hid + "").Selected = true;
-                }
-                if (DDLEventType.Items.FindByValue(order.eventTypeId + "") != null)
-                {
-                    DDLEventType.Items.FindByValue(order.eventTypeId + "").Selected = true;
-                }
+                //if (DDLUid.Items.FindByValue(order.Uid + "") != null)
+                //{
+                //    DDLUid.Items.FindByValue(order.Uid + "").Selected = true;
+                //}
+                //if (DDLHid.Items.FindByValue(order.Hid + "") != null)
+                //{
+                //    DDLHid.Items.FindByValue(order.Hid + "").Selected = true;
+                //}
+                //if (DDLEventType.Items.FindByValue(order.eventTypeId + "") != null)
+                //{
+                //    DDLEventType.Items.FindByValue(order.eventTypeId + "").Selected = true;
+                //}
 
                 txtNotes.Text = order.notes;
                 eventType et = BLL.eventType.getEventTypeById(order.eventTypeId);

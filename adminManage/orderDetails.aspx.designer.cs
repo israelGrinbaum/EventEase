@@ -42,13 +42,13 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.HtmlControls.HtmlAnchor printOrder;
 
         /// <summary>
-        /// DDLUid control.
+        /// txtUid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLUid;
+        protected global::System.Web.UI.WebControls.TextBox txtUid;
 
         /// <summary>
         /// txtEventDate control.
@@ -69,22 +69,22 @@ namespace eventsHall.adminManage
         protected global::System.Web.UI.WebControls.TextBox txtSomePeople;
 
         /// <summary>
-        /// DDLEventType control.
+        /// txtEventType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLEventType;
+        protected global::System.Web.UI.WebControls.TextBox txtEventType;
 
         /// <summary>
-        /// DDLHid control.
+        /// txtHid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLHid;
+        protected global::System.Web.UI.WebControls.TextBox txtHid;
 
         /// <summary>
         /// txtNotes control.

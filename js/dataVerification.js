@@ -16,6 +16,8 @@ $('#mainCnt_btnSave').click(function () {
 });
 $('select').on('change', (e) => {
     e.target.parentElement.children[2].children[0].children[0].classList.remove('is-invalid');
+    if (e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired').length > 0)
+        e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired')[0].remove();
 });
 
 function verificationNumber(e) {
@@ -47,7 +49,8 @@ function verificationDate(e) {
 }
 function Required(e) {
     let val = e.target.value;
-    let isFill = val != '' && val != null;
+    let text = e.target.innerText;
+    let isFill = (val != '' && val != null) || (text != '' && text != null);
     if (!isFill) {
         e.target.classList.add('is-invalid');
         if (!e.target.parentElement.querySelectorAll('.warningMassegeRequired').length > 0)
@@ -70,8 +73,8 @@ function requiredOnSave() {
         }
         if (RequiredValues[i].localName == 'select' && RequiredValues[i].selectedIndex == 0) {
             RequiredValues[i].parentElement.children[2].children[0].children[0].classList.add('is-invalid');
-            if (RequiredValues[i].parentElement.querySelectorAll('.warningMassegeRequired').length > 0)
-                RequiredValues[i].parentElement.appendChild($('.warningMassegeRequired')[0].cloneNode(true));
+            if (RequiredValues[i].parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired').length != 1)
+                RequiredValues[i].parentElement.children[2].children[0].parentElement.appendChild($('.warningMassegeRequired')[0].cloneNode(true));
             flag = false;
         }
     }
