@@ -31,6 +31,10 @@ namespace eventsHall.adminManage
                 int Uid = ((orders)e.Item.DataItem).Uid;
                 ((Literal)e.Item.FindControl("Uid")).Text = item.getAnyData("T_Users", "Uname", "Uid", "" + Uid);
                 int eventTypeId = ((orders)e.Item.DataItem).eventTypeId;
+                if (eventTypeId == 0)
+                {
+
+                }
                 ((Literal)e.Item.FindControl("eventTypeId")).Text = item.getAnyData("T_EventType", "ETname", "ETid", "" + eventTypeId);
                 float pricePerPortion = float.Parse(item.getAnyData("T_EventType", "pricePerPortion", "ETid", "" + eventTypeId));
                 int somePeople= ((orders)e.Item.DataItem).somepeople;

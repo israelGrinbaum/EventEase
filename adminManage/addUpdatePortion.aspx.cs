@@ -42,7 +42,8 @@ namespace eventsHall.adminManage
             DDLCats.DataTextField = "catName";
             DDLCats.DataValueField = "Cid";
             DDLCats.DataBind();
-            DDLCats.Items.Insert(0, new ListItem("קטגוריה ראשית", "0"));
+            DDLCats.Items.Insert(0, new ListItem() { Text= "קטגוריה ראשית" ,Value="0",Selected=true});
+
             if (HiddenPid.Value != "-1")
             {
                 portions portion = new portions();

@@ -42,6 +42,15 @@ namespace eventsHall.userWebsite
         protected global::System.Web.UI.HtmlControls.HtmlAnchor conect;
 
         /// <summary>
+        /// dropDownMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropDownMenu;
+
+        /// <summary>
         /// nav control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,24 @@ namespace eventsHall.userWebsite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder maincnt;
+
+        /// <summary>
+        /// liveToast control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liveToast;
+
+        /// <summary>
+        /// ltlMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlMsg;
 
         /// <summary>
         /// footer control.

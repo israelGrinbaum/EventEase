@@ -22,7 +22,10 @@
 
             <div class="card">
               <div class="card-header primary col-md-6">
-                <h3 class="card-title">קטגוריות מנה <a href="addUpdatePortionCat.aspx" class="btn btn-primary">הוסף קטגורייה</a>  <a href="portionCatList.aspx?format=excel" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a></h3>
+                <h3 class="card-title">קטגוריות מנה 
+                    <a href="addUpdatePortionCat.aspx" class="btn btn-primary">הוסף קטגורייה</a>
+                    <!--<a href="portionCatList.aspx?format=excel" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a>-->
+                </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

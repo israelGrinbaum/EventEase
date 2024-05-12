@@ -23,7 +23,7 @@ namespace DAL
         }
         public static void updateUser(User user)
         {
-            string sql = $"update T_Users set Uname=N'{user.Uname}',email='{user.email}',phone='{user.phone}' where Uid={user.Uid};";
+            string sql = $"update T_Users set Uname=N'{user.Uname}',email='{user.email}',phone='{user.phone}',permissions='{user.permissions}' where Uid={user.Uid};";
             dbContext db = new dbContext();
             DataTable dt = new DataTable();
             db.executeNonQuery(sql);

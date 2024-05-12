@@ -15,7 +15,7 @@ namespace eventsHall.adminManage
             var usertmp= (User)Session["User"];
             if(usertmp != null)
             {
-                ltlName.Text = usertmp.Uname;
+                ltlName.Text = "שלום " + usertmp.Uname;
             }
         }
     }

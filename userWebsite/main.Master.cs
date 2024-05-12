@@ -20,6 +20,10 @@ namespace eventsHall.userWebsite
                 conect.Attributes.Add("class", "btn btn-primary py-2 px-4 dropdown-toggle");
                 conect.HRef = "#";
                 dropdown.Attributes.Add("class", "dropdown");
+                if (usertmp.permissions == "admin")
+                {
+                    dropDownMenu.InnerHtml += "<li><a class=\" btn-primary py-2 px-4 dropdown-item\" href=\"../adminmanage/orderslist.aspx\">לניהול</a></li>";
+                }
             }
 
         }

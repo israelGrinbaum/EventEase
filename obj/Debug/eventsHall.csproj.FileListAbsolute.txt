@@ -27,7 +27,6 @@ C:\Users\user\source\repos\eventsHall\eventsHall\bin\Microsoft.CodeDom.Providers
 C:\Users\user\source\repos\eventsHall\eventsHall\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.csproj.CoreCompileInputs.cache
-C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.csproj.CopyComplete
 C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.dll
 C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.pdb
 C:\Users\user\source\repos\eventsHall\eventsHall\bin\Newtonsoft.Json.dll
@@ -83,3 +82,4 @@ C:\Users\user\source\repos\eventsHall\eventsHall\bin\RestSharp.xml
 C:\Users\user\source\repos\eventsHall\eventsHall\bin\System.Text.Encodings.Web.xml
 C:\Users\user\source\repos\eventsHall\eventsHall\bin\System.Text.Json.xml
 C:\Users\user\source\repos\eventsHall\eventsHall\bin\System.ValueTuple.xml
+C:\Users\user\source\repos\eventsHall\eventsHall\obj\Debug\eventsHall.csproj.Up2Date

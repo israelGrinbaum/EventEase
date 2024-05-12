@@ -32,7 +32,6 @@ namespace BLL
         private void updateAplicationMemory()
         {
             List<portionCategoryes> lstPC = portionCategoryes.getAllCategoryes("");
-            Application["lstPC"] = lstPC;
         }
     }
 }

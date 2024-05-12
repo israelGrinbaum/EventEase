@@ -174,6 +174,7 @@ namespace eventsHall.userWebsite
                     }
                 }
                 ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text = $"<input name=\"{CBName}\" value=\"{CBValue}\" type=\"checkbox\" class=\"btn-check\" id=\"btn-check-outlined-{portion.Pid}\" autocomplete=\"off\" {isPidExist}>";
+                var a = ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text;
             }
 
         }

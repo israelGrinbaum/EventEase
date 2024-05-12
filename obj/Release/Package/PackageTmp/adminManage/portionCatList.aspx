@@ -22,7 +22,10 @@
 
             <div class="card">
               <div class="card-header primary col-md-6">
-                <h3 class="card-title">קטגוריות מנה <a href="addUpdatePortionCat.aspx" class="btn btn-primary">הוסף קטגורייה</a>  <a href="portionCatList.aspx?format=excel" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a></h3>
+                <h3 class="card-title">קטגוריות מנה 
+                    <a href="addUpdatePortionCat.aspx" class="btn btn-primary">הוסף קטגורייה</a>
+                    <!--<a href="portionCatList.aspx?format=excel" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></a>-->
+                </h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -37,12 +40,12 @@
                   </tr>
                   </thead>
                   <tbody>
-                      <asp:Repeater ID="RPTCats" runat="server">
+                      <asp:Repeater ID="RPTCats" runat="server" OnItemDataBound="RPTCats_ItemDataBound">
                           <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("Cid") %></td>
                                     <td><%# Eval("catName") %></td>
-                                    <td><%# Eval("parentCatId") %></td>
+                                    <td><asp:Literal ID="ltlParentCatName" runat="server"></asp:Literal></td>
                                     <td><a href="addUpdatePortionCat.aspx?Cid=<%# Eval("Cid") %>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     <td><a href="#" class="btn btn-danger" onclick="if(confirm('האם אתה בטוח?')) window.location='addUpdatePortionCat.aspx?Cid=<%# Eval("Cid") %>&op=del'"><i class="fa-solid fa-trash-alt"></i></a> </td>
                                 </tr>

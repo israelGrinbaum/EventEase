@@ -1,12 +1,15 @@
 ﻿using BLL;
 using Newtonsoft.Json;
+using Syncfusion.CompoundFile.XlsIO.Native;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text.Json.Serialization;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace eventsHall.userWebsite
@@ -17,6 +20,7 @@ namespace eventsHall.userWebsite
         {
             string oid = Request["Oid"] + "";
             string op = Request["op"] + "";
+
             if (op == "del")
             {
                 orders.removeOrderById(int.Parse(oid));
@@ -71,10 +75,12 @@ namespace eventsHall.userWebsite
                 txtSomePeople.Text = order.somepeople + "";
                 if (DDLHid.Items.FindByValue(order.Hid + "") != null)
                 {
+                    DDLHid.Items.FindByValue("0").Selected = false;
                     DDLHid.Items.FindByValue(order.Hid + "").Selected = true;
                 }
                 if (DDLEventType.Items.FindByValue(order.eventTypeId + "") != null)
                 {
+                    DDLEventType.Items.FindByValue("0").Selected = false;
                     DDLEventType.Items.FindByValue(order.eventTypeId + "").Selected = true;
                 }
 
@@ -100,21 +106,45 @@ namespace eventsHall.userWebsite
             //int eventTypeId = int.Parse(DDLEventType.SelectedItem.Value);
             //int Hid = int.Parse(DDLHid.SelectedItem.Value);
             //string notes = txtNotes.Text;
+            if (int.Parse(DDLEventType.SelectedItem.Value) == 0)
+            {
+                Literal ltlMsg = Master.FindControl("ltlMsg") as Literal;
+                HtmlControl toats = Master.FindControl("liveToast") as HtmlControl;
+                toats.Attributes["class"] += " show";
+                ltlMsg.Text = "לא נבחר סוג אירוע";
+                return;
+            }
+            if (int.Parse(DDLHid.SelectedItem.Value) == 0)
+            {
+                Literal ltlMsg = Master.FindControl("ltlMsg") as Literal;
+                HtmlControl toats = Master.FindControl("liveToast") as HtmlControl;
+                toats.Attributes["class"] += " show";
+                ltlMsg.Text = "לא נבחר אולם";
+                return;
 
-            orders order = new orders()
+            }
+
+            try
             {
-                Oid = int.Parse(HiddenOid.Value),
-                Uid = user.Uid,
-                eventDate = DateTime.Parse(txtEventDate.Text),
-                somepeople = int.Parse(txtSomePeople.Text),
-                eventTypeId = int.Parse(DDLEventType.SelectedItem.Value),
-                Hid = int.Parse(DDLHid.SelectedItem.Value),
-                notes = txtNotes.Text,
-            };
-            order.addUpdateOrder();
-            if (order.Oid != -1)
+                orders order = new orders()
+                {
+                    Oid = int.Parse(HiddenOid.Value),
+                    Uid = user.Uid,
+                    eventDate = DateTime.Parse(txtEventDate.Text),
+                    somepeople = int.Parse(txtSomePeople.Text),
+                    eventTypeId = int.Parse(DDLEventType.SelectedItem.Value),
+                    Hid = int.Parse(DDLHid.SelectedItem.Value),
+                    notes = txtNotes.Text,
+                };
+                order.addUpdateOrder();
+                if (order.Oid != -1)
+                {
+                    Response.Redirect("addUpdateOrderDetail.aspx?Oid=" + order.Oid);
+                }
+            }
+            catch(Exception ex)
             {
-                Response.Redirect("addUpdateOrderDetail.aspx?Oid="+order.Oid);
+                Console.WriteLine(ex.ToString());
             }
 
         }

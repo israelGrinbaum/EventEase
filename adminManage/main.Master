@@ -62,23 +62,30 @@
             height: 100vh;
             background-color: var(--bs-backdrop-bg);
         }
-        label{
-            font-weight:normal!important;
-        }
-        .warning-massege{
-            padding-right:12px;
-            font-size:15px;
-            color:#dc3545;
-            margin-bottom:0px;
-        }
-        .Required{
 
+        label {
+            font-weight: normal !important;
         }
-        .verification-date{
 
+        .warning-massege {
+            padding-right: 12px;
+            font-size: 15px;
+            color: #dc3545;
+            margin-bottom: 0px;
         }
-        .verification-number{
 
+        .form-floating > :disabled ~ label::after {
+            background-color: #e9ecef !important;
+        }
+
+
+        .Required {
+        }
+
+        .verification-date {
+        }
+
+        .verification-number {
         }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -100,10 +107,10 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="default.aspx" class="nav-link">בית</a>
+                    <a href="orderslist.aspx" class="nav-link">בית</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../userWebsite/index.html" class="nav-link">לאתר ההזמנות</a>
+                    <a href="../userWebsite/home.aspx" class="nav-link">לאתר ההזמנות</a>
                 </li>
             </ul>
 
@@ -120,7 +127,7 @@
             </form>-->
 
             <!-- Right navbar links -->
-<%--            <ul class="navbar-nav mr-auto">
+            <%--            <ul class="navbar-nav mr-auto">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -220,9 +227,9 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: max-content">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="/adminManage/dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; width: 80px; margin-right: 0px;">
                 <span class="brand-text font-weight-light">קייטרינג גרינבוים</span>
             </a>
@@ -231,9 +238,9 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
+                    <!--<div class="image">
                         <img src="..\uploads\pics\profile\WIN_20230510_21_44_46_Pro2.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
+                    </div>-->
                     <div class="info">
                         <a href="#" class="d-block">
                             <asp:Literal ID="ltlName" runat="server"></asp:Literal>
@@ -247,60 +254,51 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    ממשק ניהול
-               
-                                    <i class="left fas fa-angle-left"></i>
-                                </p>
+                                <p>ממשק ניהול<i class="left fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li id="portionsList" class="nav-item">
                                     <a href="portionsList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול מנות</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="portionCatList" class="nav-item">
                                     <a href="portionCatList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול קטגוריות מנה</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="orderDetailsCatList" class="nav-item">
                                     <a href="orderDetailsCatList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול קטגוריות פריטי הזמנה</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="ordersList" class="nav-item">
                                     <a href="ordersList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול הזמנות</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="eventTypesList" class="nav-item">
                                     <a href="eventTypesList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול סוגי אירוע</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="HallsList" class="nav-item">
                                     <a href="HallsList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול אולמות</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li id="usersList" class="nav-item">
                                     <a href="usersList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול משתמשים</p>
-                                    </a>
-                                <li class="nav-item">
-                                    <a href="#" onclick="click()" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>ניהול </p>
                                     </a>
                                 </li>
                             </ul>
@@ -362,7 +360,7 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-</script>
+    </script>
     <!-- Bootstrap 4 -->
     <script src="/adminManage/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
@@ -395,6 +393,22 @@
         function click() {
             document.getElementsByClassName("paginate_button").innertext = "jnsvo";
         }
+    </script>
+    <script>
+        $(
+            function () {
+                let path = window.location.pathname;
+                let indexOfslash = path.lastIndexOf('/') + 1;
+                let indexOfDot = path.lastIndexOf('.');
+                let pageName = path.substring(indexOfslash, indexOfDot);
+                console.log(path);
+                console.log(indexOfslash);
+                console.log(indexOfDot);
+                console.log(pageName);
+                $('#' + pageName)[0]
+                console.log($('#' + pageName)[0]);
+            }
+        )
     </script>
 
 

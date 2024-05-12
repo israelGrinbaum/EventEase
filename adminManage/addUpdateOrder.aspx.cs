@@ -33,10 +33,11 @@ namespace eventsHall.adminManage
             {
                 fillData();
             }
+
         }
         public void fillData()
         {
-            var uid =  item.getAll("T_Users","Uid","Uname");
+            var uid = item.getAll("T_Users", "Uid", "Uname");
             DDLUid.DataSource = uid;
             DDLUid.DataTextField = "value";
             DDLUid.DataValueField = "key";
@@ -45,7 +46,7 @@ namespace eventsHall.adminManage
             var eventType = item.getAll("T_EventType", "ETid", "ETname");
             DDLEventType.DataSource = eventType;
             DDLEventType.DataTextField = "value";
-            DDLEventType.DataValueField= "key";
+            DDLEventType.DataValueField = "key";
             DDLEventType.DataBind();
             DDLEventType.Items.Insert(0, new ListItem() { Text = "בחר", Value = "0", Selected = true });
             var halls = item.getAll("T_Halls", "Hid", "Hname");
@@ -63,18 +64,29 @@ namespace eventsHall.adminManage
                 {
                     Response.Redirect("messages.aspx?Mid=300");
                 }
-                if(DDLUid.Items.FindByValue(order.Uid + "") != null)
+                if (DDLUid.Items.FindByValue(order.Uid + "") != null)
                 {
+                    DDLUid.Items.FindByValue("0").Selected = false;
                     DDLUid.Items.FindByValue(order.Uid + "").Selected = true;
                 }
+                txtEventDate.TextMode = TextBoxMode.SingleLine;
                 txtEventDate.Text = order.eventDate + "";
+                var a = DateTime.Now;
+                
+                if (a  > order.eventDate)
+                {
+                    txtEventDate.Enabled = false;
+                    txtEventDate.CssClass = "form-control";
+                }
                 txtSomePeople.Text = order.somepeople + "";
                 if (DDLHid.Items.FindByValue(order.Hid + "") != null)
                 {
+                    DDLHid.Items.FindByValue("0").Selected = false;
                     DDLHid.Items.FindByValue(order.Hid + "").Selected = true;
                 }
                 if (DDLEventType.Items.FindByValue(order.eventTypeId + "") != null)
                 {
+                    DDLEventType.Items.FindByValue("0").Selected = false;
                     DDLEventType.Items.FindByValue(order.eventTypeId + "").Selected = true;
                 }
 
@@ -88,11 +100,11 @@ namespace eventsHall.adminManage
             {
                 Oid=int.Parse(HiddenOid.Value),
                 Uid = int.Parse(DDLUid.SelectedItem.Value),
-                eventDate=DateTime.Parse(txtEventDate.Text),
-                somepeople=int.Parse(txtSomePeople.Text),
-                eventTypeId=int.Parse(DDLEventType.SelectedItem.Value),
-                Hid=int.Parse(DDLHid.SelectedItem.Value),
-                notes=txtNotes.Text,
+                eventDate = DateTime.Parse(txtEventDate.Text),
+                somepeople = int.Parse(txtSomePeople.Text),
+                eventTypeId = int.Parse(DDLEventType.SelectedItem.Value),
+                Hid = int.Parse(DDLHid.SelectedItem.Value),
+                notes =txtNotes.Text,
             };
             order.addUpdateOrder();
             if (order.Oid != -1)

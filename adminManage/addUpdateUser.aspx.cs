@@ -41,6 +41,7 @@ namespace eventsHall.adminManage
                 Uname=txtName.Text,
                 email=txtemail.Text,
                 phone=txtphone.Text,
+                permissions = DDLpermmision.SelectedItem.Text
             };
             if (user.Uid == -1)
             {
