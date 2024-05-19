@@ -127,9 +127,9 @@
             </form>-->
 
             <!-- Right navbar links -->
-            <%--            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto">
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
+                <%--                <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
                         <span class="badge badge-danger navbar-badge">3</span>
@@ -221,8 +221,11 @@
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
+                </li>--%>
+                <li class="nav-item">
+                    <img src="/adminManage/dist/img/grinbaum.png" alt="Logo" class=" elevation-3" style="height: 40px;">
                 </li>
-            </ul>--%>
+            </ul>
         </nav>
         <!-- /.navbar -->
 
@@ -230,7 +233,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: max-content">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="/adminManage/dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; width: 80px; margin-right: 0px;">
+                <!--<img src="/adminManage/dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; width: 80px; margin-right: 0px;">-->
                 <span class="brand-text font-weight-light">קייטרינג גרינבוים</span>
             </a>
 
@@ -259,44 +262,57 @@
                                 <p>ממשק ניהול<i class="left fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li id="portionsList" class="nav-item">
+                                <li class="nav-item has-treeview">
                                     <a href="portionsList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>ניהול מנות</p>
+                                        <p>ניהול מנות<i class="left fas fa-angle-left"></i></p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a id="portionsList" href="portionsList.aspx" class="nav-link">
+                                                <p>רשימת מנות</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a id="addUpdatePortion" href="addUpdatePortion.aspx" class="nav-link">
+                                                <p>הוסף / ערוך מנה</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+
                                 </li>
-                                <li id="portionCatList" class="nav-item">
-                                    <a href="portionCatList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="portionCatList" href="portionCatList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול קטגוריות מנה</p>
                                     </a>
                                 </li>
-                                <li id="orderDetailsCatList" class="nav-item">
-                                    <a href="orderDetailsCatList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="orderDetailsCatList" href="orderDetailsCatList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול קטגוריות פריטי הזמנה</p>
                                     </a>
                                 </li>
-                                <li id="ordersList" class="nav-item">
-                                    <a href="ordersList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="ordersList" href="ordersList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול הזמנות</p>
                                     </a>
                                 </li>
-                                <li id="eventTypesList" class="nav-item">
-                                    <a href="eventTypesList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="eventTypesList" href="eventTypesList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול סוגי אירוע</p>
                                     </a>
                                 </li>
-                                <li id="HallsList" class="nav-item">
-                                    <a href="HallsList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="HallsList" href="HallsList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול אולמות</p>
                                     </a>
                                 </li>
-                                <li id="usersList" class="nav-item">
-                                    <a href="usersList.aspx" class="nav-link">
+                                <li class="nav-item">
+                                    <a id="usersList" href="usersList.aspx" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>ניהול משתמשים</p>
                                     </a>
@@ -401,12 +417,8 @@
                 let indexOfslash = path.lastIndexOf('/') + 1;
                 let indexOfDot = path.lastIndexOf('.');
                 let pageName = path.substring(indexOfslash, indexOfDot);
-                console.log(path);
-                console.log(indexOfslash);
-                console.log(indexOfDot);
-                console.log(pageName);
-                $('#' + pageName)[0]
-                console.log($('#' + pageName)[0]);
+                let stSearch = '#' + pageName;
+                $(stSearch).addClass('active');
             }
         )
     </script>

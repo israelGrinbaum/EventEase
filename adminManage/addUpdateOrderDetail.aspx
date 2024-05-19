@@ -149,7 +149,7 @@
             let res;
             function getPortionByCid(id, name) {
                 jQuery.ajax({
-                    url: 'http://localhost:46327/adminManage/addUpdateOrderDetail.aspx/selectCatChange',
+                    url: 'http://localhost:8090/adminManage/addUpdateOrderDetail.aspx/selectCatChange',
                     type: "POST",
                     data: "{'Cid' : " + id + "}",
                     contentType: "application/json; charset=utf-8",

@@ -148,6 +148,7 @@ namespace eventsHall.userWebsite
                 {
                     if (portion.portionCatId.Contains("@" + ((portionCategoryes)e.Item.DataItem).Cid + "@"))
                     {
+                        portion.portionCatId = portion.portionCatId.Replace(portion.portionCatId, "@" + ((portionCategoryes)e.Item.DataItem).Cid + "@");
                         data.Add(portion);
                     }
                 }
@@ -162,19 +163,22 @@ namespace eventsHall.userWebsite
             {
                 portions portion = (portions)e.Item.DataItem;
                 string isPidExist = "";
+                var aa = e.Item.Parent;
                 string CBName = portion.portionCatId;
                 string CBValue = portion.Pid + "";
+                int portionCatId = int.Parse(portion.portionCatId.Replace("@", ""));
                 List<orderDetails> OrderDetails = (List<orderDetails>)Session["OrderDateils"];
                 if(OrderDetails != null)
                 {
-                    orderDetails OrderDetail = OrderDetails.Find(x=>x.Pid == portion.Pid);
+                    orderDetails OrderDetail = OrderDetails.Find(x=>x.Pid == portion.Pid && x.ODCatId == portionCatId);
                     if(OrderDetail != null)
                     {
                         isPidExist = "checked=\"checked\"";
                     }
                 }
-                ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text = $"<input name=\"{CBName}\" value=\"{CBValue}\" type=\"checkbox\" class=\"btn-check\" id=\"btn-check-outlined-{portion.Pid}\" autocomplete=\"off\" {isPidExist}>";
-                var a = ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text;
+                ((Literal)e.Item.FindControl("ltlSelectPortionCB")).Text = $"<input name=\"{CBName}\" value=\"{CBValue}\" type=\"checkbox\" class=\"btn-check\" id=\"btn-check-outlined-{portion.Pid + CBName}\" autocomplete=\"off\" {isPidExist}>";
+                ((HtmlGenericControl)e.Item.FindControl("CBButton")).Attributes.Add("for",$"btn-check-outlined-{CBValue + CBName}");
+                var a = ((HtmlGenericControl)e.Item.FindControl("CBButton")).Attributes;
             }
 
         }

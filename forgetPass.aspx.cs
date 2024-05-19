@@ -12,6 +12,8 @@ namespace eventsHall
 
         protected void btnForgot_Click(object sender, EventArgs e)
         {
+            assets.SendEmail(txtEmail.Text, "איפוס סיסמא", "הסיסמא שלך היא XXXXXX");
+
             //if (BLL.User.isExist(txtEmail.Text))
             //{
             //    string token = assets.GetRandStr(40);

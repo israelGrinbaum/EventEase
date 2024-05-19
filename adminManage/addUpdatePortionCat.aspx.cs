@@ -75,6 +75,7 @@ namespace eventsHall.adminManage
                 parentCatId = parentCatId
             };
             portionCategoryes.addUpdateCategory();
+            Application["lstPC"] = BLL.portionCategoryes.getAllCategoryes("");
             if (portionCategoryes.Cid != - 1)
             {
                 Response.Redirect("portionCatList.aspx");

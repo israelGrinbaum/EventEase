@@ -84,8 +84,10 @@
                                         <th>סוג אירוע</th>
                                         <th>מחיר</th>
                                         <th>תאריך יצירת הזמנה</th>
+                                        <th>סטטוס הזמנה</th>
                                         <th>אולם</th>
                                         <th>הערות</th>
+                                        <th>אישור הזמנה</th>
                                         <th>ערוך</th>
                                         <th>מחק</th>
                                     </tr>
@@ -138,6 +140,11 @@
                                                 </td>
                                                 <td style="position:relative;">
                                                     <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("orderStatus") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
                                                         <asp:Literal ID="Hid" runat="server"></asp:Literal>
                                                     </a>
                                                 </td>
@@ -145,6 +152,11 @@
                                                     <a href="orderDetails.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
                                                         <%# Eval("notes") %>
                                                     </a>
+                                                </td>
+                                                <td style="position:relative;">
+                                                    <asp:LinkButton id="OrderApprove" runat="server" OnCommand="OrderApprove_Click" class="btn btn-primary stretched-link">
+                                                        <i class="fa-regular fa-circle-check"></i>
+                                                    </asp:LinkButton>
                                                 </td>
                                                 <td style="position:relative;">
                                                     <a href="addUpdateOrder.aspx?Oid=<%# Eval("Oid") %>" class="btn btn-primary stretched-link">

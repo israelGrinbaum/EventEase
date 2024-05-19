@@ -39,7 +39,7 @@ namespace eventsHall.App_Code
                 SmtpClient client = new SmtpClient("smtp.gmail.com");// יצירת אובייקט של קליינט לשרת שליחת דואר
 
                 // Follow the RFS 5321 Email Standard
-                newMail.From = new MailAddress("ig0527156194@gmail.com", "ישראל גרין");
+                newMail.From = new MailAddress("catering.grinbaum@gmail.com", "קייטרינג גרינבוים");
 
                 newMail.To.Add(to);// כתובת הנמען
 
@@ -53,7 +53,7 @@ namespace eventsHall.App_Code
                 // Port 465 for SSL communication
                 client.Port = 587;
                 // Provide authentication information with Gmail SMTP server to authenticate your sender account
-                client.Credentials = new System.Net.NetworkCredential("ig0527156194@gmail.com", "vuwbftnjzayfkgyh");
+                client.Credentials = new System.Net.NetworkCredential("catering.grinbaum@gmail.com", "bift hpfe fenb rsnk");
 
                 client.Send(newMail); // שליחת המייל
                 return "ok";

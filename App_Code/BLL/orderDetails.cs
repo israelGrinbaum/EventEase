@@ -25,6 +25,8 @@ namespace BLL
         public void addUpdateOrderDetail()
         {
             orderDetailsDAL.addUpdateOrderDetail(this);
+            orders order= orders.getOrderById(this.Oid);
+            order.setOrderStatus();
         }
         public static void removeOrderDetailById(int ODid)
         {

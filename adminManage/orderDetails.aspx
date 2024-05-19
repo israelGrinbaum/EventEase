@@ -210,6 +210,9 @@
     </script>--%>
     <script src="/adminManage/plugins/select2/js/select2.full.min.js"></script>
     <script src="plugins/moment/moment-with-locales.min.js"></script>
+<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.material.js"></script>--%>
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker();
@@ -230,21 +233,21 @@
         })
     </script>
     <script>
-        $(function () {
-            console.log("abc");
-            var table = document.getElementById("example1");
-            for (var i = 0; i < table.rows.length; i++) {
-                if (table.rows[i].cells[4] !== table.rows[i + 1].cells[4]) {
-                    //    var row = table.insertRow(i + 1);
-                    //    var cell = row.insertCell(0);
-                    //    cell.innerhtml = "123" + i;
-                }
-                console.log(table.rows[i].cells[4]);
-                for (var j = 0, col; col = table.rows[i].cells[j]; j++) {
+        //$(function () {
+        //    console.log("abc");
+        //    var table = document.getElementById("example1");
+        //    for (var i = 0; i < table.rows.length; i++) {
+        //        if (table.rows[i].cells[4] !== table.rows[i + 1].cells[4]) {
+        //            //    var row = table.insertRow(i + 1);
+        //            //    var cell = row.insertCell(0);
+        //            //    cell.innerhtml = "123" + i;
+        //        }
+        //        console.log(table.rows[i].cells[4]);
+        //        for (var j = 0, col; col = table.rows[i].cells[j]; j++) {
 
-                }
-            }
-        });
+        //        }
+        //    }
+        //});
     </script>
 
     <script>
@@ -255,6 +258,11 @@
                 "responsive": true,
                 "autoWidth": false,
                 "ordering": false,
+                "pagingType": 'simple_numbers',
+                "lengthMenu": [
+                    [-1, 10, 25, 50],
+                    ['הכל', 10, 25, 50]
+                ],
             });
             $('#example2').DataTable({
                 "paging": true,

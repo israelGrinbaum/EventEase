@@ -27,7 +27,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">שכחתי סיסמא.</p>
 
-      <form action="recover-password.html" method="post">
+      <form id="form1" runat="server">
         <div class="input-group mb-3">
             <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="נא הזן שם משתמש"></asp:TextBox>
 <%--          <input type="email" class="form-control" placeholder="Email">--%>
@@ -66,9 +66,5 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 
 
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
 </body>
 </html>

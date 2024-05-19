@@ -57,9 +57,8 @@
                                 <asp:Image ID="pic" runat="server" Width="100%" AlternateText="לא ניתן להציג את התמונה" />
                                 <label for="mainCnt_pic">תמונה</label>
                             </div>
-                            <div class="form-group form-floating">
+                            <div class="form-group">
                                 <asp:FileUpload ID="picUpload" runat="server" class="form-control" />
-                                <label for="mainCnt_picUpload">העלאת תמונה</label>
                             </div>
                             <div class="form-group form-floating">
                                 <asp:ListBox SelectionMode="Multiple" ID="DDLCats" runat="server" class="form-control select2bs4" Style="width: 100%;"></asp:ListBox>

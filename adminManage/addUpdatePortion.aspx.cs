@@ -42,8 +42,8 @@ namespace eventsHall.adminManage
             DDLCats.DataTextField = "catName";
             DDLCats.DataValueField = "Cid";
             DDLCats.DataBind();
-            DDLCats.Items.Insert(0, new ListItem() { Text= "קטגוריה ראשית" ,Value="0",Selected=true});
-
+            //DDLCats.Items.Insert(0, new ListItem() { Text= "קטגוריה ראשית" ,Value="0",Selected=true});
+            txtPrice.Text = "0";
             if (HiddenPid.Value != "-1")
             {
                 portions portion = new portions();
@@ -69,7 +69,10 @@ namespace eventsHall.adminManage
                     }
                 }
             }
-
+            if(pic.ImageUrl == "")
+            {
+                pic.Visible = false;
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

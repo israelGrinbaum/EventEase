@@ -31,10 +31,6 @@ namespace eventsHall.adminManage
                 int Uid = ((orders)e.Item.DataItem).Uid;
                 ((Literal)e.Item.FindControl("Uid")).Text = item.getAnyData("T_Users", "Uname", "Uid", "" + Uid);
                 int eventTypeId = ((orders)e.Item.DataItem).eventTypeId;
-                if (eventTypeId == 0)
-                {
-
-                }
                 ((Literal)e.Item.FindControl("eventTypeId")).Text = item.getAnyData("T_EventType", "ETname", "ETid", "" + eventTypeId);
                 float pricePerPortion = float.Parse(item.getAnyData("T_EventType", "pricePerPortion", "ETid", "" + eventTypeId));
                 int somePeople= ((orders)e.Item.DataItem).somepeople;
@@ -52,8 +48,21 @@ namespace eventsHall.adminManage
                 ((Literal)e.Item.FindControl("ltlCalculatedPrice")).Text = ""+(sumPrice);
                 int Hid = ((orders)e.Item.DataItem).Hid;
                 ((Literal)e.Item.FindControl("Hid")).Text = item.getAnyData("T_Halls", "Hname", "Hid", "" + Hid);
+                ((LinkButton)e.Item.FindControl("OrderApprove")).CommandName = Oid + "";
             }
 
         }
+
+        protected void OrderApprove_Click(object sender,CommandEventArgs ce)
+        {
+            int oid = int.Parse(ce.CommandName);
+            orders order=orders.getOrderById(oid);
+            if(order != null)
+            {
+                order.approveOrderStatus();
+            }
+            fillData();
+        }
+
     }
 }

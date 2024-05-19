@@ -61,7 +61,7 @@ namespace eventsHall.userWebsite
                 foreach (var orderDetail in orderDetsils)
                 {
                     var portion = Portions.Find(x => x.Pid == orderDetail.Pid);
-                    if (portion.portionCatId.Contains("@" + ((portionCategoryes)e.Item.DataItem).Cid + "@"))
+                    if (orderDetail.ODCatId== ((portionCategoryes)e.Item.DataItem).Cid)
                     {
                         data.Add(portion);
                     }

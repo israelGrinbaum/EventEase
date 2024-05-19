@@ -33,6 +33,7 @@ namespace DAL
                     createDate = (DateTime)dt.Rows[i]["createDate"],
                     Hid = (int)dt.Rows[i]["Hid"],
                     notes = dt.Rows[i]["notes"] + "",
+                    orderStatus = dt.Rows[i]["orderStatus"] + "",
                 });
             }
             return listOrders;
@@ -55,7 +56,7 @@ namespace DAL
                     createDate = (DateTime)dt.Rows[0]["createDate"],
                     Hid = (int)dt.Rows[0]["Hid"],
                     notes = dt.Rows[0]["notes"]+"",
-
+                    orderStatus = dt.Rows[0]["orderStatus"] + "",
                 };
                 return order;
             }
@@ -83,6 +84,7 @@ namespace DAL
                     createDate = (DateTime)dt.Rows[i]["createDate"],
                     Hid = (int)dt.Rows[i]["Hid"],
                     notes = dt.Rows[i]["notes"] + "",
+                    orderStatus = dt.Rows[i]["orderStatus"] + "",
                 });
             }
             return listOrders;
@@ -93,11 +95,11 @@ namespace DAL
             string eventDate = order.eventDate.Year.ToString() + order.eventDate.Month.ToString().PadLeft(2,'0') + order.eventDate.Day.ToString().PadLeft(2, '0') +" " + order.eventDate.Hour.ToString().PadLeft(2, '0') + ":" + order.eventDate.Minute.ToString().PadLeft(2, '0');
             if (order.Oid == -1)
             {
-                sql = $"insert into T_Orders (Uid,eventDate,somePeople,eventTypeId,Hid,notes) values ({order.Uid},'{eventDate}',{order.somepeople},{order.eventTypeId},{order.Hid},N'{order.notes}');";
+                sql = $"insert into T_Orders (Uid,eventDate,somePeople,eventTypeId,Hid,notes,orderStatus) values ({order.Uid},'{eventDate}',{order.somepeople},{order.eventTypeId},{order.Hid},N'{order.notes}',N'{order.orderStatus}');";
             }
             else
             {
-                sql = $"update T_Orders set Uid={order.Uid},eventDate=N'{eventDate}',somePeople={order.somepeople},eventTypeId={order.eventTypeId},Hid={order.Hid},notes=N'{order.notes}' where Oid={order.Oid}";
+                sql = $"update T_Orders set Uid={order.Uid},eventDate=N'{eventDate}',somePeople={order.somepeople},eventTypeId={order.eventTypeId},Hid={order.Hid},notes=N'{order.notes}',orderStatus=N'{order.orderStatus}' where Oid={order.Oid}";
             }
             dbContext db = new dbContext();
             int ret = db.executeNonQuery(sql);

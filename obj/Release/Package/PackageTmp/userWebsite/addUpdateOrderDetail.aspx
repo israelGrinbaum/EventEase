@@ -73,7 +73,7 @@
                                                                 <p class="card-text"><%# Eval("Pdesc") %></p>
                                                                 <asp:Literal ID="ltlSelectPortionCB" runat="server"></asp:Literal>
                                                                 <%--                                                                <input type="checkbox" class="btn-check" autocomplete="off"\>--%>
-                                                                <label name="SelectButton" class="btn btn-outline-primary Select-Button" for="btn-check-outlined-<%# Eval("Pid") %>">בחר</label><br>
+                                                                <label id="CBButton" runat="server" name="SelectButton" class="btn btn-outline-primary Select-Button">בחר</label><br>
                                                             </div>
                                                         </div>
                                                     </div>

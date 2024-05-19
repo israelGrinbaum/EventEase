@@ -20,11 +20,13 @@ $('#btnRegister').click(function () {
 $('#btnLogin').click(function () {
     return requiredOnSave();
 });
-$('select').on('change', (e) => {
-    e.target.parentElement.children[2].children[0].children[0].classList.remove('is-invalid');
-    if (e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired').length > 0)
-        e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired')[0].remove();
-});
+//$('select').on('change', (e) => {
+//    if (e.target.parentElement.children[2].children[0].classList != null) {
+//        e.target.parentElement.children[2].children[0].children[0].classList.remove('is-invalid');
+//    }
+//    if (e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired').length > 0)
+//        e.target.parentElement.children[2].children[0].children[0].parentElement.parentElement.querySelectorAll('.warningMassegeRequired')[0].remove();
+//});
 
 function verificationNumber(e) {
     let val = + e.target.value;
