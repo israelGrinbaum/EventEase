@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .tab {
+/*        .tab {
             display: none;
         }
 
@@ -10,6 +10,28 @@
             --bs-nav-tabs-border-width: 0;
             border-bottom: 0;
         }
+*/    
+
+    /* אפשרות השהיית סגירת התפריט בזמן המעבר */
+.dropdown:hover .dropdown-menu {
+    display: block; /* יישאר פתוח כשמעבירים את העכבר עליו */
+}
+
+/* אם ברצונך להוסיף הנפשה לתפריט */
+.dropdown-menu {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+    </style>
+    <style>
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="nav" runat="server">
@@ -41,16 +63,22 @@
                 </div>
                 <div class="col-md-8">
                     <!-- general form elements -->
-                    <ul class="nav nav-tabs">
-                        <asp:Repeater ID="RptCats" runat="server">
-                            <ItemTemplate>
-                                <li class="nav-item">
-                                    <h3 class="nav-link cat-name" style="font-weight: bold; font-size: larger"><%# Eval("catName") %></h3>
-                                </li>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </ul>
-
+                    <div class="category-wrapper">
+                        <div class="category-container">
+                            <div class="category-list">
+<%--                                <ul class="nav nav-tabs">--%>
+                                    <asp:Repeater ID="RptCats" runat="server">
+                                        <ItemTemplate>
+                                            <div class="category-item cat-name" onclick="scrollToCategory(this)"><%# Eval("catName") %></div>
+<%--                                            <li class="nav-item">
+                                                <h3 class="nav-link cat-name" style="font-weight: bold; font-size: larger"></h3>
+                                            </li>--%>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+<%--                                </ul>--%>
+                            </div>
+                        </div>
+                    </div>
                     <asp:Repeater ID="rptPortions" runat="server" OnItemDataBound="rptPortions_ItemDataBound">
                         <ItemTemplate>
                             <div class="tab card card-primary">
@@ -170,7 +198,7 @@
                 var url = window.location;
                 let params = new URLSearchParams(url.search);
                 let oid = params.get('Oid');
-                location.assign("http://localhost:46327/userWebsite/orderDetail.aspx?Oid=" + oid);
+                location.assign("./orderDetail.aspx?Oid=" + oid);
                 return false;
             }
             // Otherwise, display the correct tab:
@@ -275,7 +303,7 @@
             }
             var pid = JSON.stringify({ "OrderDetails": portions });
             await jQuery.ajax({
-                url: 'http://localhost:46327/userWebsite/addUpdateOrderDetail.aspx/SavePortion',
+                url: './addUpdateOrderDetail.aspx/SavePortion',
                 type: "POST",
                 data: pid,
                 contentType: "application/json; charset=utf-8",
@@ -315,11 +343,79 @@
         function paintBorderOnCheck(e) {
             if (e.parentElement.parentElement.style.borderColor == "rgba(0, 0, 0, 0.13)" ||
                 e.parentElement.parentElement.style.borderColor == "") {
-                e.parentElement.parentElement.style.borderColor = "orange";
+                e.parentElement.parentElement.style.borderColor = "#4C245A";
             }
-            else if (e.parentElement.parentElement.style.borderColor == "orange") {
+            else if (e.parentElement.parentElement.style.borderColor == "rgb(76, 36, 90)") {
                 e.parentElement.parentElement.style.borderColor = "rgb(0 0 0 / 13%)";
             }
         }
     </script>
+<%--    <script>
+        function scrollToCategory(element) {
+            const container = document.querySelector(".category-container");
+            const containerWidth = container.offsetWidth;
+            const elementWidth = element.offsetWidth;
+            const elementLeft = element.offsetLeft;
+            const scrollPosition = elementLeft - (containerWidth / 2) + (elementWidth / 2);
+
+            container.scrollTo({ left: scrollPosition, behavior: "smooth" });
+
+            document.querySelectorAll(".cat-name").forEach(btn => btn.classList.remove("active"));
+            element.classList.add("active");
+        }
+
+        // הוספת אירוע לחיצה לכל קטגוריה
+        document.querySelectorAll(".cat-name").forEach(item => {
+            item.addEventListener("click", function () {
+                scrollToCategory(this);
+            });
+        });
+
+        const categoryContainer = document.querySelector(".category-container");
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        categoryContainer.addEventListener("mousedown", (e) => {
+            isDown = true;
+            startX = e.pageX - categoryContainer.offsetLeft;
+            scrollLeft = categoryContainer.scrollLeft;
+        });
+
+        categoryContainer.addEventListener("mouseleave", () => {
+            isDown = false;
+        });
+
+        categoryContainer.addEventListener("mouseup", () => {
+            isDown = false;
+        });
+
+        categoryContainer.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - categoryContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            categoryContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        categoryContainer.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            categoryContainer.scrollLeft += e.deltaY * 2;
+        });
+
+        function scrollToCategory(element) {
+            const container = document.querySelector(".category-container");
+            const containerWidth = container.offsetWidth;
+            const elementWidth = element.offsetWidth;
+            const elementLeft = element.offsetLeft;
+            const scrollPosition = elementLeft - (containerWidth / 2) + (elementWidth / 2);
+
+            container.scrollTo({ left: scrollPosition, behavior: "smooth" });
+
+            document.querySelectorAll(".category-item").forEach(btn => btn.classList.remove("active"));
+            element.classList.add("active");
+        }
+
+
+    </script>--%>
 </asp:Content>

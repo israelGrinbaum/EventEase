@@ -69,7 +69,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header primary col-md-12">
-                            <h3 class="card-title">הזמנות <a href="addUpdateOrder.aspx" class="btn btn-primary">הוסף הזמנה</a></h3>
+                            <h3 class="card-title">
+                                הזמנות
+                                <a href="addUpdateOrder.aspx" class="btn btn-primary">הוסף הזמנה</a>
+                                <a href="CalendarOfEvents.aspx" class="btn btn-primary">תצוגת לוח שנה</a>
+                            </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

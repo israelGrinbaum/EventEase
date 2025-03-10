@@ -33,7 +33,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/custom-bootstrap.css" rel="stylesheet">
     <!--font awesome-->
     <link href="../css/fontawesome-free-6.4.2-web/css/fontawesome.css" rel="stylesheet">
     <link href="../css/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
@@ -44,6 +44,8 @@
             font-family: 'Heebo';
         }
     </style>
+    <%--<link href="css/style_updated.css" rel="stylesheet">--%>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -96,9 +98,9 @@
                         </a>
 
                         <ul id="dropDownMenu" runat="server" class="dropdown-menu primary">
-                            <li><a class=" btn-primary py-2 px-4 dropdown-item" href="addUpdateOrder.aspx">הוסף הזמנה</a></li>
-                            <li><a class=" btn-primary py-2 px-4 dropdown-item" href="myOrders.aspx">היסטוריית הזמנות</a></li>
-                            <li><a class=" btn-primary py-2 px-4 dropdown-item" href="#">עדכן פרטים</a></li>
+                            <li><a class=" btn py-2 px-4 dropdown-item" href="addUpdateOrder.aspx">הוסף הזמנה</a></li>
+                            <li><a class=" btn py-2 px-4 dropdown-item" href="myOrders.aspx">היסטוריית הזמנות</a></li>
+                            <li><a class=" btn py-2 px-4 dropdown-item" href="#">עדכן פרטים</a></li>
                         </ul>
                     </div>
                 </div>

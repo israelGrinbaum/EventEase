@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/userWebsite/main.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="eventsHall.userWebsite.home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .btn-primary {
+            color: #000;
+            background-color: #4C245A;
+            border-color: #C9A86A;
+        }
+        .text-primary {
+            color: #4C245A !IMPORTANT;
+        }
+        ..navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link.active{
+            color: #4C245A !important;
+        }
+        .border-primary {
+            border-color: #4C245A !important;
+        }
+        .card-title{
+            color: #4C245A !important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="nav" runat="server">
 </asp:Content>

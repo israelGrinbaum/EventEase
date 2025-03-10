@@ -161,6 +161,7 @@
     <Content Include="adminManage\addUpdatePortion.aspx" />
     <Content Include="adminManage\addUpdatePortionCat.aspx" />
     <Content Include="adminManage\addUpdateUser.aspx" />
+    <Content Include="adminManage\CalendarOfEvents.aspx" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap.css" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap.min.css" />
     <Content Include="adminManage\DataTables\AutoFill-2.5.1\css\autoFill.bootstrap4.css" />
@@ -6534,7 +6535,9 @@
     <Content Include="userWebsite\bootstrap-restaurant-template.jpg" />
     <Content Include="userWebsite\contact.html" />
     <Content Include="userWebsite\css\bootstrap.min.css" />
+    <Content Include="userWebsite\css\custom-bootstrap.css" />
     <Content Include="userWebsite\css\style.css" />
+    <Content Include="userWebsite\css\style_updated.css" />
     <Content Include="userWebsite\home.aspx" />
     <Content Include="userWebsite\img\about-1.jpg" />
     <Content Include="userWebsite\img\about-2.jpg" />
@@ -6654,6 +6657,13 @@
     </Compile>
     <Compile Include="adminManage\addUpdateUser.aspx.designer.cs">
       <DependentUpon>addUpdateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminManage\CalendarOfEvents.aspx.cs">
+      <DependentUpon>CalendarOfEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminManage\CalendarOfEvents.aspx.designer.cs">
+      <DependentUpon>CalendarOfEvents.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminManage\cities.ashx.cs">
       <DependentUpon>cities.ashx</DependentUpon>

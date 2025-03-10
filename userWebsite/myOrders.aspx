@@ -31,6 +31,7 @@
                                         <th>תאריך יצירת הזמנה</th>
                                         <th>קוד אולם</th>
                                         <th>הערות</th>
+                                        <th>סטטוס הזמנה</th>
                                         <th>ערוך</th>
                                     </tr>
                                 </thead>
@@ -83,6 +84,11 @@
                                                 <td style="position: relative;">
                                                     <a href="orderDetail.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
                                                         <%# Eval("notes") %>
+                                                    </a>
+                                                </td>
+                                                <td style="position: relative;">
+                                                    <a href="orderDetail.aspx?Oid=<%# Eval("Oid") %>" class="stretched-link">
+                                                        <%# Eval("orderStatus") %>
                                                     </a>
                                                 </td>
                                                 <td style="position: relative;">

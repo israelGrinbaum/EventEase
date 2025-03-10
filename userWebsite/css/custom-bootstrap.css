@@ -1,0 +1,67 @@
+
+:root {
+    --primary-color: #4B0082; /* סגול עמוק */
+    --secondary-color: #D4AF37; /* זהב */
+    --background-color: #FAF8F6; /* קרם בהיר */
+    --text-color: #333333; /* אפור כהה לקריאות */
+    --accent-color: #8B5E3C; /* חום עדין להדגשות */
+}
+
+/* עיצוב מותאם ל-Bootstrap */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: #3A0066 !important; /* גוון כהה יותר לסגול */
+    border-color: #3A0066 !important;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.btn-secondary:hover {
+    background-color: #B8860B !important; /* גוון כהה יותר לזהב */
+    border-color: #B8860B !important;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid var(--accent-color);
+}
+
