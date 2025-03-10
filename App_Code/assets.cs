@@ -53,7 +53,7 @@ namespace eventsHall.App_Code
                 // Port 465 for SSL communication
                 client.Port = 587;
                 // Provide authentication information with Gmail SMTP server to authenticate your sender account
-                client.Credentials = new System.Net.NetworkCredential("catering.grinbaum@gmail.com", "bift hpfe fenb rsnk");
+                client.Credentials = new System.Net.NetworkCredential("catering.grinbaum@gmail.com", "#### #### #### ####");
 
                 client.Send(newMail); // שליחת המייל
                 return "ok";
